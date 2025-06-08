@@ -1,0 +1,42 @@
+name: 'Artifact Info'
+type: theme
+description: 'A custom Drupal 10 theme for artifact information display with modern design patterns.'
+package: Custom
+core_version_requirement: ^10 || ^11
+version: '1.0.0'
+base theme: stable9
+
+# Define regions for the theme
+regions:
+  header: 'Header'
+  primary_menu: 'Primary menu'
+  secondary_menu: 'Secondary menu'
+  page_top: 'Page top'
+  page_bottom: 'Page bottom'
+  highlighted: 'Highlighted'
+  breadcrumb: 'Breadcrumb'
+  content: 'Content'
+  sidebar_first: 'Sidebar first'
+  sidebar_second: 'Sidebar second'
+  footer_first: 'Footer first'
+  footer_second: 'Footer second'
+  footer_third: 'Footer third'
+  footer_fourth: 'Footer fourth'
+  hidden: 'Hidden'
+
+# Theme libraries
+libraries:
+  - artifactinfo/global-styling
+  - artifactinfo/global-scripts
+
+# Libraries to remove from pages
+libraries-override:
+  system/base:
+    css:
+      component:
+        /core/themes/stable9/css/system/components/ajax-progress.module.css: false
+
+# Theme settings
+libraries-extend:
+  user/drupal.user:
+    - artifactinfo/user-form

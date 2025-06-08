@@ -1,0 +1,166 @@
+/**
+ * Global Styles - Artifact Auctions Theme
+ * General CSS that applies globally across the theme
+ */
+
+/* Reset and Base Styles */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Root Variables - Brand Colors */
+:root {
+  --color-primary-black: #000000;
+  --color-secondary-dark: #38383B;
+  --color-accent-gray: #A8A6A1;
+  --color-light-gray: #DFE0E1;
+  --color-white: #FFFFFF;
+
+  /* Typography */
+  --font-primary: 'Georgia', serif;
+  --font-size-base: 16px;
+  --line-height-base: 1.6;
+  --letter-spacing-base: 0.5px;
+  --letter-spacing-wide: 1px;
+
+  /* Spacing */
+  --spacing-xs: 10px;
+  --spacing-sm: 15px;
+  --spacing-md: 20px;
+  --spacing-lg: 30px;
+  --spacing-xl: 40px;
+  --spacing-xxl: 60px;
+  --spacing-xxxl: 80px;
+
+  /* Transitions */
+  --transition-base: all 0.3s ease;
+}
+
+/* Typography */
+body {
+  font-family: var(--font-primary);
+  line-height: var(--line-height-base);
+  color: var(--color-white);
+  background-color: var(--color-primary-black);
+  font-size: var(--font-size-base);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-weight: normal;
+  letter-spacing: var(--letter-spacing-wide);
+  color: var(--color-white);
+}
+
+h1 {
+  font-size: 36px;
+  margin-bottom: 30px;
+}
+
+h2 {
+  font-size: 36px;
+  margin-bottom: 20px;
+}
+
+p {
+  margin-bottom: 15px;
+  line-height: 1.8;
+  color: var(--color-light-gray);
+}
+
+/* Links */
+a {
+  color: var(--color-white);
+  text-decoration: none;
+  transition: var(--transition-base);
+}
+
+a:hover {
+  color: var(--color-accent-gray);
+}
+
+/* Lists */
+ul,
+ol {
+  list-style: none;
+}
+
+/* Buttons */
+.btn {
+  padding: 15px 30px;
+  background-color: var(--color-accent-gray);
+  color: var(--color-primary-black);
+  text-decoration: none;
+  font-size: 14px;
+  font-weight: bold;
+  letter-spacing: var(--letter-spacing-wide);
+  transition: var(--transition-base);
+  border: 2px solid var(--color-accent-gray);
+  display: inline-block;
+  text-align: center;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: transparent;
+  color: var(--color-accent-gray);
+}
+
+.btn:focus {
+  outline: 2px solid var(--color-accent-gray);
+  outline-offset: 2px;
+}
+
+/* Images */
+img {
+  max-width: 100%;
+  height: auto;
+}
+
+/* Utility Classes */
+.text-center {
+  text-align: center;
+}
+
+.text-left {
+  text-align: left;
+}
+
+.text-right {
+  text-align: right;
+}
+
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+/* Focus styles for accessibility */
+*:focus {
+  outline: 2px solid var(--color-accent-gray);
+  outline-offset: 2px;
+}
+
+/* Selection styles */
+::selection {
+  background-color: var(--color-accent-gray);
+  color: var(--color-primary-black);
+}
+
+::-moz-selection {
+  background-color: var(--color-accent-gray);
+  color: var(--color-primary-black);
+}

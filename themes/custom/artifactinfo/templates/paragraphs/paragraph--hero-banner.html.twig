@@ -1,0 +1,82 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a paragraph of type "Hero Banner".
+ *
+ * Available variables:
+ * - paragraph: Full paragraph entity.
+ *   - id: The paragraph ID.
+ *   - bundle: The type of the paragraph, for example, "image" or "text".
+ *   - authorid: The user ID of the paragraph author.
+ *   - createdtime: Formatted creation date. Preprocess functions can
+ *     reformat it by calling format_date() with the desired parameters on
+ *     $variables['paragraph']->getCreatedTime().
+ * - content: All paragraph items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}. Use
+ *   {{ content|without('field_example') }} to temporarily suppress the printing
+ *   of a given child element.
+ * - attributes: HTML attributes for the containing element.
+ *   The attributes.class element may contain one or more of the following
+ *   classes:
+ *   - paragraphs: The current template type (also known as a "theming hook").
+ *   - paragraphs--type-[type]: The current paragraphs type. For example, if the paragraph is an
+ *     "Image" it would result in "paragraphs--type-image". Note that the machine
+ *     name will often be in a short form of the human readable label.
+ *   - paragraphs--view-mode-[view_mode]: The View Mode of the paragraph; for example, a
+ *     preview would result in: "paragraphs--view-mode-preview", and
+ *     default: "paragraphs--view-mode-default".
+ * - view_mode: View mode; for example, "preview" or "full".
+ * - logged_in: Flag for authenticated user status. Will be true when the
+ *   current user is a logged-in member.
+ * - is_admin: Flag for admin user status. Will be true when the current user
+ *   is an administrator.
+ * - background_image_url: Preprocessed background image URL.
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+
+{# Set default attributes if not available #}
+{% if not attributes %}
+  {% set attributes = create_attribute() %}
+{% endif %}
+
+{# Set CSS classes #}
+{% set classes = [
+  'paragraph',
+  'paragraph--type--hero-banner',
+  'hero-section'
+] %}
+
+{# Add view mode class if available #}
+{% if view_mode %}
+  {% set classes = classes|merge(['paragraph--view-mode--' ~ view_mode|clean_class]) %}
+{% endif %}
+
+{# Add unpublished class if paragraph exists and is unpublished #}
+{% if paragraph and not paragraph.isPublished() %}
+  {% set classes = classes|merge(['paragraph--unpublished']) %}
+{% endif %}
+
+{% set background_style = '' %}
+{% if background_image_url %}
+  {% set background_style = 'background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(' ~ background_image_url ~ ');' %}
+{% endif %}
+
+<section{{ attributes.addClass(classes) }}{% if background_style %} style="{{ background_style }}"{% endif %}>
+  <div class="hero-container">
+    <div class="hero-content">
+      {% if content.field_banner_title %}
+        <h1>{{ content.field_banner_title }}</h1>
+      {% endif %}
+
+      {% if content.field_banner_descriptions %}
+        <div class="hero-description">
+          {{ content.field_banner_descriptions }}
+        </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

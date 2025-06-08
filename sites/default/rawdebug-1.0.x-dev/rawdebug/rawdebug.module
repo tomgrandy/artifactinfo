@@ -1,0 +1,41 @@
+<?php
+
+/**
+ * @file
+ * Primary module hooks for rawdebug module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+
+/**
+ * Implements hook_help().
+ */
+function rawdebug_help($route_name, RouteMatchInterface $route_match) {
+  $installed = function_exists('dbt') && function_exists('summerize') && function_exists('rawdebug');
+
+  switch ($route_name) {
+    // Main module help for the rawdebug module.
+    case 'help.page.rawdebug':
+      $output = '';
+
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('This download provides three functions to assist in debugging:') . '</p>';
+      $output .= '<p>	* ' . t('summerize($val) returns a text or array summary of $val.') . '</p>';
+      $output .= '<p>	* ' . t('dbt($limit = 11, $withArgs = FALSE) returns a backtrace as an array. The first argument controls how many levels it shows and the last controls whether the backtrace includes arguments.') . '</p>';
+      $output .= '<p>	* ' . t('rawdebug(...$args) logs zero or more arguments to a file. Each argument is run through summerize().') . '</p>';
+      $output .= '<p>' . t('For example:') . '</p>';
+      $output .= '<p>&nbsp;&nbsp;' . ($val = $config->get('safe_tokens')) . '</p>';
+      $output .= '<p>&nbsp;&nbsp;' . (rawdebug('safe_tokens', $val, dbt())) . '</p>';
+
+      if ($installed) {
+        $output .= '<p>' . t('Those functions are now installed correctly and are ready for use.') . '</p>';
+      }
+      else {
+        $output .= '<p><strong>' . t('Those functions are NOT available, so please see the README.md file to install them.') . '</strong></p>';
+      }
+
+      return $output;
+
+    default:
+  }
+}

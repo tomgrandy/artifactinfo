@@ -1,0 +1,425 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Functions to support the Artifact Info theme.
+ */
+
+use Drupal\Component\Utility\Html;
+use Drupal\Core\Form\FormStateInterface;
+use Drupal\Core\Template\Attribute;
+
+/**
+ * Implements hook_preprocess_HOOK() for html.html.twig.
+ */
+function artifactinfo_preprocess_html(array &$variables): void {
+  // Add theme-specific body classes.
+  $variables['attributes']['class'][] = 'artifactinfo-theme';
+
+  // Add current page path as body class for styling.
+  $current_path = \Drupal::service('path.current')->getPath();
+  $path_alias = \Drupal::service('path_alias.manager')->getAliasByPath($current_path);
+  $path_alias = ltrim($path_alias, '/');
+
+  if (!empty($path_alias)) {
+    $variables['attributes']['class'][] = 'path--' . Html::getClass($path_alias);
+  }
+
+  // Add node type class if on a node page.
+  $node = \Drupal::routeMatch()->getParameter('node');
+  if ($node) {
+    $variables['attributes']['class'][] = 'node-type--' . Html::getClass($node->getType());
+  }
+
+  // Add user status classes.
+  $user = \Drupal::currentUser();
+  if ($user->isAuthenticated()) {
+    $variables['attributes']['class'][] = 'user-logged-in';
+  } else {
+    $variables['attributes']['class'][] = 'user-anonymous';
+  }
+
+  // Add responsive image support flag.
+  $variables['attributes']['class'][] = 'has-responsive-images';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function artifactinfo_preprocess_page(array &$variables): void {
+  // Determine layout classes based on sidebar presence.
+  $layout_classes = ['layout-main'];
+
+  if (!empty($variables['page']['sidebar_first']) && !empty($variables['page']['sidebar_second'])) {
+    $layout_classes[] = 'has-both-sidebars';
+  } elseif (!empty($variables['page']['sidebar_first'])) {
+    $layout_classes[] = 'has-sidebar-first';
+  } elseif (!empty($variables['page']['sidebar_second'])) {
+    $layout_classes[] = 'has-sidebar-second';
+  }
+
+  $variables['layout_classes'] = implode(' ', $layout_classes);
+
+  // Add site information variables.
+  $config = \Drupal::config('system.site');
+  $variables['site_name'] = $config->get('name');
+  $variables['site_slogan'] = $config->get('slogan');
+
+  // Add current route information.
+  $route_match = \Drupal::routeMatch();
+  $variables['route_name'] = $route_match->getRouteName();
+
+  // Add page-specific variables for front page.
+  $variables['is_front'] = \Drupal::service('path.matcher')->isFrontPage();
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for node.html.twig.
+ */
+function artifactinfo_preprocess_node(array &$variables): void {
+  /** @var \Drupal\node\NodeInterface $node */
+  $node = $variables['node'];
+
+  // Add view mode classes.
+  $variables['attributes']['class'][] = 'node--view-mode-' . Html::getClass($variables['view_mode']);
+
+  // Add published status class.
+  if ($node->isPublished()) {
+    $variables['attributes']['class'][] = 'node--published';
+  } else {
+    $variables['attributes']['class'][] = 'node--unpublished';
+  }
+
+  // Add sticky class for promoted content.
+  if ($node->isSticky()) {
+    $variables['attributes']['class'][] = 'node--sticky';
+  }
+
+  // Add creation date for theming.
+  $variables['created_date'] = \Drupal::service('date.formatter')
+    ->format($node->getCreatedTime(), 'medium');
+
+  // Add author information.
+  $author = $node->getOwner();
+  $variables['author_name'] = $author->getDisplayName();
+  $variables['author_url'] = $author->toUrl()->toString();
+
+  // Add reading time estimation for articles.
+  if ($node->getType() === 'article') {
+    $variables['reading_time'] = artifactinfo_calculate_reading_time($node);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function artifactinfo_preprocess_block(array &$variables): void {
+  // Add block ID as CSS class.
+  if (isset($variables['elements']['#id'])) {
+    $variables['attributes']['class'][] = 'block--id-' . Html::getClass($variables['elements']['#id']);
+  }
+
+  // Add region-specific classes.
+  if (isset($variables['elements']['#configuration']['region'])) {
+    $region = $variables['elements']['#configuration']['region'];
+    $variables['attributes']['class'][] = 'block--region-' . Html::getClass($region);
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for menu.html.twig.
+ */
+function artifactinfo_preprocess_menu(array &$variables): void {
+  // Add menu-specific classes and attributes.
+  if (isset($variables['menu_name'])) {
+    $variables['attributes']['class'][] = 'menu--' . Html::getClass($variables['menu_name']);
+  }
+
+  // Add depth information to menu items.
+  artifactinfo_add_menu_depth_classes($variables['items']);
+
+  // Add logo path and site information for header menus.
+  if ($variables['menu_name'] === 'main' || $variables['menu_name'] === 'primary') {
+    // Get theme path for logo.
+    $theme_path = \Drupal::service('extension.list.theme')->getPath('artifactinfo');
+    $variables['logo_path'] = '/' . $theme_path . '/images/Ai-Logo2proof.png';
+
+    // Add site information.
+    $config = \Drupal::config('system.site');
+    $variables['site_name'] = $config->get('name');
+    $variables['site_slogan'] = $config->get('slogan');
+
+    // Add front page URL.
+    $variables['front_page'] = \Drupal\Core\Url::fromRoute('<front>')->toString();
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for breadcrumb.html.twig.
+ */
+function artifactinfo_preprocess_breadcrumb(array &$variables): void {
+  // Add structured data for breadcrumbs.
+  if (!empty($variables['breadcrumb'])) {
+    $variables['attributes']['class'][] = 'breadcrumb';
+    $variables['attributes']['role'] = 'navigation';
+    $variables['attributes']['aria-label'] = t('Breadcrumb navigation');
+
+    // Add current page to breadcrumb if not already present.
+    $request = \Drupal::request();
+    $route_match = \Drupal::routeMatch();
+    $title = \Drupal::service('title_resolver')->getTitle($request, $route_match->getRouteObject());
+
+    if ($title && !empty($variables['breadcrumb'])) {
+      $variables['breadcrumb'][] = [
+        'text' => $title,
+        'url' => '',
+      ];
+    }
+  }
+}
+
+/**
+ * Implements hook_form_alter().
+ */
+function artifactinfo_form_alter(array &$form, FormStateInterface $form_state, string $form_id): void {
+  // Add theme-specific form enhancements.
+  switch ($form_id) {
+    case 'search_block_form':
+      // Enhance search form.
+      $form['keys']['#attributes']['placeholder'] = t('Search...');
+      $form['keys']['#attributes']['class'][] = 'form-control';
+      $form['actions']['submit']['#attributes']['class'][] = 'btn';
+      $form['actions']['submit']['#attributes']['class'][] = 'btn-primary';
+      $form['#attributes']['class'][] = 'search-form';
+      break;
+
+    case 'user_login_form':
+      // Enhance user login form.
+      $form['#attributes']['class'][] = 'user-form';
+      $form['#attributes']['class'][] = 'login-form';
+      break;
+
+    case 'user_register_form':
+      // Enhance user registration form.
+      $form['#attributes']['class'][] = 'user-form';
+      $form['#attributes']['class'][] = 'register-form';
+      break;
+  }
+
+  // Add form wrapper classes.
+  if (!isset($form['#attributes']['class'])) {
+    $form['#attributes']['class'] = [];
+  }
+  $form['#attributes']['class'][] = 'form--' . Html::getClass($form_id);
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for page templates.
+ */
+function artifactinfo_theme_suggestions_page_alter(array &$suggestions, array $variables): void {
+  // Add content type suggestions for node pages.
+  if ($node = \Drupal::routeMatch()->getParameter('node')) {
+    $suggestions[] = 'page__node__' . $node->getType();
+  }
+
+  // Add route-based suggestions.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  if ($route_name) {
+    $suggestions[] = 'page__' . str_replace(['.', '-'], '_', $route_name);
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for block templates.
+ */
+function artifactinfo_theme_suggestions_block_alter(array &$suggestions, array $variables): void {
+  // Add block plugin suggestions.
+  if (isset($variables['elements']['#plugin_id'])) {
+    $plugin_id = $variables['elements']['#plugin_id'];
+    $suggestions[] = 'block__' . str_replace(':', '__', $plugin_id);
+  }
+
+  // Add region-based suggestions.
+  if (isset($variables['elements']['#configuration']['region'])) {
+    $region = $variables['elements']['#configuration']['region'];
+    $suggestions[] = 'block__' . $region;
+
+    if (isset($variables['elements']['#plugin_id'])) {
+      $plugin_id = $variables['elements']['#plugin_id'];
+      $suggestions[] = 'block__' . $region . '__' . str_replace(':', '__', $plugin_id);
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for menu templates.
+ */
+function artifactinfo_theme_suggestions_menu_alter(array &$suggestions, array $variables): void {
+  // Add suggestions based on menu name.
+  if (isset($variables['menu_name'])) {
+    $suggestions[] = 'menu__' . $variables['menu_name'];
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for paragraph.html.twig.
+ */
+function artifactinfo_preprocess_paragraph(array &$variables): void {
+  // Check if paragraph key exists in variables array.
+  if (!array_key_exists('paragraph', $variables)) {
+    return;
+  }
+
+  // Check if paragraph is not null and not empty.
+  if (empty($variables['paragraph']) || $variables['paragraph'] === NULL) {
+    return;
+  }
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Additional safety checks.
+  if (!is_object($paragraph) || !method_exists($paragraph, 'bundle')) {
+    return;
+  }
+
+  try {
+    $bundle = $paragraph->bundle();
+
+    // Add paragraph bundle as CSS class.
+    if (!isset($variables['attributes']['class'])) {
+      $variables['attributes']['class'] = [];
+    }
+    $variables['attributes']['class'][] = 'paragraph--' . Html::getClass($bundle);
+
+    // Handle hero banner paragraph preprocessing.
+    if ($bundle === 'hero_banner') {
+      artifactinfo_preprocess_hero_banner_paragraph($variables);
+    }
+  } catch (\Exception $e) {
+    // Silently handle any exceptions to prevent errors.
+    return;
+  }
+}
+
+/**
+ * Preprocess function for hero banner paragraphs.
+ */
+function artifactinfo_preprocess_hero_banner_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Handle background image.
+  if ($paragraph->hasField('field_banner_background') && !$paragraph->get('field_banner_background')->isEmpty()) {
+    $media_entity = $paragraph->get('field_banner_background')->entity;
+    if ($media_entity && $media_entity->hasField('field_media_image') && !$media_entity->get('field_media_image')->isEmpty()) {
+      $file_entity = $media_entity->get('field_media_image')->entity;
+      if ($file_entity) {
+        $file_uri = $file_entity->getFileUri();
+        $variables['background_image_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
+      }
+    }
+  }
+}
+
+/**
+ * Implements hook_theme_suggestions_HOOK_alter() for paragraph templates.
+ */
+function artifactinfo_theme_suggestions_paragraph_alter(array &$suggestions, array $variables): void {
+  // Check if paragraph key exists in variables array.
+  if (!array_key_exists('paragraph', $variables)) {
+    return;
+  }
+
+  // Check if paragraph is not null and not empty.
+  if (empty($variables['paragraph']) || $variables['paragraph'] === NULL) {
+    return;
+  }
+
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Additional safety checks.
+  if (!is_object($paragraph) || !method_exists($paragraph, 'bundle')) {
+    return;
+  }
+
+  try {
+    $bundle = $paragraph->bundle();
+
+    // Add suggestions based on paragraph bundle.
+    $suggestions[] = 'paragraph__' . $bundle;
+
+    // Add view mode specific suggestions.
+    if (isset($variables['view_mode']) && !empty($variables['view_mode'])) {
+      $suggestions[] = 'paragraph__' . $bundle . '__' . $variables['view_mode'];
+    }
+  } catch (\Exception $e) {
+    // Silently handle any exceptions to prevent errors.
+    return;
+  }
+}
+
+/**
+ * Helper function to calculate reading time for content.
+ */
+function artifactinfo_calculate_reading_time(\Drupal\node\NodeInterface $node): array {
+  $content = '';
+
+  // Get all text fields from the node.
+  foreach ($node->getFieldDefinitions() as $field_name => $field_definition) {
+    if ($field_definition->getType() === 'text_with_summary' ||
+        $field_definition->getType() === 'text_long') {
+      $field_value = $node->get($field_name)->value;
+      if ($field_value) {
+        $content .= strip_tags($field_value) . ' ';
+      }
+    }
+  }
+
+  // Calculate reading time (average 200 words per minute).
+  $word_count = str_word_count($content);
+  $reading_time_minutes = ceil($word_count / 200);
+
+  return [
+    'minutes' => $reading_time_minutes,
+    'text' => \Drupal::translation()->formatPlural(
+      $reading_time_minutes,
+      '1 min read',
+      '@count min read'
+    ),
+    'word_count' => $word_count,
+  ];
+}
+
+/**
+ * Helper function to add depth classes to menu items.
+ */
+function artifactinfo_add_menu_depth_classes(array &$items, int $depth = 0): void {
+  foreach ($items as &$item) {
+    if (!isset($item['attributes'])) {
+      $item['attributes'] = new Attribute();
+    }
+
+    $item['attributes']->addClass('menu-item--depth-' . $depth);
+
+    if (!empty($item['below'])) {
+      artifactinfo_add_menu_depth_classes($item['below'], $depth + 1);
+    }
+  }
+}
+
+/**
+ * Implements hook_library_info_alter().
+ */
+function artifactinfo_library_info_alter(array &$libraries, string $extension): void {
+  // Modify core libraries if needed.
+  if ($extension === 'core') {
+    // Example: Add our CSS to normalize existing core styles.
+    if (isset($libraries['normalize'])) {
+      $libraries['normalize']['dependencies'][] = 'artifactinfo/global-styling';
+    }
+  }
+}

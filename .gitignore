@@ -1,0 +1,146 @@
+# Ignore core when managing all of a project's dependencies with Composer
+# including Drupal core.
+/core
+/libraries
+/modules/contrib
+/themes/contrib
+/profiles/contrib
+/sites/*/files
+/sites/*/private
+
+# Ignore vendor dependencies and Composer files
+/vendor
+composer.lock
+
+# Ignore files for SASS and other preprocessors
+.sass-cache/
+*.css.map
+node_modules/
+npm-debug.log*
+
+# Ignore configuration files that may contain sensitive information
+sites/*/settings*.php
+sites/*/services*.yml
+
+# But track the example files
+!sites/*/default.settings.php
+!sites/*/example.settings.local.php
+
+# Ignore paths that contain user-generated content
+sites/*/files
+/files-private
+sites/*/files-private
+
+# Ignore SimpleTest multi-site environment
+sites/simpletest
+
+# Ignore drupal core (if not versioning drupal sources)
+/core
+/modules/README.txt
+/profiles/README.txt
+/sites/README.txt
+/themes/README.txt
+/web.config
+/.csslintrc
+/.eslintignore
+/.eslintrc.json
+/.gitattributes
+/.htaccess
+/authorize.php
+/autoload.php
+/index.php
+/install.php
+/rebuild.php
+/update.php
+/web.config
+
+# Ignore temporary files
+*.tmp
+*.temp
+*~
+
+# Ignore OS generated files
+.DS_Store
+.DS_Store?
+._*
+.Spotlight-V100
+.Trashes
+ehthumbs.db
+Thumbs.db
+
+# Ignore IDE files
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# Ignore log files
+*.log
+/logs
+error_log
+
+# Ignore backup files
+*.bak
+*.backup
+*.old
+
+# Environment files
+.env
+.env.local
+.env.*.local
+
+# Ignore Drupal's file directory
+/sites/*/files/
+/sites/*/private/
+
+# Ignore configuration sync directory
+/config/sync/
+sites/*/config/sync/
+
+# Ignore translations
+sites/*/files/translations
+
+# Ignore update status cache
+sites/*/files/update_status
+
+# Ignore Twig cache
+sites/*/files/php/twig
+
+# Ignore CSS and JS cache
+sites/*/files/css
+sites/*/files/js
+
+# Ignore image style cache
+sites/*/files/styles
+
+# Drush
+drushrc.php
+drush/contrib
+sites/all/drush/contrib
+
+# PHPStorm
+.idea/
+
+# NetBeans
+nbproject/private/
+build/
+nbbuild/
+dist/
+nbdist/
+nbactions.xml
+nb-configuration.xml
+
+# Sublime Text
+*.sublime-project
+*.sublime-workspace
+
+# vim
+[._]*.s[a-w][a-z]
+[._]s[a-w][a-z]
+*.un~
+Session.vim
+.netrwhist
+
+# SASS
+.sass-cache

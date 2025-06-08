@@ -1,0 +1,10 @@
+name: rawdebug
+type: module
+description: Debugging functions to log to a file and show the contents of variables.
+package: Development
+core_version_requirement: ^9 || ^10 || ^11
+
+# Information added by Drupal.org packaging script on 2024-12-24
+version: '1.0.x-dev'
+project: 'rawdebug'
+datestamp: 1735005556
