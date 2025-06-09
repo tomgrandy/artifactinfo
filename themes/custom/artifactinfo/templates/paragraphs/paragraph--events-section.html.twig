@@ -1,22 +1,3 @@
-{#
-/**
- * @file
- * Default theme implementation to display an events section paragraph.
- *
- * Available variables:
- * - paragraph: The paragraph entity with limited access to object properties
- *   and methods. Only method names starting with "get", "has", or "is" and
- *   a few common methods such as "id", "label", and "bundle" are available.
- * - content: A list of content items. Use {{ content }} to print them all,
- *   or print a subset such as {{ content.field_example }}.
- * - attributes: HTML attributes for the containing element.
- * - view_mode: View mode; for example, "teaser" or "full".
- *
- * @see template_preprocess_paragraph()
- *
- * @ingroup themeable
- */
-#}
 {%
   set classes = [
     'paragraph',
@@ -54,16 +35,12 @@
     <div class="upcoming-events-section">
       {% if paragraph.field_events_link.0 %}
         <a href="{{ link_url }}" class="events-link" aria-label="{{ aria_label }}">
-
           <div class="events-background" id="eventsBackground-{{ paragraph.id() }}"{% if background_style %} style="{{ background_style }}"{% endif %}></div>
-
           <div class="events-overlay"></div>
-
           <div class="events-content">
             <h2 class="events-title">
               {{ link_title }}
             </h2>
-
             {% if content.field_events_text %}
               <p class="events-subtitle">
                 {{ content.field_events_text }}
@@ -71,30 +48,7 @@
               </p>
             {% endif %}
           </div>
-
         </a>
-      {% else %}
-        <!-- Fallback when no link is provided -->
-        <div class="events-link" role="button" tabindex="0">
-
-          <div class="events-background" id="eventsBackground-{{ paragraph.id() }}"{% if background_style %} style="{{ background_style }}"{% endif %}></div>
-
-          <div class="events-overlay"></div>
-
-          <div class="events-content">
-            <h2 class="events-title">
-              View Events
-            </h2>
-
-            {% if content.field_events_text %}
-              <p class="events-subtitle">
-                {{ content.field_events_text }}
-                <span class="events-cta-arrow">→</span>
-              </p>
-            {% endif %}
-          </div>
-
-        </div>
       {% endif %}
     </div>
   </section>
