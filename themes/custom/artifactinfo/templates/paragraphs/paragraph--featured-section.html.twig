@@ -1,0 +1,45 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a featured section paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity with limited access to object properties
+ *   and methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ * - content: A list of content items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ *
+ * @see template_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <section{{ attributes.addClass(classes) }}>
+    <div class="features-section">
+      <div class="features-container">
+        <div class="features-grid">
+          {% if content.field_featured_section_items %}
+            {% for key, item in content.field_featured_section_items %}
+              {% if key|first != '#' %}
+                {{ item }}
+              {% endif %}
+            {% endfor %}
+          {% endif %}
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock paragraph %}

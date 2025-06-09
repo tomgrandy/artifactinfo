@@ -273,6 +273,19 @@ function artifactinfo_theme_suggestions_menu_alter(array &$suggestions, array $v
   // Add suggestions based on menu name.
   if (isset($variables['menu_name'])) {
     $suggestions[] = 'menu__' . $variables['menu_name'];
+
+    // Add footer-specific suggestions for footer menus.
+    $footer_menus = [
+      'footer-first',
+      'footer-second',
+      'footer-third',
+      'footer-artifact-info',
+      'footer-resources',
+      'footer-about'
+    ];
+    if (in_array($variables['menu_name'], $footer_menus)) {
+      $suggestions[] = 'menu__footer';
+    }
   }
 }
 
@@ -311,6 +324,26 @@ function artifactinfo_preprocess_paragraph(array &$variables): void {
     if ($bundle === 'hero_banner') {
       artifactinfo_preprocess_hero_banner_paragraph($variables);
     }
+
+    // Handle featured section items paragraph preprocessing.
+    if ($bundle === 'featured_section_items') {
+      artifactinfo_preprocess_featured_section_items_paragraph($variables);
+    }
+
+    // Handle featured section paragraph preprocessing.
+    if ($bundle === 'featured_section') {
+      artifactinfo_preprocess_featured_section_paragraph($variables);
+    }
+
+    // Handle 5050 section paragraph preprocessing.
+    if ($bundle === '5050_section') {
+      artifactinfo_preprocess_5050_section_paragraph($variables);
+    }
+
+    // Handle events section paragraph preprocessing.
+    if ($bundle === 'events_section') {
+      artifactinfo_preprocess_events_section_paragraph($variables);
+    }
   } catch (\Exception $e) {
     // Silently handle any exceptions to prevent errors.
     return;
@@ -334,6 +367,134 @@ function artifactinfo_preprocess_hero_banner_paragraph(array &$variables): void 
         $variables['background_image_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
       }
     }
+  }
+}
+
+/**
+ * Preprocess function for featured section paragraphs.
+ */
+function artifactinfo_preprocess_featured_section_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Add any additional processing for the main featured section if needed
+  $variables['total_items'] = 0;
+
+  if ($paragraph->hasField('field_featured_section_items') && !$paragraph->get('field_featured_section_items')->isEmpty()) {
+    $variables['total_items'] = count($paragraph->get('field_featured_section_items'));
+  }
+}
+
+/**
+ * Preprocess function for featured section items paragraphs.
+ */
+function artifactinfo_preprocess_featured_section_items_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Generate a data attribute based on title or ID for CSS/JS targeting
+  $variables['feature_data_attr'] = 'feature-' . $paragraph->id();
+
+  // If there's a title, create a more meaningful data attribute
+  if ($paragraph->hasField('field_featured_title') && !$paragraph->get('field_featured_title')->isEmpty()) {
+    $title = $paragraph->get('field_featured_title')->value;
+    $variables['feature_data_attr'] = Html::getClass(strtolower($title));
+  }
+
+  // Handle featured image preprocessing for responsive images
+  if ($paragraph->hasField('field_featured_image') && !$paragraph->get('field_featured_image')->isEmpty()) {
+    $media_entity = $paragraph->get('field_featured_image')->entity;
+    if ($media_entity && $media_entity->hasField('field_media_image') && !$media_entity->get('field_media_image')->isEmpty()) {
+      $file_entity = $media_entity->get('field_media_image')->entity;
+      if ($file_entity) {
+        $file_uri = $file_entity->getFileUri();
+        $variables['featured_image_url'] = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
+
+        // Get alt text from media entity or fall back to title
+        $alt_text = '';
+        if ($media_entity->hasField('field_media_image') && !$media_entity->get('field_media_image')->isEmpty()) {
+          $alt_text = $media_entity->get('field_media_image')->alt;
+        }
+
+        if (empty($alt_text) && $paragraph->hasField('field_featured_title') && !$paragraph->get('field_featured_title')->isEmpty()) {
+          $alt_text = $paragraph->get('field_featured_title')->value;
+        }
+
+        $variables['featured_image_alt'] = $alt_text ?: 'Featured image';
+      }
+    }
+  }
+}
+
+/**
+ * Preprocess function for 5050 section paragraphs.
+ */
+function artifactinfo_preprocess_5050_section_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Generate unique video container ID.
+  $variables['video_container_id'] = 'videoContainer-' . $paragraph->id();
+
+  // Process description field for proper CSS class application.
+  if ($paragraph->hasField('field_5050_description') && !$paragraph->get('field_5050_description')->isEmpty()) {
+    $description_value = $paragraph->get('field_5050_description')->value;
+
+    // Add CSS class to each paragraph in the description.
+    if (!empty($description_value)) {
+      // Replace <p> tags with <p class="get-started-description">.
+      $processed_description = preg_replace(
+        '/<p([^>]*)>/',
+        '<p$1 class="get-started-description">',
+        $description_value
+      );
+
+      $variables['processed_description'] = [
+        '#markup' => $processed_description,
+        '#allowed_tags' => ['p', 'br', 'strong', 'em', 'a'],
+      ];
+    }
+  }
+}
+
+/**
+ * Preprocess function for events section paragraphs.
+ */
+function artifactinfo_preprocess_events_section_paragraph(array &$variables): void {
+  /** @var \Drupal\paragraphs\Entity\Paragraph $paragraph */
+  $paragraph = $variables['paragraph'];
+
+  // Process background image field.
+  if ($paragraph->hasField('field_events_background_image') && !$paragraph->get('field_events_background_image')->isEmpty()) {
+    $media_entity = $paragraph->get('field_events_background_image')->entity;
+    if ($media_entity && $media_entity->hasField('field_media_image') && !$media_entity->get('field_media_image')->isEmpty()) {
+      $file_entity = $media_entity->get('field_media_image')->entity;
+      if ($file_entity) {
+        $file_uri = $file_entity->getFileUri();
+        $image_url = \Drupal::service('file_url_generator')->generateAbsoluteString($file_uri);
+        $variables['events_background_style'] = 'background-image: url(' . $image_url . '); background-size: cover; background-position: center; background-repeat: no-repeat;';
+      }
+    }
+  }
+
+  // Process link field.
+  if ($paragraph->hasField('field_events_link') && !$paragraph->get('field_events_link')->isEmpty()) {
+    $link_field = $paragraph->get('field_events_link')->first();
+    if ($link_field) {
+      $variables['events_link_url'] = $link_field->getUrl()->toString();
+      $variables['events_link_title'] = $link_field->get('title')->getValue() ?: 'View Events';
+
+      // Create aria label based on title or default
+      $title = $variables['events_link_title'];
+      $variables['events_aria_label'] = 'View ' . strtolower($title);
+    }
+  }
+
+  // Fallback values if no link is provided.
+  if (empty($variables['events_link_url'])) {
+    $variables['events_link_url'] = '#';
+    $variables['events_link_title'] = 'View Events';
+    $variables['events_aria_label'] = 'View events';
   }
 }
 

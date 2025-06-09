@@ -9,7 +9,7 @@
  *   - attributes: HTML attributes for the menu item.
  *   - below: The menu item child items.
  *   - title: The menu link title.
- *   - url: The menu link url, instance of \Drupal\Core\Url
+ *   - url: The menu link URL, instance of \Drupal\Core\Url
  *   - localized_options: Menu link localized options.
  *   - is_expanded: TRUE if the link has visible children within the current
  *     menu tree.
@@ -22,110 +22,26 @@
 
 {#
   We call a macro which calls itself to render the full tree.
-  @see https://twig.symfony.com/doc/2.x/tags/macro.html
+  @see https://twig.symfony.com/doc/3.x/tags/macro.html
 #}
+{{ menus.menu_links(items, attributes, 0) }}
 
-{# Only render header structure for main/primary menu #}
-{% if menu_name == 'main' or menu_name == 'primary' %}
-<header class="header">
-  <div class="header-container">
-    <a href="{{ front_page|default(path('<front>')) }}" class="logo">
-      <img src="{{ logo_path|default(base_path ~ directory ~ '/images/Ai-Logo2proof.png') }}" class="logo-icon" alt="{{ site_name|default('Site Logo')|t }}">
-    </a>
-
-    <nav>
-      {% if items %}
-        <ul class="nav-menu">
-          {% for item in items %}
-            <li{{ item.attributes.addClass('nav-item') }}>
-              {{ link(item.title, item.url, item.attributes.addClass('nav-link')) }}
-              {% if item.below %}
-                {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-              {% endif %}
-            </li>
-          {% endfor %}
-          {# Add social icon as last menu item #}
-          <li>
-            <a href="#" class="social-icon">f</a>
-          </li>
-        </ul>
-      {% else %}
-        {# Fallback static menu if no Drupal menu items are configured #}
-        <ul class="nav-menu">
-          <li>
-            <a href="#home">{{ 'Home'|t }}</a>
-          </li>
-          <li>
-            <a href="#auctions">{{ 'Auctions'|t }}</a>
-          </li>
-          <li>
-            <a href="#consignments">{{ 'Consignments'|t }}</a>
-          </li>
-          <li>
-            <a href="#authentication">{{ 'Authentication'|t }}</a>
-          </li>
-          <li>
-            <a href="#books">{{ 'Books for Sale'|t }}</a>
-          </li>
-          <li>
-            <a href="#about">{{ 'About Us'|t }}</a>
-          </li>
-          <li>
-            <a href="#visit">{{ 'Visit Us'|t }}</a>
-          </li>
-          <li>
-            <a href="#" class="social-icon">f</a>
-          </li>
-        </ul>
-      {% endif %}
-    </nav>
-
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="{{ 'Toggle mobile menu'|t }}" aria-expanded="false">☰</button>
-
-    <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
-      {% if items %}
-        <ul>
-          {% for item in items %}
-            <li>
-              {{ link(item.title, item.url, item.attributes.addClass('mobile-nav-link')) }}
-            </li>
-          {% endfor %}
-        </ul>
-      {% else %}
-        {# Fallback static mobile menu #}
-        <ul>
-          <li><a href="#home">{{ 'Home'|t }}</a></li>
-          <li><a href="#auctions">{{ 'Auctions'|t }}</a></li>
-          <li><a href="#consignments">{{ 'Consignments'|t }}</a></li>
-          <li><a href="#authentication">{{ 'Authentication'|t }}</a></li>
-          <li><a href="#books">{{ 'Books for Sale'|t }}</a></li>
-          <li><a href="#about">{{ 'About Us'|t }}</a></li>
-          <li><a href="#visit">{{ 'Visit Us'|t }}</a></li>
-        </ul>
-      {% endif %}
-    </div>
-  </div>
-</header>
-{% else %}
-  {# For other menus, render standard menu structure #}
-  {{ menus.menu_links(items, attributes, 0) }}
-{% endif %}
-
-{#
-  Menu links macro for nested menu items.
-#}
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
   {% if items %}
-    <ul{{ attributes.addClass('menu', 'nav', 'menu-level-' ~ menu_level) }}>
-      {% for item in items %}
-        <li{{ item.attributes.addClass('menu-item') }}>
-          {{ link(item.title, item.url) }}
-          {% if item.below %}
-            {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
-          {% endif %}
-        </li>
-      {% endfor %}
+    {% if menu_level == 0 %}
+      <ul{{ attributes }}>
+    {% else %}
+      <ul>
+    {% endif %}
+    {% for item in items %}
+      <li{{ item.attributes }}>
+        {{ link(item.title, item.url) }}
+        {% if item.below %}
+          {{ menus.menu_links(item.below, attributes, menu_level + 1) }}
+        {% endif %}
+      </li>
+    {% endfor %}
     </ul>
   {% endif %}
 {% endmacro %}

@@ -6,7 +6,6 @@ core_version_requirement: ^10 || ^11
 version: '1.0.0'
 base theme: stable9
 
-# Define regions for the theme
 regions:
   header: 'Header'
   primary_menu: 'Primary menu'

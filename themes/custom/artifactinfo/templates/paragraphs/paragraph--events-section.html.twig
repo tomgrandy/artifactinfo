@@ -1,0 +1,83 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display an events section paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity with limited access to object properties
+ *   and methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ * - content: A list of content items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - events_background_style: Inline style for background image.
+ * - events_link_url: Processed link URL.
+ * - events_link_title: Processed link title.
+ * - events_aria_label: Processed aria label for accessibility.
+ *
+ * @see template_preprocess_paragraph()
+ * @see artifactinfo_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <section{{ attributes.addClass(classes) }}>
+    <div class="upcoming-events-section">
+      {% if content.field_events_link %}
+        <a href="{{ events_link_url|default('#') }}" class="events-link" aria-label="{{ events_aria_label|default('View events') }}">
+
+          <div class="events-background" id="eventsBackground-{{ paragraph.id() }}"{% if events_background_style %} style="{{ events_background_style }}"{% endif %}></div>
+
+          <div class="events-overlay"></div>
+
+          <div class="events-content">
+            <h2 class="events-title">
+              {{ events_link_title|default('View Events') }}
+            </h2>
+
+            {% if content.field_events_text %}
+              <p class="events-subtitle">
+                {{ content.field_events_text }}
+                <span class="events-cta-arrow">→</span>
+              </p>
+            {% endif %}
+          </div>
+
+        </a>
+      {% else %}
+        <!-- Fallback when no link is provided -->
+        <div class="events-link" role="button" tabindex="0">
+
+          <div class="events-background" id="eventsBackground-{{ paragraph.id() }}"{% if events_background_style %} style="{{ events_background_style }}"{% endif %}></div>
+
+          <div class="events-overlay"></div>
+
+          <div class="events-content">
+            <h2 class="events-title">
+              View Events
+            </h2>
+
+            {% if content.field_events_text %}
+              <p class="events-subtitle">
+                {{ content.field_events_text }}
+                <span class="events-cta-arrow">→</span>
+              </p>
+            {% endif %}
+          </div>
+
+        </div>
+      {% endif %}
+    </div>
+  </section>
+{% endblock paragraph %}

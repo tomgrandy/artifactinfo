@@ -325,6 +325,20 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   margin-bottom: 40px;
 }
 
+/* Additional styling for 5050 section description wrapper */
+.get-started-description-wrapper p,
+.paragraph--type--5050-section .get-started-description p {
+  font-size: 16px;
+  line-height: 1.8;
+  color: #DFE0E1;
+  margin-bottom: 25px;
+}
+
+.get-started-description-wrapper p:last-child,
+.paragraph--type--5050-section .get-started-description p:last-child {
+  margin-bottom: 40px;
+}
+
 .get-started-signature {
   font-size: 16px;
   color: #A8A6A1;
@@ -508,7 +522,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   line-height: 1.2;
 }
 
-.upcoming-events-section:hover .events-title {
+.events-link:hover .events-title {
   color: #A8A6A1;
   transform: translateY(-2px);
   text-shadow: 2px 4px 12px rgba(0, 0, 0, 0.9);
@@ -524,7 +538,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   text-shadow: 1px 1px 4px rgba(0, 0, 0, 0.8);
 }
 
-.upcoming-events-section:hover .events-subtitle {
+.events-link:hover .events-subtitle {
   opacity: 1;
   transform: translateY(0);
 }
@@ -536,15 +550,15 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   transition: transform 0.3s ease;
 }
 
-.upcoming-events-section:hover .events-cta-arrow {
+.events-link:hover .events-cta-arrow {
   transform: translateX(10px);
 }
 
-.upcoming-events-section:active {
+.events-link:active {
   transform: scale(0.98);
 }
 
-.upcoming-events-section::before {
+.events-link::before {
   content: '';
   position: absolute;
   top: 0;
@@ -553,14 +567,15 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   bottom: 0;
   border: 3px solid transparent;
   transition: border-color 0.3s ease;
-  z-index: 5;
+  z-index: 15;
+  pointer-events: none;
 }
 
-.upcoming-events-section:hover::before {
+.events-link:hover::before {
   border-color: #A8A6A1;
 }
 
-.upcoming-events-section:focus {
+.events-link:focus {
   outline: 3px solid #A8A6A1;
   outline-offset: 3px;
 }

@@ -1,0 +1,81 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a 5050 section paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity with limited access to object properties
+ *   and methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ * - content: A list of content items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - video_container_id: Unique ID for video container.
+ *
+ * @see template_preprocess_paragraph()
+ * @see artifactinfo_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <section{{ attributes.addClass(classes) }}>
+    <!-- Let's Get Started Section -->
+    <div class="get-started-section">
+      <div class="get-started-container">
+
+        <div class="get-started-content">
+          {% if content.field_5050_title %}
+            <h2 class="get-started-title">{{ content.field_5050_title }}</h2>
+          {% endif %}
+
+          {% if content.field_5050_description %}
+            {% if processed_description %}
+              {{ processed_description }}
+            {% else %}
+              <div class="get-started-description">
+                {{ content.field_5050_description }}
+              </div>
+            {% endif %}
+          {% endif %}
+
+          {% if content.field_5050_note %}
+            <p class="get-started-signature">
+              {{ content.field_5050_note }}
+            </p>
+          {% endif %}
+        </div>
+
+        <div class="video-container" id="{{ video_container_id|default('videoContainer-' ~ paragraph.id()) }}">
+          {% if content.field_5050_video_iframe and content.field_5050_video_iframe['#items'] %}
+            <!-- Video iframe content -->
+            {{ content.field_5050_video_iframe }}
+          {% else %}
+            <!-- Default placeholder when no video is provided -->
+            <div class="video-placeholder" id="videoPlaceholder-{{ paragraph.id() }}">
+              <div class="play-button"></div>
+              <div class="video-title">Introduction to ArtifactInfo.com</div>
+              <div class="video-description">Learn how to navigate and get the most out of our platform</div>
+            </div>
+
+            <div class="video-loading" id="videoLoading-{{ paragraph.id() }}" style="display: none;">
+              <div class="loading-spinner"></div>
+              Loading video...
+            </div>
+          {% endif %}
+        </div>
+
+      </div>
+    </div>
+  </section>
+{% endblock paragraph %}

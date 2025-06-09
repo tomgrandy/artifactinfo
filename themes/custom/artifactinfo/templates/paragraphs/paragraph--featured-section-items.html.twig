@@ -1,0 +1,55 @@
+{#
+/**
+ * @file
+ * Default theme implementation to display a featured section item paragraph.
+ *
+ * Available variables:
+ * - paragraph: The paragraph entity with limited access to object properties
+ *   and methods. Only method names starting with "get", "has", or "is" and
+ *   a few common methods such as "id", "label", and "bundle" are available.
+ * - content: A list of content items. Use {{ content }} to print them all,
+ *   or print a subset such as {{ content.field_example }}.
+ * - attributes: HTML attributes for the containing element.
+ * - view_mode: View mode; for example, "teaser" or "full".
+ * - feature_data_attr: Data attribute for feature identification.
+ *
+ * @see template_preprocess_paragraph()
+ * @see artifactinfo_preprocess_paragraph()
+ *
+ * @ingroup themeable
+ */
+#}
+{%
+  set classes = [
+    'feature-card',
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+
+{% block paragraph %}
+  <div{{ attributes.addClass(classes).setAttribute('data-feature', feature_data_attr|default('feature-' ~ paragraph.id())) }}>
+
+    {% if content.field_featured_image %}
+      <div class="feature-image">
+        {{ content.field_featured_image }}
+        <div class="feature-overlay"></div>
+      </div>
+    {% endif %}
+
+    {% if content.field_featured_title %}
+      <h3 class="feature-title">
+        {{ content.field_featured_title }}
+      </h3>
+    {% endif %}
+
+    {% if content.field_featured_short_desc %}
+      <p class="feature-subtitle">
+        {{ content.field_featured_short_desc }}
+      </p>
+    {% endif %}
+
+  </div>
+{% endblock paragraph %}
