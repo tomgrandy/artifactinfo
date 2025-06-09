@@ -1,12 +1,3 @@
-{#
-/**
- * @file
- * Theme override for the main menu.
- *
- * This template specifically handles the main navigation menu
- * and includes the complete header structure.
- */
-#}
 {% import _self as menus %}
 
 <nav>
@@ -23,9 +14,7 @@
     </ul>
   {% endif %}
 </nav>
-
 <button class="mobile-menu-toggle" aria-label="{{ 'Toggle mobile menu'|t }}" aria-expanded="false" aria-controls="mobile-menu">☰</button>
-
 <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
   {% if items %}
     <ul>
@@ -40,10 +29,6 @@
     </ul>
   {% endif %}
 </div>
-
-{#
-  Menu links macro for nested menu items.
-#}
 {% macro menu_links(items, attributes, menu_level) %}
   {% import _self as menus %}
   {% if items %}
@@ -59,10 +44,6 @@
     </ul>
   {% endif %}
 {% endmacro %}
-
-{#
-  Mobile menu links macro for nested mobile menu items.
-#}
 {% macro mobile_menu_links(items) %}
   {% import _self as menus %}
   {% if items %}
