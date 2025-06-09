@@ -1,0 +1,169 @@
+/* ========================================
+   DRUPAL ADMIN INTERFACE COMPATIBILITY
+======================================== */
+
+/**
+ * This file contains CSS rules to ensure proper compatibility
+ * between the custom theme and Drupal's administrative interface.
+ * It addresses z-index conflicts and layout issues.
+ */
+
+/* ========================================
+   ADMIN TOOLBAR Z-INDEX FIXES
+======================================== */
+
+/* Force admin toolbar to always stay on top */
+#toolbar-administration,
+.toolbar-bar,
+.toolbar-tray,
+.toolbar-menu,
+.toolbar-icon,
+.toolbar-menu-administration,
+.toolbar-tray-horizontal,
+.toolbar-tray-vertical {
+  z-index: 999999 !important;
+}
+
+/* Admin overlay elements */
+.ui-dialog,
+.ui-widget-overlay,
+.dropbutton-wrapper.open .dropbutton-widget,
+.contextual .trigger,
+.contextual-links {
+  z-index: 999998 !important;
+}
+
+/* ========================================
+   THEME HEADER ADJUSTMENTS FOR ADMIN
+======================================== */
+
+/* Lower theme header z-index when admin toolbar is present */
+body.toolbar-horizontal .header,
+body.toolbar-vertical .header {
+  z-index: 500 !important;
+}
+
+/* Adjust header position for horizontal admin toolbar */
+body.toolbar-horizontal .header {
+  top: 39px;
+}
+
+body.toolbar-horizontal.toolbar-tray-open .header {
+  top: 78px;
+}
+
+/* Ensure header doesn't interfere with vertical toolbar */
+body.toolbar-vertical.toolbar-tray-open .header {
+  left: 240px;
+  right: 0;
+  width: calc(100% - 240px);
+}
+
+/* ========================================
+   MAIN CONTENT ADJUSTMENTS
+======================================== */
+
+/* Adjust main content margin for admin toolbar */
+body.toolbar-horizontal .main-content {
+  margin-top: 120px; /* 80px theme header + 40px admin toolbar */
+}
+
+body.toolbar-horizontal.toolbar-tray-open .main-content {
+  margin-top: 160px; /* 80px theme header + 80px expanded admin toolbar */
+}
+
+body.toolbar-vertical.toolbar-tray-open .main-content {
+  margin-left: 240px;
+  width: calc(100% - 240px);
+}
+
+/* ========================================
+   ADMIN PAGE SPECIFIC OVERRIDES
+======================================== */
+
+/* On admin pages, reduce header prominence */
+body.path-admin .header {
+  background-color: rgba(0, 0, 0, 0.9);
+  backdrop-filter: blur(5px);
+}
+
+/* Hide custom header on certain admin pages where it might interfere */
+body.path-admin.page-node-add .header,
+body.path-admin.page-node-edit .header {
+  display: none;
+}
+
+/* Adjust content margins when header is hidden */
+body.path-admin.page-node-add .main-content,
+body.path-admin.page-node-edit .main-content {
+  margin-top: 78px; /* Only admin toolbar margin */
+}
+
+/* ========================================
+   RESPONSIVE ADMIN COMPATIBILITY
+======================================== */
+
+/* Mobile admin toolbar adjustments */
+@media screen and (max-width: 767px) {
+  body.toolbar-horizontal .header {
+    top: 39px;
+  }
+
+  body.toolbar-horizontal .main-content {
+    margin-top: 120px;
+  }
+
+  /* Hide mobile menu toggle when admin toolbar is present */
+  body.toolbar-horizontal .mobile-menu-toggle {
+    display: none;
+  }
+}
+
+/* Tablet adjustments */
+@media screen and (min-width: 768px) and (max-width: 1024px) {
+  body.toolbar-vertical.toolbar-tray-open .header {
+    left: 240px;
+    width: calc(100% - 240px);
+  }
+}
+
+/* ========================================
+   CONTEXTUAL LINKS AND OVERLAYS
+======================================== */
+
+/* Ensure contextual links appear above theme elements */
+.contextual-region .contextual {
+  z-index: 999997 !important;
+}
+
+/* Quick edit and other overlay elements */
+.quickedit-toolbar,
+.quickedit-toolbar-container {
+  z-index: 999996 !important;
+}
+
+/* CKEditor overlays */
+.cke_dialog,
+.cke_dialog_background_cover {
+  z-index: 999995 !important;
+}
+
+/* ========================================
+   ADMIN MENU DROPDOWN FIXES
+======================================== */
+
+/* Ensure admin menu dropdowns appear correctly */
+.toolbar-tray-horizontal .toolbar-menu,
+.toolbar-tray-horizontal .menu-item {
+  z-index: 999999 !important;
+}
+
+.toolbar-tray-horizontal .menu-item .menu {
+  z-index: 999999 !important;
+  position: relative;
+}
+
+/* Fix any box-shadow issues with dropdowns */
+.toolbar-tray-horizontal {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.3) !important;
+}

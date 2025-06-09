@@ -37,6 +37,19 @@ function artifactinfo_preprocess_html(array &$variables): void {
   $user = \Drupal::currentUser();
   if ($user->isAuthenticated()) {
     $variables['attributes']['class'][] = 'user-logged-in';
+
+    // Add admin-specific classes for toolbar compatibility.
+    if ($user->hasPermission('access toolbar')) {
+      $variables['attributes']['class'][] = 'user-has-toolbar';
+
+      // Check if this is an admin page.
+      $route_name = \Drupal::routeMatch()->getRouteName();
+            if (strpos($route_name, 'system.admin') === 0 ||
+          strpos($route_name, 'entity.') === 0 ||
+          strpos($current_path, '/admin') === 0) {
+        $variables['attributes']['class'][] = 'path-admin';
+      }
+    }
   } else {
     $variables['attributes']['class'][] = 'user-anonymous';
   }

@@ -62,7 +62,7 @@
       {% endif %}
     </nav>
 
-    <button class="mobile-menu-toggle" onclick="toggleMobileMenu()" aria-label="{{ 'Toggle mobile menu'|t }}" aria-expanded="false">☰</button>
+    <button class="mobile-menu-toggle" aria-label="{{ 'Toggle mobile menu'|t }}" aria-expanded="false" aria-controls="mobile-menu">☰</button>
 
     <div class="mobile-menu" id="mobile-menu" aria-hidden="true">
       {% if items %}

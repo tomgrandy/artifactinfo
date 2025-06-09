@@ -6,6 +6,7 @@ global-styling:
       css/layout.css: {}
       css/components.css: {}
       css/responsive.css: {}
+      css/admin-compatibility.css: {}
   dependencies:
     - core/jquery
     - core/drupal
@@ -17,6 +18,7 @@ global-scripts:
   dependencies:
     - core/jquery
     - core/drupal
+    - core/once
 
 user-form:
   version: VERSION

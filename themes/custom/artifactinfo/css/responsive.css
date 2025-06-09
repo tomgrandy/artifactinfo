@@ -1,348 +1,422 @@
-/**
- * Responsive Styles - Artifact Auctions Theme
- * Media queries and responsive design
- */
+/* ========================================
+   RESPONSIVE DESIGN
+======================================== */
 
-/* Breakpoint Variables */
-:root {
-  --breakpoint-xs: 480px;
-  --breakpoint-sm: 576px;
-  --breakpoint-md: 768px;
-  --breakpoint-lg: 992px;
-  --breakpoint-xl: 1200px;
-  --breakpoint-xxl: 1400px;
+/* Force mobile layout override for get-started section */
+@media(max-width: 768px) {
+  .get-started-container {
+    display: flex !important;
+    flex-direction: column !important;
+  }
 }
 
-/* Tablet Styles - 768px and below */
-@media (max-width: 768px) {
-
-  /* Navigation */
+/* Tablet and Mobile Styles */
+@media(max-width: 768px) {
   .nav-menu {
     display: none;
   }
 
   .mobile-menu-toggle {
     display: block;
+    cursor: pointer;
+    z-index: 1001;
+    position: relative;
+    /* Ensure touch targets are large enough */
+    min-width: 44px;
+    min-height: 44px;
+    padding: 10px;
+    /* Improve touch interaction */
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
   }
 
-  /* Layout Adjustments */
-  .hero-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
-    text-align: center;
+  /* Prevent body scrolling when mobile menu is open */
+  body.mobile-menu-open {
+    overflow: hidden;
+    position: fixed;
+    width: 100%;
   }
 
-  .auction-container {
-    grid-template-columns: 1fr;
-    gap: var(--spacing-xl);
+  /* Ensure mobile menu appears above everything */
+  .mobile-menu {
+    z-index: 1000;
+    position: fixed !important;
+    top: 100%;
+    left: 0;
+    right: 0;
+    width: 100%;
+    transform: translateY(-100%);
+    transition: transform 0.3s ease;
   }
 
-  /* Typography */
-  .hero-content h1 {
-    font-size: 28px;
+  .mobile-menu.active {
+    transform: translateY(0);
   }
 
-  .auction-content h2 {
-    font-size: 28px;
-  }
-
-  .auction-date {
-    font-size: 18px;
-  }
-
-  /* Buttons */
-  .hero-buttons {
-    flex-direction: column;
+  /* Improve mobile menu links for touch */
+  .mobile-menu ul li a {
+    min-height: 44px;
+    display: flex !important;
     align-items: center;
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
   }
 
-  .btn {
-    width: 200px;
-    text-align: center;
+  /* Ensure mobile menu doesn't interfere with admin toolbar */
+  body.toolbar-horizontal .mobile-menu {
+    top: calc(100% + 39px);
   }
 
-  /* Spacing */
-  .hero-section {
-    padding: var(--spacing-xxxl) 0 var(--spacing-xxl);
-  }
-
-  .auction-section {
-    padding: var(--spacing-xxl) 0;
-  }
-
-  /* Container Padding */
-  .container,
-  .header-container,
-  .hero-container,
-  .auction-container {
-    padding-left: var(--spacing-sm);
-    padding-right: var(--spacing-sm);
-  }
-
-  /* Grid Adjustments */
-  .grid-cols-2,
-  .grid-cols-3,
-  .grid-cols-4 {
-    grid-template-columns: 1fr;
-  }
-
-  /* Flexbox Adjustments */
-  .flex-row {
-    flex-direction: column;
-  }
-
-  /* Card Spacing */
-  .card {
-    margin-bottom: var(--spacing-md);
-  }
-
-  /* Modal Adjustments */
-  .modal {
-    margin: var(--spacing-md);
-    max-width: calc(100vw - 2rem);
-  }
-}
-
-/* Mobile Styles - 480px and below */
-@media (max-width: 480px) {
-
-  /* Container Adjustments */
-  .header-container {
-    padding: 0 var(--spacing-sm);
-  }
-
-  /* Hero Section */
-  .hero-section {
-    padding: var(--spacing-xl) 0;
-  }
-
-  .hero-content h1 {
-    font-size: 24px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  .hero-content p {
-    font-size: 14px;
-    margin-bottom: var(--spacing-md);
-  }
-
-  /* Auction Section */
-  .auction-section {
-    padding: var(--spacing-xl) 0;
-  }
-
-  .auction-content h2 {
-    font-size: 24px;
-  }
-
-  .auction-date {
-    font-size: var(--font-size-base);
-  }
-
-  .auction-description {
-    font-size: 13px;
-  }
-
-  /* Buttons */
-  .btn {
-    padding: 12px 24px;
-    font-size: 13px;
-    width: 180px;
-  }
-
-  /* Logo */
-  .logo-icon {
-    height: 40px;
+  body.toolbar-horizontal.toolbar-tray-open .mobile-menu {
+    top: calc(100% + 78px);
   }
 
   .logo-text {
     font-size: 20px;
   }
 
-  /* Navigation */
-  .mobile-menu ul {
-    padding: var(--spacing-sm);
+  .logo-icon {
+    height: 35px;
   }
 
-  /* Typography */
-  h1 {
-    font-size: 24px;
-    margin-bottom: var(--spacing-md);
+  .hero-container {
+    min-height: 60vh;
+    padding: 20px;
+    grid-template-columns: 1fr;
+    gap: 40px;
+    margin-left: 0;
   }
 
-  h2 {
-    font-size: 22px;
-    margin-bottom: var(--spacing-sm);
+  .hero-info-box {
+    grid-template-columns: 1fr;
+    gap: 50px;
+    padding: 50px 40px;
+    text-align: center;
+    max-width: 600px;
+    margin: 0 auto;
   }
 
-  /* Spacing Adjustments */
-  .container,
-  .header-container,
-  .hero-container,
-  .auction-container {
-    padding-left: var(--spacing-xs);
-    padding-right: var(--spacing-xs);
+  .hero-info-content h1 {
+    font-size: 32px;
+    margin-bottom: 15px;
   }
 
-  /* Card Adjustments */
-  .card {
-    padding: var(--spacing-sm);
+  .hero-subtitle {
+    font-size: 16px;
+    margin-bottom: 12px;
   }
 
-  .card-title {
-    font-size: var(--font-size-base);
-  }
-
-  /* Modal Adjustments */
-  .modal {
-    margin: var(--spacing-sm);
-    padding: var(--spacing-sm);
-    max-width: calc(100vw - 1rem);
-  }
-
-  .modal-title {
-    font-size: 18px;
-  }
-
-  /* Alert Adjustments */
-  .alert {
-    padding: var(--spacing-xs) var(--spacing-sm);
-  }
-
-  /* Pagination */
-  .pagination {
-    flex-wrap: wrap;
-    gap: 4px;
-  }
-
-  .pagination-item {
-    padding: 6px 10px;
+  .hero-description {
     font-size: 14px;
   }
 
-  /* Badge */
-  .badge {
-    font-size: 10px;
-    padding: 2px 6px;
+  .hero-database h2 {
+    font-size: 20px;
+    margin-bottom: 20px;
   }
-}
 
-/* Large Mobile Styles - 576px and below */
-@media (max-width: 576px) {
+  .counter-number {
+    font-size: 56px;
+  }
 
-  /* Grid Utilities */
-  .grid-cols-2 {
+  .counter-label {
+    font-size: 14px;
+  }
+
+  .features-grid {
     grid-template-columns: 1fr;
-    gap: var(--spacing-sm);
+    gap: 30px;
   }
 
-  /* Flexbox Utilities */
-  .flex-wrap {
-    gap: var(--spacing-xs);
+  .feature-title {
+    font-size: 24px;
   }
 
-  /* Hero Buttons */
-  .hero-buttons {
-    gap: var(--spacing-sm);
+  .feature-subtitle {
+    font-size: 15px;
   }
 
-  /* Main Content */
-  .main-content {
-    margin-top: 70px;
+  .features-section {
+    padding: 60px 0;
   }
 
-  /* Header */
-  .header {
-    padding: var(--spacing-xs) 0;
-  }
-}
-
-/* Desktop Styles - 992px and above */
-@media (min-width: 992px) {
-
-  /* Enhanced Grid */
-  .grid-cols-lg-2 {
-    grid-template-columns: repeat(2, 1fr);
-  }
-
-  .grid-cols-lg-3 {
-    grid-template-columns: repeat(3, 1fr);
-  }
-
-  .grid-cols-lg-4 {
-    grid-template-columns: repeat(4, 1fr);
-  }
-
-  /* Enhanced Typography */
-  .hero-content h1 {
-    font-size: 42px;
+  .auction-container {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
 
   .auction-content h2 {
-    font-size: 40px;
+    font-size: 28px;
   }
 
-  /* Enhanced Spacing */
+  .auction-date {
+    font-size: 18px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr 1fr;
+    gap: 30px;
+  }
+
+  .footer-logo-section {
+    grid-column: 1 / 3;
+    text-align: center;
+    margin-bottom: 30px;
+  }
+
+  .newsletter-section {
+    grid-column: 1 / 3;
+    text-align: center;
+    margin-bottom: 20px;
+  }
+
+  .footer-column {
+    text-align: center;
+  }
+}
+
+/* Mobile Styles */
+@media(max-width: 480px) {
+  .header-container {
+    padding: 0 15px;
+  }
+
+  .logo-text {
+    font-size: 18px;
+  }
+
+  .logo-icon {
+    height: 30px;
+  }
+
+  .hero-container {
+    padding: 15px;
+    min-height: 50vh;
+    grid-template-columns: 1fr;
+    margin-left: 0;
+  }
+
+  .hero-info-box {
+    padding: 30px 20px;
+    border-radius: 15px;
+    gap: 30px;
+  }
+
+  .hero-info-content h1 {
+    font-size: 26px;
+    line-height: 1.2;
+  }
+
+  .hero-subtitle {
+    font-size: 15px;
+  }
+
+  .hero-description {
+    font-size: 13px;
+  }
+
+  .hero-database h2 {
+    font-size: 18px;
+    margin-bottom: 15px;
+  }
+
+  .counter-number {
+    font-size: 48px;
+    letter-spacing: -1px;
+  }
+
+  .counter-label {
+    font-size: 13px;
+  }
+
   .hero-section {
-    padding: 140px 0 100px;
+    padding: 40px 0;
+  }
+
+  .features-section {
+    padding: 40px 0;
+  }
+
+  .feature-image img {
+    height: 220px;
+  }
+
+  .feature-title {
+    font-size: 22px;
+  }
+
+  .feature-subtitle {
+    font-size: 14px;
+  }
+
+  .get-started-container {
+    display: flex !important;
+    flex-direction: column !important;
+    gap: 30px !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .get-started-content {
+    padding-right: 0 !important;
+    text-align: left !important;
+    order: 2 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+  }
+
+  .video-container {
+    order: 1 !important;
+    width: 100% !important;
+    max-width: 100% !important;
+    margin-bottom: 0 !important;
+  }
+
+  .get-started-section {
+    padding: 40px 0 !important;
+  }
+
+  .get-started-title {
+    font-size: 36px !important;
+  }
+
+  .get-started-description {
+    font-size: 15px !important;
+  }
+
+  .events-title {
+    font-size: 36px;
+  }
+
+  .events-subtitle {
+    font-size: 16px;
+  }
+
+  .upcoming-events-section {
+    height: 250px;
+  }
+
+  .auction-content h2 {
+    font-size: 24px;
   }
 
   .auction-section {
-    padding: 100px 0;
+    padding: 40px 0;
   }
 
-  /* Enhanced Containers */
-  .hero-container,
-  .auction-container {
-    gap: 80px;
+  .footer {
+    padding: 40px 0 20px;
+  }
+
+  .footer-content {
+    grid-template-columns: 1fr;
+    gap: 30px;
+    text-align: center;
+  }
+
+  .footer-logo-section,
+  .newsletter-section {
+    grid-column: 1;
+  }
+
+  .social-icons {
+    justify-content: center;
+  }
+
+  .newsletter-form {
+    max-width: 300px;
+    margin: 0 auto;
   }
 }
 
-/* Extra Large Desktop - 1200px and above */
-@media (min-width: 1200px) {
-
-  /* Maximum widths */
-  .container,
-  .header-container,
-  .hero-container,
-  .auction-container {
-    max-width: 1200px;
+/* Small Mobile Styles */
+@media(max-width: 320px) {
+  .logo-text {
+    font-size: 16px;
   }
 
-  /* Enhanced Typography */
-  .hero-content h1 {
-    font-size: 48px;
+  .logo-icon {
+    height: 28px;
+  }
+
+  .hero-info-content h1 {
+    font-size: 20px;
+  }
+
+  .get-started-container {
+    padding: 0 15px !important;
+    gap: 20px !important;
+  }
+
+  .get-started-content {
+    text-align: center !important;
+  }
+
+  .get-started-title {
+    font-size: 28px !important;
+  }
+
+  .get-started-description {
+    font-size: 14px !important;
+  }
+
+  .events-title {
+    font-size: 28px;
+  }
+
+  .events-subtitle {
+    font-size: 14px;
+  }
+
+  .upcoming-events-section {
+    height: 200px;
   }
 
   .auction-content h2 {
-    font-size: 44px;
+    font-size: 20px;
   }
 
-  /* Enhanced Spacing */
-  .hero-container,
-  .auction-container {
-    gap: 100px;
+  .header-container {
+    padding: 0 10px;
   }
 }
 
-/* Ultra Wide Desktop - 1400px and above */
-@media (min-width: 1400px) {
-
-  /* Maximum widths */
-  .container,
-  .header-container,
-  .hero-container,
-  .auction-container {
-    max-width: 1400px;
+/* Large Desktop Styles */
+@media(min-width: 1400px) {
+  .hero-container {
+    max-width: 1800px;
   }
 
-  /* Enhanced Grid */
-  .grid-cols-xl-5 {
-    grid-template-columns: repeat(5, 1fr);
+  .hero-info-content h1 {
+    font-size: 42px;
   }
 
-  .grid-cols-xl-6 {
-    grid-template-columns: repeat(6, 1fr);
+  .hero-subtitle {
+    font-size: 21px;
+  }
+
+  .hero-description {
+    font-size: 18px;
+  }
+
+  .counter-number {
+    font-size: 84px;
+  }
+
+  .feature-title {
+    font-size: 32px;
+  }
+
+  .feature-subtitle {
+    font-size: 18px;
+  }
+
+  .get-started-title {
+    font-size: 52px;
+  }
+
+  .events-title {
+    font-size: 52px;
   }
 }
 
@@ -351,10 +425,10 @@
 
   .header,
   .mobile-menu,
-  .mobile-menu-toggle,
-  .btn,
-  .modal-overlay {
-    display: none !important;
+  .video-container,
+  .upcoming-events-section,
+  .footer {
+    display: none;
   }
 
   .main-content {
@@ -362,38 +436,35 @@
   }
 
   body {
-    color: #000;
-    background: #fff;
+    background: white;
+    color: black;
   }
 
-  .hero-section,
-  .auction-section {
-    background: #fff !important;
-    color: #000 !important;
-  }
-
-  .hero-content h1,
-  .auction-content h2,
-  .card-title {
-    color: #000 !important;
-  }
-
-  .hero-content p,
-  .auction-description,
-  .card-content {
-    color: #333 !important;
-  }
-
-  .auction-date {
-    color: #666 !important;
-  }
-
-  a {
-    color: #000 !important;
+  .hero-info-box,
+  .feature-card {
+    border: 1px solid #ccc;
+    background: white;
+    color: black;
   }
 }
 
-/* Reduced Motion Preferences */
+/* High Contrast Mode */
+@media (prefers-contrast: high) {
+  .hero-info-box {
+    border: 3px solid #FFFFFF;
+  }
+
+  .feature-card {
+    border: 2px solid #FFFFFF;
+  }
+
+  .nav-menu li a::after,
+  .mobile-menu ul li a::after {
+    background-color: #FFFFFF;
+  }
+}
+
+/* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
 
   *,
@@ -402,53 +473,13 @@
     animation-duration: 0.01ms !important;
     animation-iteration-count: 1 !important;
     transition-duration: 0.01ms !important;
-    scroll-behavior: auto !important;
   }
 
-  .spinner {
-    animation: none;
-  }
-}
-
-/* High Contrast Mode */
-@media (prefers-contrast: high) {
-  :root {
-    --color-accent-gray: #ffffff;
-    --color-light-gray: #ffffff;
+  .feature-card::before {
+    animation: none !important;
   }
 
-  .btn {
-    border-width: 3px;
-  }
-
-  .nav-menu li a::after {
-    height: 3px;
-  }
-
-  .mobile-menu ul li a {
-    border-bottom-width: 2px;
-  }
-}
-
-/* Dark Mode Preferences (for browsers that support it) */
-@media (prefers-color-scheme: dark) {
-  /* Already using dark theme, no changes needed */
-}
-
-/* Portrait and Landscape Orientations */
-@media screen and (orientation: portrait) {
-  .hero-container {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media screen and (orientation: landscape) and (max-height: 600px) {
-  .hero-section {
-    padding: var(--spacing-xl) 0;
-    min-height: auto;
-  }
-
-  .auction-section {
-    padding: var(--spacing-xl) 0;
+  .loading-spinner {
+    animation: none !important;
   }
 }

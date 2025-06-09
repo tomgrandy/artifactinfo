@@ -45,9 +45,8 @@
 
 {# Set CSS classes #}
 {% set classes = [
-  'paragraph',
-  'paragraph--type--hero-banner',
-  'hero-section'
+  'hero-section',
+  'section-hero'
 ] %}
 
 {# Add view mode class if available #}
@@ -62,21 +61,17 @@
 
 {% set background_style = '' %}
 {% if background_image_url %}
-  {% set background_style = 'background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.7)), url(' ~ background_image_url ~ ');' %}
+  {% set background_style = 'background-image: url(' ~ background_image_url ~ ');' %}
 {% endif %}
 
 <section{{ attributes.addClass(classes) }}{% if background_style %} style="{{ background_style }}"{% endif %}>
   <div class="hero-container">
     <div class="hero-content">
-      {% if content.field_banner_title %}
-        <h1>{{ content.field_banner_title }}</h1>
-      {% endif %}
-
-      {% if content.field_banner_descriptions %}
-        <div class="hero-description">
+      <div class="hero-info-box">
+        {% if content.field_banner_descriptions %}
           {{ content.field_banner_descriptions }}
+        {% endif %}
         </div>
-      {% endif %}
     </div>
   </div>
 </section>

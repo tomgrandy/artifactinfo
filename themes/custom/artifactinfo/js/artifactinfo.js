@@ -1,475 +1,361 @@
 /**
  * @file
- * Artifact Auctions Theme JavaScript behaviors.
+ * Main JavaScript behaviors for Artifact Info theme.
  */
 
-(function ($, Drupal, once) {
+(function (Drupal, $, once) {
   'use strict';
 
+  // Fallback for once function if not available
+  if (typeof once === 'undefined') {
+    console.warn('Drupal once library not loaded, using fallback');
+    window.once = function(id, selector, context) {
+      context = context || document;
+      var elements = $(selector, context);
+      return elements.filter(function() {
+        if (this.hasAttribute('data-once-' + id)) {
+          return false;
+        }
+        this.setAttribute('data-once-' + id, 'true');
+        return true;
+      });
+    };
+    // Update the once parameter for the fallback
+    once = window.once;
+  }
+
   /**
-   * Mobile Menu Behavior
+   * Mobile menu behavior.
    */
   Drupal.behaviors.artifactMobileMenu = {
     attach: function (context, settings) {
-      const $mobileMenuToggle = $(once('mobile-menu-toggle', '.mobile-menu-toggle', context));
-      const $mobileMenu = $(once('mobile-menu', '.mobile-menu', context));
-
-      if ($mobileMenuToggle.length && $mobileMenu.length) {
-        // Toggle mobile menu
-        $mobileMenuToggle.on('click.artifactMobileMenu', function(e) {
-          e.preventDefault();
-          Drupal.behaviors.artifactMobileMenu.toggleMobileMenu($mobileMenu, $(this));
-        });
-
-        // Close mobile menu when clicking outside
-        $(document).on('click.artifactMobileMenu', function(event) {
-          if (!$mobileMenu[0].contains(event.target) && !$mobileMenuToggle[0].contains(event.target)) {
-            Drupal.behaviors.artifactMobileMenu.closeMobileMenu($mobileMenu, $mobileMenuToggle);
-          }
-        });
-
-        // Close mobile menu when window is resized to desktop
-        $(window).on('resize.artifactMobileMenu', function() {
-          if (window.innerWidth > 768) {
-            Drupal.behaviors.artifactMobileMenu.closeMobileMenu($mobileMenu, $mobileMenuToggle);
-          }
-        });
-
-        // Close mobile menu when pressing Escape key
-        $(document).on('keydown.artifactMobileMenu', function(event) {
-          if (event.key === 'Escape' && $mobileMenu.hasClass('active')) {
-            Drupal.behaviors.artifactMobileMenu.closeMobileMenu($mobileMenu, $mobileMenuToggle);
-            $mobileMenuToggle.focus();
-          }
-        });
-      }
-    },
-
-    toggleMobileMenu: function($mobileMenu, $toggle) {
-      $mobileMenu.toggleClass('active');
-
-      // Update ARIA attributes for accessibility
-      const isOpen = $mobileMenu.hasClass('active');
-      $toggle.attr('aria-expanded', isOpen);
-      $mobileMenu.attr('aria-hidden', !isOpen);
-    },
-
-    closeMobileMenu: function($mobileMenu, $toggle) {
-      $mobileMenu.removeClass('active');
-      $toggle.attr('aria-expanded', 'false');
-      $mobileMenu.attr('aria-hidden', 'true');
-    },
-
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $(document).off('.artifactMobileMenu');
-        $(window).off('.artifactMobileMenu');
-      }
-    }
-  };
-
-  /**
-   * Smooth Scrolling Behavior
-   */
-  Drupal.behaviors.artifactSmoothScrolling = {
-    attach: function (context, settings) {
-      const $anchors = $(once('smooth-scroll', 'a[href^="#"]', context));
-
-      $anchors.on('click.artifactSmoothScrolling', function(e) {
-        const href = $(this).attr('href');
-
-        // Skip empty anchors
-        if (href === '#' || href === '#!') return;
-
+      // Toggle mobile menu
+      $(once('mobile-menu-toggle', '.mobile-menu-toggle', context)).on('click', function(e) {
         e.preventDefault();
+        const button = this;
+        const mobileMenu = document.getElementById('mobile-menu');
 
-        const $target = $(href);
-        if ($target.length) {
-          // Close mobile menu if open
-          const $mobileMenu = $('.mobile-menu');
-          const $mobileMenuToggle = $('.mobile-menu-toggle');
-          if ($mobileMenu.hasClass('active')) {
-            Drupal.behaviors.artifactMobileMenu.closeMobileMenu($mobileMenu, $mobileMenuToggle);
+        if (mobileMenu) {
+          const isActive = mobileMenu.classList.contains('active');
+
+          // Toggle active class
+          mobileMenu.classList.toggle('active');
+
+          // Update aria attributes
+          button.setAttribute('aria-expanded', (!isActive).toString());
+          mobileMenu.setAttribute('aria-hidden', isActive.toString());
+
+          // Add body class to prevent scrolling when menu is open
+          if (!isActive) {
+            document.body.classList.add('mobile-menu-open');
+          } else {
+            document.body.classList.remove('mobile-menu-open');
           }
-
-          // Scroll to target with offset for fixed header
-          const headerHeight = $('.header').outerHeight() || 80;
-          const targetPosition = $target.offset().top - headerHeight;
-
-          $('html, body').animate({
-            scrollTop: targetPosition
-          }, 600, function() {
-            // Focus the target for accessibility
-            $target.attr('tabindex', '-1').focus();
-          });
         }
       });
-    },
 
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $('a[href^="#"]', context).off('.artifactSmoothScrolling');
-      }
+      // Close mobile menu when clicking outside
+      $(document).on('click', function (event) {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+
+        if (mobileMenu && toggleButton && mobileMenu.classList.contains('active')) {
+          if (!mobileMenu.contains(event.target) && !toggleButton.contains(event.target)) {
+            mobileMenu.classList.remove('active');
+            toggleButton.setAttribute('aria-expanded', 'false');
+            mobileMenu.setAttribute('aria-hidden', 'true');
+            document.body.classList.remove('mobile-menu-open');
+          }
+        }
+      });
+
+      // Close mobile menu when window is resized to desktop
+      $(window).on('resize', function () {
+        const mobileMenu = document.getElementById('mobile-menu');
+        const toggleButton = document.querySelector('.mobile-menu-toggle');
+
+        if (mobileMenu && toggleButton && window.innerWidth > 768) {
+          mobileMenu.classList.remove('active');
+          toggleButton.setAttribute('aria-expanded', 'false');
+          mobileMenu.setAttribute('aria-hidden', 'true');
+          document.body.classList.remove('mobile-menu-open');
+        }
+      });
+
+      // Handle keyboard navigation for mobile menu
+      $(once('mobile-menu-keyboard', '.mobile-menu-toggle', context)).on('keydown', function(e) {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          $(this).trigger('click');
+        }
+      });
     }
   };
 
   /**
-   * Header Scroll Effect Behavior
+   * Smooth scrolling for navigation links behavior.
+   */
+  Drupal.behaviors.artifactSmoothScroll = {
+    attach: function (context, settings) {
+      $(once('smooth-scroll', 'a[href^="#"]', context)).on('click', function (e) {
+        const href = this.getAttribute('href');
+
+        // Skip if it's just a hash
+        if (href === '#') {
+          return;
+        }
+
+        e.preventDefault();
+        const target = document.querySelector(href);
+        if (target) {
+          target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+        }
+      });
+    }
+  };
+
+  /**
+   * Header scroll effect behavior.
    */
   Drupal.behaviors.artifactHeaderScroll = {
     attach: function (context, settings) {
-      const $header = $(once('header-scroll', '.header', context));
+      $(once('header-scroll', 'body', context)).each(function() {
+        $(window).on('scroll', function () {
+          const header = document.querySelector('.header');
+          if (header) {
+            if (window.scrollY > 50) {
+              header.style.backgroundColor = 'rgba(56, 56, 59, 0.95)';
+              header.style.backdropFilter = 'blur(15px)';
+            } else {
+              header.style.backgroundColor = 'transparent';
+              header.style.backdropFilter = 'blur(10px)';
+            }
+          }
+        });
+      });
+    }
+  };
 
-      if ($header.length) {
-        let lastScrollY = $(window).scrollTop();
-        let ticking = false;
+  /**
+   * Counter animation behavior.
+   */
+  Drupal.behaviors.artifactCounter = {
+    attach: function (context, settings) {
+      $(once('counter-animation', '#artifact-counter', context)).each(function() {
+        const counter = this;
 
-        function updateHeader() {
-          const currentScrollY = $(window).scrollTop();
+        // Counter animation function
+        function animateCounter(element, target, duration) {
+          const start = 0;
+          const startTime = performance.now();
 
-          if (currentScrollY > 50) {
-            $header.addClass('scrolled').css({
-              'background-color': 'rgba(56, 56, 59, 0.95)',
-              'backdrop-filter': 'blur(15px)'
+          function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(start + (target - start) * easeOut);
+
+            // Format number with commas
+            element.textContent = current.toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            } else {
+              element.textContent = target.toLocaleString();
+            }
+          }
+
+          requestAnimationFrame(update);
+        }
+
+        // Start animation after a short delay
+        setTimeout(() => {
+          animateCounter(counter, 72543, 2000);
+        }, 500);
+      });
+    }
+  };
+
+  /**
+   * Video functionality behavior.
+   */
+  Drupal.behaviors.artifactVideo = {
+    attach: function (context, settings) {
+      $(once('video-play-button', '.play-button', context)).on('click', function() {
+        const videoContainer = document.getElementById('videoContainer');
+        const videoPlaceholder = document.getElementById('videoPlaceholder');
+        const videoLoading = document.getElementById('videoLoading');
+
+        if (!videoContainer || !videoPlaceholder || !videoLoading) {
+          return;
+        }
+
+        // Show loading
+        videoPlaceholder.style.display = 'none';
+        videoLoading.style.display = 'block';
+
+        // Simulate loading delay (replace with actual video loading)
+        setTimeout(() => {
+          // Create iframe for video (replace with actual video URL)
+          const iframe = document.createElement('iframe');
+          iframe.className = 'video-iframe';
+          iframe.src = 'https://www.youtube.com/embed/dQw4w9WgXcQ'; // Replace with actual video
+          iframe.allowFullscreen = true;
+
+          // Hide loading and add iframe
+          videoLoading.style.display = 'none';
+          videoContainer.appendChild(iframe);
+        }, 1000);
+      });
+    }
+  };
+
+  /**
+   * Events navigation behavior.
+   */
+  Drupal.behaviors.artifactEventsNavigation = {
+    attach: function (context, settings) {
+      function navigateToEvents() {
+        // Replace with actual navigation
+        // window.location.href = '/events';
+      }
+
+      $(once('events-navigation', '.upcoming-events-section', context)).each(function() {
+        $(this).on('click', function() {
+          navigateToEvents();
+        });
+
+        $(this).on('keydown', function(event) {
+          if (event.key === 'Enter' || event.key === ' ') {
+            event.preventDefault();
+            navigateToEvents();
+          }
+        });
+      });
+    }
+  };
+
+  /**
+   * Feature cards animation behavior.
+   */
+  Drupal.behaviors.artifactFeatureCards = {
+    attach: function (context, settings) {
+      // Add js class to body for progressive enhancement
+      $('body').addClass('js');
+
+      $(once('feature-cards-init', '.features-section', context)).each(function() {
+        const featureCards = document.querySelectorAll('.feature-card');
+        featureCards.forEach((card, index) => {
+          // Add a small delay to ensure styles are applied
+          setTimeout(() => card.classList.add('animate-in'), 100 * (index + 1));
+        });
+      });
+    }
+  };
+
+  /**
+   * Newsletter signup behavior.
+   */
+  Drupal.behaviors.artifactNewsletter = {
+    attach: function (context, settings) {
+      $(once('newsletter-form', '.newsletter-form', context)).on('submit', function(event) {
+        event.preventDefault();
+        const email = event.target.querySelector('.newsletter-input').value;
+
+        // Newsletter signup logic would go here
+
+        // Here you would typically send the email to your backend
+        // For now, just show a success message
+        const button = event.target.querySelector('.newsletter-btn');
+        const originalText = button.textContent;
+
+        button.textContent = 'Subscribed!';
+        button.style.backgroundColor = '#4CAF50';
+
+        setTimeout(() => {
+          button.textContent = originalText;
+          button.style.backgroundColor = '#A8A6A1';
+          event.target.reset();
+        }, 2000);
+      });
+    }
+  };
+
+  /**
+   * Initialize new sections animations behavior.
+   */
+  Drupal.behaviors.artifactSectionsAnimation = {
+    attach: function (context, settings) {
+      $(once('sections-animation', 'body', context)).each(function() {
+        const sections = ['.get-started-content', '.video-container', '.upcoming-events-section'];
+
+        sections.forEach(selector => {
+          const element = document.querySelector(selector);
+          if (element) {
+            element.classList.add('animate-in');
+          }
+        });
+      });
+    }
+  };
+
+  /**
+   * Intersection Observer for enhanced animations behavior.
+   */
+  Drupal.behaviors.artifactIntersectionObserver = {
+    attach: function (context, settings) {
+      $(once('intersection-observer', 'body', context)).each(function() {
+        // Check if IntersectionObserver is supported
+        if ('IntersectionObserver' in window) {
+          const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add('animate-in');
+              }
             });
-          } else {
-            $header.removeClass('scrolled').css({
-              'background-color': 'transparent',
-              'backdrop-filter': 'blur(10px)'
-            });
-          }
+          }, {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+          });
 
-          lastScrollY = currentScrollY;
-          ticking = false;
+          document.querySelectorAll('.feature-card').forEach(card => {
+            observer.observe(card);
+          });
         }
-
-        function requestTick() {
-          if (!ticking) {
-            requestAnimationFrame(updateHeader);
-            ticking = true;
-          }
-        }
-
-        $(window).on('scroll.artifactHeaderScroll', function() {
-          requestTick();
-        });
-      }
-    },
-
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $(window).off('.artifactHeaderScroll');
-      }
+      });
     }
   };
 
   /**
-   * Form Validation and Enhancement Behavior
+   * Page load initialization behavior.
    */
-  Drupal.behaviors.artifactFormValidation = {
+  Drupal.behaviors.artifactPageLoad = {
     attach: function (context, settings) {
-      const $forms = $(once('form-validation', '.form', context));
+      $(once('page-load-init', 'body', context)).each(function() {
+        // Add js class to body for progressive enhancement
+        $('body').addClass('js');
 
-      $forms.each(function() {
-        const $form = $(this);
-        const $inputs = $form.find('.form-input, .form-textarea, .form-select');
+        // Wait for page to be fully loaded
+        $(window).on('load', function() {
+          // Initialize feature cards animation
+          const featureCards = document.querySelectorAll('.feature-card');
+          featureCards.forEach((card, index) => {
+            setTimeout(() => card.classList.add('animate-in'), 100 * index);
+          });
 
-        // Add real-time validation
-        $inputs.on('blur.artifactFormValidation', function() {
-          Drupal.behaviors.artifactFormValidation.validateField($(this));
-        });
-
-        $inputs.on('input.artifactFormValidation', function() {
-          if ($(this).hasClass('error')) {
-            Drupal.behaviors.artifactFormValidation.validateField($(this));
-          }
-        });
-
-        // Handle form submission
-        $form.on('submit.artifactFormValidation', function(e) {
-          if (!Drupal.behaviors.artifactFormValidation.validateForm($form)) {
-            e.preventDefault();
-          }
+          // Initialize new sections animations
+          const sections = ['.get-started-content', '.video-container', '.upcoming-events-section'];
+          sections.forEach(selector => {
+            const element = document.querySelector(selector);
+            if (element) {
+              element.classList.add('animate-in');
+            }
+          });
         });
       });
-
-      // File upload enhancement
-      Drupal.behaviors.artifactFormValidation.initializeFileUploads(context);
-    },
-
-    validateField: function($field) {
-      const value = $field.val().trim();
-      const isRequired = $field.prop('required');
-      const type = $field.attr('type');
-      const $group = $field.closest('.form-group');
-
-      let isValid = true;
-      let message = '';
-
-      // Remove previous validation states
-      $field.removeClass('error success');
-      $group.find('.form-message.error').remove();
-
-      // Required field validation
-      if (isRequired && !value) {
-        isValid = false;
-        message = Drupal.t('This field is required.');
-      }
-
-      // Email validation
-      if (type === 'email' && value) {
-        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-        if (!emailRegex.test(value)) {
-          isValid = false;
-          message = Drupal.t('Please enter a valid email address.');
-        }
-      }
-
-      // Phone validation
-      if (type === 'tel' && value) {
-        const phoneRegex = /^[\+]?[\d\s\-\(\)]+$/;
-        if (!phoneRegex.test(value) || value.replace(/\D/g, '').length < 10) {
-          isValid = false;
-          message = Drupal.t('Please enter a valid phone number.');
-        }
-      }
-
-      // Update field state
-      if (!isValid) {
-        $field.addClass('error');
-        if ($group.length && message) {
-          $group.append('<div class="form-message error">' + message + '</div>');
-        }
-      } else if (value) {
-        $field.addClass('success');
-      }
-
-      return isValid;
-    },
-
-    validateForm: function($form) {
-      const $fields = $form.find('.form-input, .form-textarea, .form-select');
-      let isValid = true;
-
-      $fields.each(function() {
-        if (!Drupal.behaviors.artifactFormValidation.validateField($(this))) {
-          isValid = false;
-        }
-      });
-
-      return isValid;
-    },
-
-    initializeFileUploads: function(context) {
-      const $fileInputs = $(once('file-upload', '.form-file input[type="file"]', context));
-
-      $fileInputs.on('change.artifactFormValidation', function() {
-        const $label = $(this).parent().find('.form-file-label');
-        const files = this.files;
-
-        if (files.length > 0) {
-          const fileName = files.length === 1 ? files[0].name : Drupal.formatPlural(files.length, '1 file selected', '@count files selected');
-          $label.text(fileName).addClass('has-file');
-        } else {
-          $label.text(Drupal.t('Choose file...')).removeClass('has-file');
-        }
-      });
-    },
-
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $('.form', context).off('.artifactFormValidation');
-        $('.form-input, .form-textarea, .form-select', context).off('.artifactFormValidation');
-        $('.form-file input[type="file"]', context).off('.artifactFormValidation');
-      }
     }
   };
 
-  /**
-   * Accessibility Enhancements Behavior
-   */
-  Drupal.behaviors.artifactAccessibility = {
-    attach: function (context, settings) {
-      // Add keyboard navigation for custom elements
-      const $clickableElements = $(once('keyboard-nav', '[onclick], .btn, .card', context));
-
-      $clickableElements.each(function() {
-        const $element = $(this);
-
-        if (!$element.attr('tabindex')) {
-          $element.attr('tabindex', '0');
-        }
-
-        $element.on('keydown.artifactAccessibility', function(e) {
-          if (e.key === 'Enter' || e.key === ' ') {
-            e.preventDefault();
-            this.click();
-          }
-        });
-      });
-
-      // Add ARIA labels where needed
-      const $mobileToggle = $(once('mobile-toggle-aria', '.mobile-menu-toggle', context));
-      if ($mobileToggle.length) {
-        $mobileToggle.attr({
-          'aria-label': Drupal.t('Toggle mobile menu'),
-          'aria-expanded': 'false'
-        });
-      }
-
-      const $mobileMenu = $(once('mobile-menu-aria', '.mobile-menu', context));
-      if ($mobileMenu.length) {
-        $mobileMenu.attr('aria-hidden', 'true');
-      }
-    },
-
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $('[onclick], .btn, .card', context).off('.artifactAccessibility');
-      }
-    }
-  };
-
-  /**
-   * Modal Functionality Behavior
-   */
-  Drupal.behaviors.artifactModal = {
-    attach: function (context, settings) {
-      // Modal triggers
-      const $modalTriggers = $(once('modal-trigger', '[data-modal-target]', context));
-      $modalTriggers.on('click.artifactModal', function(e) {
-        e.preventDefault();
-        const modalId = $(this).data('modal-target');
-        Drupal.behaviors.artifactModal.openModal(modalId);
-      });
-
-      // Modal close buttons
-      const $modalCloses = $(once('modal-close', '.modal-close', context));
-      $modalCloses.on('click.artifactModal', function(e) {
-        e.preventDefault();
-        const $modal = $(this).closest('.modal-overlay');
-        if ($modal.length) {
-          Drupal.behaviors.artifactModal.closeModal($modal.attr('id'));
-        }
-      });
-
-      // Modal overlay clicks
-      const $modalOverlays = $(once('modal-overlay', '.modal-overlay', context));
-      $modalOverlays.on('click.artifactModal', function(e) {
-        if (e.target === this) {
-          Drupal.behaviors.artifactModal.closeModal($(this).attr('id'));
-        }
-      });
-
-      // Escape key handling
-      $(document).on('keydown.artifactModal', function(e) {
-        if (e.key === 'Escape') {
-          const $openModal = $('.modal-overlay:visible');
-          if ($openModal.length) {
-            Drupal.behaviors.artifactModal.closeModal($openModal.attr('id'));
-          }
-        }
-      });
-    },
-
-    openModal: function(modalId) {
-      const $modal = $('#' + modalId);
-      if ($modal.length) {
-        $modal.show().attr('aria-hidden', 'false');
-        $('body').css('overflow', 'hidden');
-
-        // Focus the modal for accessibility
-        const $firstFocusable = $modal.find('button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])').first();
-        if ($firstFocusable.length) {
-          $firstFocusable.focus();
-        }
-
-        // Trigger custom event
-        $(document).trigger('modalOpened', [modalId]);
-      }
-    },
-
-    closeModal: function(modalId) {
-      const $modal = $('#' + modalId);
-      if ($modal.length) {
-        $modal.hide().attr('aria-hidden', 'true');
-        $('body').css('overflow', '');
-
-        // Trigger custom event
-        $(document).trigger('modalClosed', [modalId]);
-      }
-    },
-
-    detach: function (context, settings, trigger) {
-      if (trigger === 'unload') {
-        $('[data-modal-target]', context).off('.artifactModal');
-        $('.modal-close', context).off('.artifactModal');
-        $('.modal-overlay', context).off('.artifactModal');
-        $(document).off('.artifactModal');
-      }
-    }
-  };
-
-  /**
-   * Utility Functions
-   */
-  Drupal.ArtifactTheme = Drupal.ArtifactTheme || {};
-
-  /**
-   * Debounce function for performance optimization.
-   */
-  Drupal.ArtifactTheme.debounce = function(func, wait) {
-    let timeout;
-    return function executedFunction() {
-      const context = this;
-      const args = arguments;
-      const later = function() {
-        clearTimeout(timeout);
-        func.apply(context, args);
-      };
-      clearTimeout(timeout);
-      timeout = setTimeout(later, wait);
-    };
-  };
-
-  /**
-   * Throttle function for performance optimization.
-   */
-  Drupal.ArtifactTheme.throttle = function(func, limit) {
-    let inThrottle;
-    return function() {
-      const args = arguments;
-      const context = this;
-      if (!inThrottle) {
-        func.apply(context, args);
-        inThrottle = true;
-        setTimeout(function() {
-          inThrottle = false;
-        }, limit);
-      }
-    };
-  };
-
-  /**
-   * Global API for external use
-   */
-  Drupal.ArtifactTheme.openModal = function(modalId) {
-    return Drupal.behaviors.artifactModal.openModal(modalId);
-  };
-
-  Drupal.ArtifactTheme.closeModal = function(modalId) {
-    return Drupal.behaviors.artifactModal.closeModal(modalId);
-  };
-
-  Drupal.ArtifactTheme.toggleMobileMenu = function() {
-    const $mobileMenu = $('.mobile-menu');
-    const $mobileMenuToggle = $('.mobile-menu-toggle');
-    return Drupal.behaviors.artifactMobileMenu.toggleMobileMenu($mobileMenu, $mobileMenuToggle);
-  };
-
-  Drupal.ArtifactTheme.validateForm = function(formSelector) {
-    const $form = $(formSelector);
-    return Drupal.behaviors.artifactFormValidation.validateForm($form);
-  };
-
-})(jQuery, Drupal, once);
+})(Drupal, jQuery, once);
