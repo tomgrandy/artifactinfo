@@ -59,9 +59,14 @@
   {% set classes = classes|merge(['paragraph--unpublished']) %}
 {% endif %}
 
+{# Generate background image style directly in Twig #}
 {% set background_style = '' %}
-{% if background_image_url %}
-  {% set background_style = 'background-image: url(' ~ background_image_url ~ ');' %}
+{% if paragraph.field_banner_background.entity %}
+  {% set media_entity = paragraph.field_banner_background.entity %}
+  {% if media_entity.field_media_image.entity %}
+    {% set file_entity = media_entity.field_media_image.entity %}
+    {% set background_style = 'background-image: url(' ~ file_url(file_entity.uri.value) ~ ');' %}
+  {% endif %}
 {% endif %}
 
 <section{{ attributes.addClass(classes) }}{% if background_style %} style="{{ background_style }}"{% endif %}>

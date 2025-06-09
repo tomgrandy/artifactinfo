@@ -11,10 +11,8 @@
  *   or print a subset such as {{ content.field_example }}.
  * - attributes: HTML attributes for the containing element.
  * - view_mode: View mode; for example, "teaser" or "full".
- * - feature_data_attr: Data attribute for feature identification.
  *
  * @see template_preprocess_paragraph()
- * @see artifactinfo_preprocess_paragraph()
  *
  * @ingroup themeable
  */
@@ -29,8 +27,14 @@
   ]
 %}
 
+{# Generate data attribute directly in Twig #}
+{% set data_attr = 'feature-' ~ paragraph.id() %}
+{% if paragraph.field_featured_title.value %}
+  {% set data_attr = paragraph.field_featured_title.value|lower|clean_class %}
+{% endif %}
+
 {% block paragraph %}
-  <div{{ attributes.addClass(classes).setAttribute('data-feature', feature_data_attr|default('feature-' ~ paragraph.id())) }}>
+  <div{{ attributes.addClass(classes).setAttribute('data-feature', data_attr) }}>
 
     {% if content.field_featured_image %}
       <div class="feature-image">
