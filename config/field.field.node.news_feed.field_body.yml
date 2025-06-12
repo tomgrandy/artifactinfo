@@ -1,0 +1,24 @@
+uuid: 091d56ef-0918-48e0-a1bd-6d3537142bad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_body
+    - filter.format.full_html
+    - node.type.news_feed
+  module:
+    - text
+id: node.news_feed.field_body
+field_name: field_body
+entity_type: node
+bundle: news_feed
+label: Body
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

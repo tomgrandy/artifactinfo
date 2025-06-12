@@ -1,4 +1,4 @@
-uuid: b5e3476c-cb7b-4ff6-b532-b3652595b998
+uuid: dbe4c0c2-8372-42a0-a442-e27856510087
 langcode: en
 status: true
 dependencies:
@@ -13,7 +13,7 @@ _core:
 id: artifactinfo_account_menu
 theme: artifactinfo
 region: hidden
-weight: -1
+weight: -2
 provider: null
 plugin: 'system_menu_block:account'
 settings:

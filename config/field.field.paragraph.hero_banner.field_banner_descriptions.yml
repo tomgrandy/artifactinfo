@@ -1,9 +1,10 @@
-uuid: b21977f2-71c5-42b7-a077-80a638e408ca
+uuid: 56e65fea-6d4a-4e68-86fa-4bc8cdfa1234
 langcode: en
 status: true
 dependencies:
   config:
     - field.storage.paragraph.field_banner_descriptions
+    - filter.format.full_html
     - paragraphs.paragraphs_type.hero_banner
   module:
     - text
@@ -18,5 +19,6 @@ translatable: false
 default_value: {  }
 default_value_callback: ''
 settings:
-  allowed_formats: {  }
+  allowed_formats:
+    - full_html
 field_type: text_long

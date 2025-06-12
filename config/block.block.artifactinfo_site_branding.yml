@@ -1,4 +1,4 @@
-uuid: e608cdfa-1117-4ec6-b3bb-d987c0710fcd
+uuid: 71c0aff3-971b-48b7-a5d7-42c555e2cc2a
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: artifactinfo_site_branding
 theme: artifactinfo
 region: hidden
-weight: -2
+weight: -3
 provider: null
 plugin: system_branding_block
 settings:

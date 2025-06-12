@@ -1,9 +1,9 @@
-uuid: a74428e1-9340-4216-ba8d-8fc0c8bbd2ec
+uuid: 81423d36-371e-48c9-8855-2add98f61c85
 langcode: en
 status: true
 dependencies:
   content:
-    - 'block_content:basic:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+    - 'block_content:basic:d2153867-db36-4a4a-8d41-a4a28a2afaa4'
   module:
     - block_content
   theme:
@@ -13,9 +13,9 @@ theme: artifactinfo
 region: footer_fourth
 weight: 0
 provider: null
-plugin: 'block_content:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+plugin: 'block_content:d2153867-db36-4a4a-8d41-a4a28a2afaa4'
 settings:
-  id: 'block_content:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+  id: 'block_content:d2153867-db36-4a4a-8d41-a4a28a2afaa4'
   label: 'Copyrights Section'
   label_display: '0'
   provider: block_content

@@ -42,7 +42,7 @@ content:
       title_plural: Paragraphs
       edit_mode: closed
       closed_mode: summary
-      autocollapse: all
+      autocollapse: none
       closed_mode_threshold: 0
       add_mode: dropdown
       form_display_mode: default

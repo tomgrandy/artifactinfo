@@ -1,4 +1,4 @@
-uuid: 6a90f1e8-2fca-454f-a4f2-2a07f60a1147
+uuid: 7ffdfce4-4e74-470b-be95-fc0f115d2dc1
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: artifactinfo_syndicate
 theme: artifactinfo
 region: hidden
-weight: -3
+weight: -4
 provider: null
 plugin: node_syndicate_block
 settings:

@@ -1,4 +1,4 @@
-uuid: 25d85e42-4104-406f-865e-b09ee9caba69
+uuid: 34345a14-b0fa-4bcc-a49d-84560029e852
 langcode: en
 status: true
 dependencies:
@@ -11,7 +11,7 @@ _core:
 id: artifactinfo_powered
 theme: artifactinfo
 region: hidden
-weight: -4
+weight: -5
 provider: null
 plugin: system_powered_by_block
 settings:

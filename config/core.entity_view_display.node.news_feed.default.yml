@@ -1,0 +1,30 @@
+uuid: 1178a525-84cf-48c1-82b6-bec78682967b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.news_feed.field_body
+    - node.type.news_feed
+  module:
+    - text
+    - user
+id: node.news_feed.default
+targetEntityType: node
+bundle: news_feed
+mode: default
+content:
+  field_body:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

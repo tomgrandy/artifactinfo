@@ -1,4 +1,4 @@
-uuid: b0ecf893-05f3-45e4-9d15-28a4d682abf6
+uuid: 47b5cc6f-4a03-43ef-881e-e987b6ea1372
 langcode: en
 status: true
 dependencies:
@@ -26,7 +26,7 @@ content:
     label: hidden
     settings: {  }
     third_party_settings: {  }
-    weight: 2
+    weight: 1
     region: content
   field_featured_title:
     type: string
@@ -34,7 +34,7 @@ content:
     settings:
       link_to_entity: false
     third_party_settings: {  }
-    weight: 1
+    weight: 2
     region: content
 hidden:
   search_api_excerpt: true

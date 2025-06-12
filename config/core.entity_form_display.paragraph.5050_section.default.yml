@@ -1,4 +1,4 @@
-uuid: 88e12bf7-935f-43be-9a37-42391033d469
+uuid: 22eff919-1ce0-4ff0-b0e4-53fd3c43cbe4
 langcode: en
 status: true
 dependencies:
@@ -6,7 +6,7 @@ dependencies:
     - field.field.paragraph.5050_section.field_5050_description
     - field.field.paragraph.5050_section.field_5050_note
     - field.field.paragraph.5050_section.field_5050_title
-    - field.field.paragraph.5050_section.field_5050_video_iframe
+    - field.field.paragraph.5050_section.field_video_iframe
     - paragraphs.paragraphs_type.5050_section
   module:
     - text
@@ -39,7 +39,7 @@ content:
       size: 60
       placeholder: ''
     third_party_settings: {  }
-  field_5050_video_iframe:
+  field_video_iframe:
     type: text_textarea
     weight: 3
     region: content

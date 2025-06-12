@@ -1,4 +1,4 @@
-uuid: 80f77ef4-d391-4718-bc08-219e6b163022
+uuid: 84878523-c1d3-4609-9c84-0e10cd77dbe9
 langcode: en
 status: true
 dependencies:
@@ -25,25 +25,25 @@ settings:
   handler: 'default:paragraph'
   handler_settings:
     target_bundles:
-      featured_section: featured_section
-      hero_banner: hero_banner
       5050_section: 5050_section
       events_section: events_section
+      featured_section: featured_section
+      hero_banner: hero_banner
     negate: 0
     target_bundles_drag_drop:
       5050_section:
-        weight: 5
+        weight: 6
         enabled: true
       events_section:
         weight: 7
         enabled: true
       featured_section:
-        weight: 4
+        weight: 8
         enabled: true
       featured_section_items:
-        weight: 5
+        weight: 9
         enabled: false
       hero_banner:
-        weight: 4
+        weight: 10
         enabled: true
 field_type: entity_reference_revisions

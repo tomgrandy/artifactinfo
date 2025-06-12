@@ -1,12 +1,12 @@
-uuid: 0b318b85-90b5-4de1-b476-c10f5cd445d0
+uuid: f3360337-805a-47c9-af2d-b6f023c6ddfe
 langcode: en
 status: true
 dependencies:
   module:
     - paragraphs
     - text
-id: paragraph.field_5050_description
-field_name: field_5050_description
+id: paragraph.field_video_iframe
+field_name: field_video_iframe
 entity_type: paragraph
 type: text_long
 settings: {  }

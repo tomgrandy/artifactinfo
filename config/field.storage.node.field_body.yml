@@ -1,13 +1,13 @@
-uuid: 6c830c4a-6853-4479-9803-ba432a3867f8
+uuid: fa8d1a6f-bd73-438b-866c-eb71adf53815
 langcode: en
 status: true
 dependencies:
   module:
-    - paragraphs
+    - node
     - text
-id: paragraph.field_5050_video_iframe
-field_name: field_5050_video_iframe
-entity_type: paragraph
+id: node.field_body
+field_name: field_body
+entity_type: node
 type: text_long
 settings: {  }
 module: text

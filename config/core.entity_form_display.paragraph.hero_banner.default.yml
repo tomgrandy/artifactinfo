@@ -1,4 +1,4 @@
-uuid: 339cf1c5-8ebc-4d40-ac64-831437217d22
+uuid: 049333ca-00d3-4a78-b7d4-e69dd135ffb3
 langcode: en
 status: true
 dependencies:
@@ -16,7 +16,7 @@ mode: default
 content:
   field_banner_background:
     type: media_library_widget
-    weight: 2
+    weight: 0
     region: content
     settings:
       media_types: {  }

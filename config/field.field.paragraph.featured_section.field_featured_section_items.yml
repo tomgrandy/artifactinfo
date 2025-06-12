@@ -1,4 +1,4 @@
-uuid: fa66b5f7-8514-4520-a3dc-b4703a5966d4
+uuid: bb2a7380-b4e6-454d-ab34-0dde580fc238
 langcode: en
 status: true
 dependencies:
@@ -25,13 +25,19 @@ settings:
       featured_section_items: featured_section_items
     negate: 0
     target_bundles_drag_drop:
+      5050_section:
+        weight: 6
+        enabled: false
+      events_section:
+        weight: 7
+        enabled: false
       featured_section:
-        weight: 4
+        weight: 8
         enabled: false
       featured_section_items:
-        weight: 5
+        weight: 9
         enabled: true
       hero_banner:
-        weight: 6
+        weight: 10
         enabled: false
 field_type: entity_reference_revisions
