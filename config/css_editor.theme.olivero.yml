@@ -1,0 +1,5 @@
+path: 'public://css_editor/olivero.css'
+enabled: true
+css: ".field--name-field-coa-image {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\r\n}\r\n.field--name-field-artifact-image-2 {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\r\n}\r\n.field--name-field-artifact-image-3 {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\r\n}\r\n.field--name-field-artifact-image-4 {\r\n  display: block;\r\n  margin-left: auto;\r\n  margin-right: auto;\r\n  width: 50%;\r\n}\r\n"
+plaintext_enabled: false
+autopreview_enabled: true

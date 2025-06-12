@@ -1,0 +1,22 @@
+uuid: 25d85e42-4104-406f-865e-b09ee9caba69
+langcode: en
+status: true
+dependencies:
+  module:
+    - system
+  theme:
+    - artifactinfo
+_core:
+  default_config_hash: eYL19CLDyinGTWYQfBD1DswWzglEotE_kHnHx3AxTXM
+id: artifactinfo_powered
+theme: artifactinfo
+region: hidden
+weight: -4
+provider: null
+plugin: system_powered_by_block
+settings:
+  id: system_powered_by_block
+  label: 'Powered by Drupal'
+  label_display: '0'
+  provider: system
+visibility: {  }

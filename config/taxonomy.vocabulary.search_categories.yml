@@ -1,0 +1,9 @@
+uuid: b007160a-3787-4c7b-98b4-aed17b9b3eae
+langcode: en
+status: true
+dependencies: {  }
+name: 'Search Category'
+vid: search_categories
+description: null
+weight: 0
+new_revision: false

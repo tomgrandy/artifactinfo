@@ -1,0 +1,22 @@
+uuid: b1d599e1-d83b-411e-b0a2-e7eb609d4a65
+langcode: en
+status: true
+dependencies:
+  theme:
+    - artifactinfo
+_core:
+  default_config_hash: nGE3EoPQQaQCuqTUtZgw0-KIzmrqdKDzdNQf2JyPUt4
+id: artifactinfo_primary_local_tasks
+theme: artifactinfo
+region: highlighted
+weight: -4
+provider: null
+plugin: local_tasks_block
+settings:
+  id: local_tasks_block
+  label: 'Primary tabs'
+  label_display: '0'
+  provider: core
+  primary: true
+  secondary: false
+visibility: {  }

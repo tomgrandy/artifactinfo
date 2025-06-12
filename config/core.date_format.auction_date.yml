@@ -1,0 +1,8 @@
+uuid: b4a7632d-4a22-4a2a-a34e-adf6ff895ddb
+langcode: en
+status: true
+dependencies: {  }
+id: auction_date
+label: 'Auction Date'
+locked: false
+pattern: 'F  j,  Y'

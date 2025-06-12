@@ -1,0 +1,8 @@
+uuid: b3660c81-97ca-4086-8b23-9ad56eecbdfa
+langcode: en
+status: true
+dependencies: {  }
+id: artifact-info
+label: 'ARTIFACT INFO'
+description: ''
+locked: false

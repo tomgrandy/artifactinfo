@@ -1,7 +1,15 @@
+# Add Google Fonts library
+google-fonts:
+  version: VERSION
+  css:
+    theme:
+      'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Special+Gothic&display=swap': { type: external, preprocess: false }
+
 global-styling:
   version: VERSION
   css:
     theme:
+      css/typography.css: {}
       css/style.css: {}
       css/layout.css: {}
       css/components.css: {}
@@ -10,6 +18,7 @@ global-styling:
   dependencies:
     - core/jquery
     - core/drupal
+    - artifactinfo/google-fonts
 
 global-scripts:
   version: VERSION

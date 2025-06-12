@@ -1,0 +1,11 @@
+uuid: fa20cf6b-a987-44e8-9b85-4ef2e497ac33
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.puzzle_maker
+id: node.puzzle_maker
+target_entity_type_id: node
+target_bundle: puzzle_maker
+default_langcode: site_default
+language_alterable: false

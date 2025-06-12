@@ -1,0 +1,21 @@
+uuid: 7d36006e-0534-47a7-b607-87db308a8e92
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_date_sold
+    - node.type.artifacts
+  module:
+    - datetime
+id: node.artifacts.field_date_sold
+field_name: field_date_sold
+entity_type: node
+bundle: artifacts
+label: 'Date Sold'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: datetime

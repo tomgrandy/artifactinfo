@@ -68,9 +68,10 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .logo-text {
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .logo-artifact {
@@ -95,9 +96,11 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 .nav-menu li a {
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 14px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
   transition: color 0.3s ease;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-wide);
   padding: 10px 0;
   display: block;
   position: relative;
@@ -244,25 +247,28 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
    HERO CONTENT COMPONENTS
 ======================================== */
 .hero-info-content h1 {
-  font-size: 38px;
-  font-weight: normal;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-light);
   margin-bottom: 25px;
   color: #FFFFFF;
-  letter-spacing: 1px;
-  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
 }
 
 .hero-subtitle {
-  font-size: 19px;
-  line-height: 1.6;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-lg);
+  line-height: var(--line-height-relaxed);
   color: #DFE0E1;
   margin-bottom: 18px;
-  font-weight: bold;
+  font-weight: var(--font-weight-bold);
 }
 
 .hero-description {
-  font-size: 17px;
-  line-height: 1.6;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-relaxed);
   color: #A8A6A1;
   margin: 0;
 }
@@ -272,11 +278,12 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .hero-database h2 {
-  font-size: 26px;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-3xl);
   color: #FFFFFF;
   margin-bottom: 25px;
-  font-weight: normal;
-  letter-spacing: 1px;
+  font-weight: var(--font-weight-light);
+  letter-spacing: var(--letter-spacing-tight);
 }
 
 .database-counter {
@@ -286,37 +293,41 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .counter-number {
-  font-size: 76px;
-  font-weight: bold;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-7xl);
+  font-weight: var(--font-weight-bold);
   color: #FFFFFF;
   line-height: 1;
   margin-bottom: 12px;
-  letter-spacing: -2px;
+  letter-spacing: var(--letter-spacing-tighter);
   text-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
 }
 
 .counter-label {
-  font-size: 17px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
   color: #DFE0E1;
   margin: 0;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 /* ========================================
    GET STARTED COMPONENTS
 ======================================== */
 .get-started-title {
-  font-size: 48px;
-  font-weight: normal;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-light);
   color: #FFFFFF;
   margin-bottom: 30px;
-  letter-spacing: 1px;
-  line-height: 1.2;
+  letter-spacing: var(--letter-spacing-tight);
+  line-height: var(--line-height-tight);
 }
 
 .get-started-description {
-  font-size: 16px;
-  line-height: 1.8;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
   color: #DFE0E1;
   margin-bottom: 25px;
 }
@@ -328,8 +339,9 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 /* Additional styling for 5050 section description wrapper */
 .get-started-description-wrapper p,
 .paragraph--type--5050-section .get-started-description p {
-  font-size: 16px;
-  line-height: 1.8;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
+  line-height: var(--line-height-loose);
   color: #DFE0E1;
   margin-bottom: 25px;
 }
@@ -340,7 +352,8 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .get-started-signature {
-  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
   color: #A8A6A1;
   font-style: italic;
   margin-top: 30px;
@@ -484,11 +497,12 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .feature-title {
-  font-size: 28px;
-  font-weight: normal;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-3xl);
+  font-weight: var(--font-weight-light);
   color: #FFFFFF;
   margin-bottom: 15px;
-  letter-spacing: 0.5px;
+  letter-spacing: var(--letter-spacing-wide);
   transition: all 0.3s ease;
 }
 
@@ -498,10 +512,11 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .feature-subtitle {
-  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
   color: #DFE0E1;
-  line-height: 1.6;
-  letter-spacing: 0.3px;
+  line-height: var(--line-height-relaxed);
+  letter-spacing: var(--letter-spacing-normal);
   transition: color 0.3s ease;
 }
 
@@ -513,13 +528,14 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
    EVENTS COMPONENTS
 ======================================== */
 .events-title {
-  font-size: 48px;
-  font-weight: normal;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-5xl);
+  font-weight: var(--font-weight-light);
   color: #FFFFFF;
-  letter-spacing: 2px;
+  letter-spacing: var(--letter-spacing-wider);
   text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.8);
   transition: all 0.3s ease;
-  line-height: 1.2;
+  line-height: var(--line-height-tight);
 }
 
 .events-link:hover .events-title {
@@ -529,7 +545,8 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .events-subtitle {
-  font-size: 18px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-lg);
   color: #DFE0E1;
   margin-top: 15px;
   opacity: 0;
@@ -584,22 +601,25 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
    AUCTION COMPONENTS
 ======================================== */
 .auction-content h2 {
-  font-size: 36px;
-  font-weight: normal;
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-4xl);
+  font-weight: var(--font-weight-light);
   margin-bottom: 20px;
   color: #FFFFFF;
 }
 
 .auction-date {
-  font-size: 20px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xl);
   color: #A8A6A1;
   margin-bottom: 30px;
   font-style: italic;
 }
 
 .auction-description {
-  font-size: 14px;
-  line-height: 1.8;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  line-height: var(--line-height-loose);
   color: #DFE0E1;
 }
 
@@ -619,25 +639,28 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .footer-logo-text {
+  font-family: var(--font-family-headings);
   color: #FFFFFF;
-  font-size: 24px;
-  font-weight: bold;
-  letter-spacing: 2px;
-  line-height: 1.2;
+  font-size: var(--font-size-2xl);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wider);
+  line-height: var(--line-height-tight);
 }
 
 .footer-logo-subtitle {
+  font-family: var(--font-family-body);
   color: #7BA3A8;
-  font-size: 12px;
-  letter-spacing: 1px;
+  font-size: var(--font-size-xs);
+  letter-spacing: var(--letter-spacing-wide);
   margin-top: -5px;
 }
 
 .newsletter-title {
+  font-family: var(--font-family-headings);
   color: #FFFFFF;
-  font-size: 16px;
+  font-size: var(--font-size-base);
   margin-bottom: 15px;
-  font-weight: normal;
+  font-weight: var(--font-weight-normal);
 }
 
 .newsletter-form {
@@ -652,8 +675,8 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   border: 1px solid #38383B;
   border-radius: 4px;
   color: #FFFFFF;
-  font-size: 14px;
-  font-family: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
   transition: border-color 0.3s ease;
 }
 
@@ -672,8 +695,9 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   color: #000000;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -684,11 +708,12 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .footer-column-title {
+  font-family: var(--font-family-headings);
   color: #FFFFFF;
-  font-size: 16px;
-  font-weight: bold;
+  font-size: var(--font-size-base);
+  font-weight: var(--font-weight-bold);
   margin-bottom: 20px;
-  letter-spacing: 1px;
+  letter-spacing: var(--letter-spacing-wide);
 }
 
 .footer-links {
@@ -699,11 +724,12 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .footer-links li a {
+  font-family: var(--font-family-body);
   color: #DFE0E1;
   text-decoration: none;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
   transition: color 0.3s ease;
-  line-height: 1.4;
+  line-height: var(--line-height-snug);
 }
 
 .footer-links li a:hover {
@@ -711,9 +737,10 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .footer-description {
+  font-family: var(--font-family-body);
   color: #A8A6A1;
-  font-size: 13px;
-  line-height: 1.5;
+  font-size: var(--font-size-xs);
+  line-height: var(--line-height-normal);
   margin-top: 15px;
 }
 
@@ -727,7 +754,8 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   justify-content: center;
   color: #FFFFFF;
   text-decoration: none;
-  font-size: 16px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-base);
   transition: all 0.3s ease;
 }
 
@@ -738,6 +766,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .footer-copyright {
+  font-family: var(--font-family-body);
   color: #A8A6A1;
-  font-size: 14px;
+  font-size: var(--font-size-sm);
 }

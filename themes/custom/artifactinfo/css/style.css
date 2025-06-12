@@ -1,5 +1,5 @@
 /* ========================================
-   GLOBAL STYLES & TYPOGRAPHY
+   GLOBAL STYLES & RESET
 ======================================== */
 * {
   margin: 0;
@@ -7,12 +7,7 @@
   box-sizing: border-box;
 }
 
-body {
-  font-family: 'Georgia', serif;
-  line-height: 1.6;
-  color: #FFFFFF;
-  background-color: #000000;
-}
+/* Body styles are now handled in typography.css */
 
 /* ========================================
    MAIN CONTENT
@@ -31,9 +26,10 @@ body {
   background-color: #A8A6A1;
   color: #000000;
   text-decoration: none;
-  font-size: 14px;
-  font-weight: bold;
-  letter-spacing: 1px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
+  letter-spacing: var(--letter-spacing-wide);
   transition: all 0.3s ease;
   border: 2px solid #A8A6A1;
 }

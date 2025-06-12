@@ -72,7 +72,7 @@
   }
 
   .logo-text {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
   }
 
   .logo-icon {
@@ -97,30 +97,30 @@
   }
 
   .hero-info-content h1 {
-    font-size: 32px;
+    font-size: var(--font-size-3xl);
     margin-bottom: 15px;
   }
 
   .hero-subtitle {
-    font-size: 16px;
+    font-size: var(--font-size-base);
     margin-bottom: 12px;
   }
 
   .hero-description {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 
   .hero-database h2 {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
     margin-bottom: 20px;
   }
 
   .counter-number {
-    font-size: 56px;
+    font-size: var(--font-size-6xl);
   }
 
   .counter-label {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 
   .features-grid {
@@ -129,11 +129,11 @@
   }
 
   .feature-title {
-    font-size: 24px;
+    font-size: var(--font-size-2xl);
   }
 
   .feature-subtitle {
-    font-size: 15px;
+    font-size: var(--font-size-sm);
   }
 
   .features-section {
@@ -146,11 +146,11 @@
   }
 
   .auction-content h2 {
-    font-size: 28px;
+    font-size: var(--font-size-3xl);
   }
 
   .auction-date {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
 
   .footer-content {
@@ -202,7 +202,7 @@
   }
 
   .logo-text {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
 
   .logo-icon {
@@ -223,30 +223,30 @@
   }
 
   .hero-info-content h1 {
-    font-size: 26px;
-    line-height: 1.2;
+    font-size: var(--font-size-3xl);
+    line-height: var(--line-height-tight);
   }
 
   .hero-subtitle {
-    font-size: 15px;
+    font-size: var(--font-size-sm);
   }
 
   .hero-description {
-    font-size: 13px;
+    font-size: var(--font-size-xs);
   }
 
   .hero-database h2 {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
     margin-bottom: 15px;
   }
 
   .counter-number {
-    font-size: 48px;
-    letter-spacing: -1px;
+    font-size: var(--font-size-5xl);
+    letter-spacing: var(--letter-spacing-tight);
   }
 
   .counter-label {
-    font-size: 13px;
+    font-size: var(--font-size-xs);
   }
 
   .hero-section {
@@ -262,11 +262,11 @@
   }
 
   .feature-title {
-    font-size: 22px;
+    font-size: var(--font-size-xl);
   }
 
   .feature-subtitle {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 
   .get-started-container {
@@ -297,19 +297,19 @@
   }
 
   .get-started-title {
-    font-size: 36px !important;
+    font-size: var(--font-size-4xl) !important;
   }
 
   .get-started-description {
-    font-size: 15px !important;
+    font-size: var(--font-size-sm) !important;
   }
 
   .events-title {
-    font-size: 36px;
+    font-size: var(--font-size-4xl);
   }
 
   .events-subtitle {
-    font-size: 16px;
+    font-size: var(--font-size-base);
   }
 
   .upcoming-events-section {
@@ -372,7 +372,7 @@
 /* Small Mobile Styles */
 @media(max-width: 320px) {
   .logo-text {
-    font-size: 16px;
+    font-size: var(--font-size-base);
   }
 
   .logo-icon {
@@ -380,7 +380,7 @@
   }
 
   .hero-info-content h1 {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
   }
 
   .get-started-container {
@@ -393,19 +393,19 @@
   }
 
   .get-started-title {
-    font-size: 28px !important;
+    font-size: var(--font-size-3xl) !important;
   }
 
   .get-started-description {
-    font-size: 14px !important;
+    font-size: var(--font-size-sm) !important;
   }
 
   .events-title {
-    font-size: 28px;
+    font-size: var(--font-size-3xl);
   }
 
   .events-subtitle {
-    font-size: 14px;
+    font-size: var(--font-size-sm);
   }
 
   .upcoming-events-section {
@@ -413,7 +413,7 @@
   }
 
   .auction-content h2 {
-    font-size: 20px;
+    font-size: var(--font-size-xl);
   }
 
   .header-container {
@@ -428,35 +428,35 @@
   }
 
   .hero-info-content h1 {
-    font-size: 42px;
+    font-size: var(--font-size-5xl);
   }
 
   .hero-subtitle {
-    font-size: 21px;
+    font-size: var(--font-size-xl);
   }
 
   .hero-description {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
 
   .counter-number {
-    font-size: 84px;
+    font-size: 5.25rem; /* 84px - custom size for large screens */
   }
 
   .feature-title {
-    font-size: 32px;
+    font-size: var(--font-size-3xl);
   }
 
   .feature-subtitle {
-    font-size: 18px;
+    font-size: var(--font-size-lg);
   }
 
   .get-started-title {
-    font-size: 52px;
+    font-size: 3.25rem; /* 52px - custom size for large screens */
   }
 
   .events-title {
-    font-size: 52px;
+    font-size: 3.25rem; /* 52px - custom size for large screens */
   }
 }
 

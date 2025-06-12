@@ -1,0 +1,10 @@
+uuid: 6a19a811-ccd9-4705-9972-6fd954325116
+langcode: en
+status: true
+dependencies: {  }
+id: featured_section
+label: 'Featured Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

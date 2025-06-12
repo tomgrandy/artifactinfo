@@ -1,0 +1,29 @@
+uuid: 0aae8577-0f48-46bf-8928-2f31b5e7cb12
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_events_background_image
+    - media.type.image
+    - paragraphs.paragraphs_type.events_section
+id: paragraph.events_section.field_events_background_image
+field_name: field_events_background_image
+entity_type: paragraph
+bundle: events_section
+label: 'Events Background Image'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:media'
+  handler_settings:
+    target_bundles:
+      image: image
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

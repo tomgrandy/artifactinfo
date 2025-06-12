@@ -1,0 +1,25 @@
+uuid: 739355dd-11c9-48eb-9ef3-8d1e973c1390
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_section.field_featured_section_items
+    - paragraphs.paragraphs_type.featured_section
+  module:
+    - entity_reference_revisions
+id: paragraph.featured_section.default
+targetEntityType: paragraph
+bundle: featured_section
+mode: default
+content:
+  field_featured_section_items:
+    type: entity_reference_revisions_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: ''
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

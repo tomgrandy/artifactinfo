@@ -1,0 +1,11 @@
+uuid: 02dead20-77a9-4418-b56d-7315c1782329
+langcode: en
+status: true
+dependencies:
+  module:
+    - contact
+id: contact_message.token
+label: Token
+description: ''
+targetEntityType: contact_message
+cache: true

@@ -1,0 +1,11 @@
+uuid: 5aab219a-e1ef-44fc-a8bf-e250eae070e8
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.puzzle_photos
+id: taxonomy_term.puzzle_photos
+target_entity_type_id: taxonomy_term
+target_bundle: puzzle_photos
+default_langcode: site_default
+language_alterable: false

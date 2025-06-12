@@ -1,0 +1,22 @@
+uuid: b21977f2-71c5-42b7-a077-80a638e408ca
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_banner_descriptions
+    - paragraphs.paragraphs_type.hero_banner
+  module:
+    - text
+id: paragraph.hero_banner.field_banner_descriptions
+field_name: field_banner_descriptions
+entity_type: paragraph
+bundle: hero_banner
+label: 'Banner Descriptions'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats: {  }
+field_type: text_long

@@ -1,0 +1,25 @@
+uuid: cbd5a75c-77d5-49a7-b3d0-1dc6faac8886
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.resources
+  module:
+    - system
+  theme:
+    - artifactinfo
+id: artifactinfo_resources
+theme: artifactinfo
+region: footer_second
+weight: 0
+provider: null
+plugin: 'system_menu_block:resources'
+settings:
+  id: 'system_menu_block:resources'
+  label: RESOURCES
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

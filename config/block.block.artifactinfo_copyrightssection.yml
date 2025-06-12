@@ -1,0 +1,25 @@
+uuid: a74428e1-9340-4216-ba8d-8fc0c8bbd2ec
+langcode: en
+status: true
+dependencies:
+  content:
+    - 'block_content:basic:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+  module:
+    - block_content
+  theme:
+    - artifactinfo
+id: artifactinfo_copyrightssection
+theme: artifactinfo
+region: footer_fourth
+weight: 0
+provider: null
+plugin: 'block_content:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+settings:
+  id: 'block_content:d0b10be4-6009-43aa-8fe0-99e2e0fd4b64'
+  label: 'Copyrights Section'
+  label_display: '0'
+  provider: block_content
+  status: true
+  info: ''
+  view_mode: full
+visibility: {  }

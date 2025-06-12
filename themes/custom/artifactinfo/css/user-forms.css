@@ -15,8 +15,8 @@
   border: 1px solid #38383B;
   border-radius: 4px;
   color: #FFFFFF;
-  font-size: 14px;
-  font-family: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
   transition: border-color 0.3s ease;
 }
 
@@ -35,8 +35,9 @@
   color: #000000;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.3s ease;
 }
@@ -58,8 +59,8 @@ select {
   border: 1px solid #38383B;
   border-radius: 4px;
   color: #FFFFFF;
-  font-size: 14px;
-  font-family: inherit;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
   transition: border-color 0.3s ease;
   width: 100%;
   box-sizing: border-box;
@@ -87,8 +88,9 @@ textarea::placeholder {
 /* Form Labels */
 label {
   color: #DFE0E1;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   margin-bottom: 5px;
   display: block;
 }
@@ -102,8 +104,9 @@ input[type="submit"],
   color: #000000;
   border: none;
   border-radius: 4px;
-  font-size: 14px;
-  font-weight: bold;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   transition: all 0.3s ease;
   text-decoration: none;
@@ -134,14 +137,16 @@ input[type="submit"]:hover,
 
 /* Error and Success States */
 .form-error {
+  font-family: var(--font-family-body);
   color: #ff6b6b;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   margin-top: 5px;
 }
 
 .form-success {
+  font-family: var(--font-family-body);
   color: #4CAF50;
-  font-size: 13px;
+  font-size: var(--font-size-xs);
   margin-top: 5px;
 }
 
@@ -211,7 +216,8 @@ input[type="radio"]:checked::after {
   display: flex;
   align-items: center;
   color: #DFE0E1;
-  font-size: 14px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
   cursor: pointer;
   margin-bottom: 10px;
 }
@@ -230,7 +236,7 @@ select {
 textarea {
   min-height: 100px;
   resize: vertical;
-  font-family: inherit;
+  font-family: var(--font-family-body);
 }
 
 /* File Input */
@@ -240,7 +246,8 @@ input[type="file"] {
   border: 1px solid #38383B;
   border-radius: 4px;
   color: #DFE0E1;
-  font-size: 14px;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
   cursor: pointer;
 }
 
@@ -250,8 +257,9 @@ input[type="file"]::-webkit-file-upload-button {
   border: none;
   padding: 8px 12px;
   border-radius: 3px;
-  font-size: 13px;
-  font-weight: bold;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-xs);
+  font-weight: var(--font-weight-bold);
   cursor: pointer;
   margin-right: 10px;
 }

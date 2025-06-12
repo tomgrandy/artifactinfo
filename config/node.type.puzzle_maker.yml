@@ -1,0 +1,18 @@
+uuid: f404ec65-ad0c-430b-9a63-6bf724591dcb
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+name: 'Puzzle Maker'
+type: puzzle_maker
+description: 'Place embed code for puzzles here.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

@@ -1,0 +1,52 @@
+uuid: 88e12bf7-935f-43be-9a37-42391033d469
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.5050_section.field_5050_description
+    - field.field.paragraph.5050_section.field_5050_note
+    - field.field.paragraph.5050_section.field_5050_title
+    - field.field.paragraph.5050_section.field_5050_video_iframe
+    - paragraphs.paragraphs_type.5050_section
+  module:
+    - text
+id: paragraph.5050_section.default
+targetEntityType: paragraph
+bundle: 5050_section
+mode: default
+content:
+  field_5050_description:
+    type: text_textarea
+    weight: 1
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+  field_5050_note:
+    type: string_textfield
+    weight: 2
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_5050_title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  field_5050_video_iframe:
+    type: text_textarea
+    weight: 3
+    region: content
+    settings:
+      rows: 5
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  created: true
+  status: true

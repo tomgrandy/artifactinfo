@@ -1,0 +1,29 @@
+uuid: 49aa587d-0bcf-48ac-8e9b-dace949a8b56
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_place_of_origin
+    - node.type.artifacts
+    - taxonomy.vocabulary.place_of_origin
+id: node.artifacts.field_place_of_origin
+field_name: field_place_of_origin
+entity_type: node
+bundle: artifacts
+label: 'Place of Origin'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      place_of_origin: place_of_origin
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference

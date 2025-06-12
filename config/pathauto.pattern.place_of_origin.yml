@@ -1,0 +1,22 @@
+uuid: 3e46829b-7cb0-4e91-a424-bb4d72d590a3
+langcode: en
+status: true
+dependencies:
+  module:
+    - taxonomy
+id: place_of_origin
+label: 'Place of Origin'
+type: 'canonical_entities:taxonomy_term'
+pattern: 'origin/[term:name]'
+selection_criteria:
+  7448197d-16e7-4cb7-9e7a-56b93e1ba7b8:
+    id: 'entity_bundle:taxonomy_term'
+    negate: false
+    uuid: 7448197d-16e7-4cb7-9e7a-56b93e1ba7b8
+    context_mapping:
+      taxonomy_term: taxonomy_term
+    bundles:
+      place_of_origin: place_of_origin
+selection_logic: and
+weight: -4
+relationships: {  }

@@ -1,0 +1,19 @@
+uuid: bec996e6-528f-45c1-8e90-28209d0fe7c5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_5050_title
+    - paragraphs.paragraphs_type.5050_section
+id: paragraph.5050_section.field_5050_title
+field_name: field_5050_title
+entity_type: paragraph
+bundle: 5050_section
+label: Title
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

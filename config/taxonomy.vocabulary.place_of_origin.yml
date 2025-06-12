@@ -1,0 +1,9 @@
+uuid: 90115f77-d4d1-4bf9-9457-781eea475845
+langcode: en
+status: true
+dependencies: {  }
+name: 'Place of Origin'
+vid: place_of_origin
+description: null
+weight: 0
+new_revision: false

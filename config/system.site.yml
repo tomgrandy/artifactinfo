@@ -1,0 +1,15 @@
+_core:
+  default_config_hash: ijfbzDTN4CbE7Sr-6ubWzy_t1vH4OtU1doNCLssVz-4
+langcode: en
+uuid: 675db160-cc3c-4fa3-a76e-389ad8504524
+name: 'Artifact Info'
+mail: tom@premiereauctionsgroup.com
+slogan: ''
+page:
+  403: ''
+  404: ''
+  front: /node/147943
+admin_compact_mode: false
+weight_select_max: 100
+default_langcode: en
+mail_notification: null

@@ -1,0 +1,10 @@
+uuid: 73d472c5-ff79-46b4-bfd4-cdf4aa145f3a
+langcode: en
+status: true
+dependencies: {  }
+id: 5050_section
+label: '5050 Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

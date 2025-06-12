@@ -1,0 +1,9 @@
+uuid: 155bbc3c-4a1f-41a4-a457-decd87f9aa86
+langcode: en
+status: true
+dependencies: {  }
+name: 'Puzzle Photos'
+vid: puzzle_photos
+description: null
+weight: 0
+new_revision: false

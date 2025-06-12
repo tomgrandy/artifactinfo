@@ -1,0 +1,25 @@
+uuid: 8082878e-5bed-4d58-824c-730e130d3d8d
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.about
+  module:
+    - system
+  theme:
+    - artifactinfo
+id: artifactinfo_about
+theme: artifactinfo
+region: footer_third
+weight: 0
+provider: null
+plugin: 'system_menu_block:about'
+settings:
+  id: 'system_menu_block:about'
+  label: ABOUT
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

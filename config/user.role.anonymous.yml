@@ -1,0 +1,24 @@
+uuid: 5fc328df-4cae-4adb-8b76-ac0198c3dfdc
+langcode: en
+status: true
+dependencies:
+  config:
+    - filter.format.restricted_html
+  module:
+    - filter
+    - media
+    - protected_pages
+    - system
+    - video_embed_field
+_core:
+  default_config_hash: 6WavjUYXIegP9AAg2zXGx54MWIVoomC3SZhNiqe-Dyk
+id: anonymous
+label: 'Anonymous user'
+weight: 0
+is_admin: false
+permissions:
+  - 'access content'
+  - 'access protected page password screen'
+  - 'never autoplay videos'
+  - 'use text format restricted_html'
+  - 'view media'

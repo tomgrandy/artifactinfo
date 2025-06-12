@@ -1,0 +1,57 @@
+uuid: b2a8974f-5699-4f87-b8af-cbb73d44369c
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.videos_for_learning_center.body
+    - field.field.node.videos_for_learning_center.field_feature_photo
+    - field.field.node.videos_for_learning_center.field_youtube_url
+    - node.type.videos_for_learning_center
+  module:
+    - image
+    - text
+    - user
+    - video_embed_field
+id: node.videos_for_learning_center.default
+targetEntityType: node
+bundle: videos_for_learning_center
+mode: default
+content:
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_feature_photo:
+    type: image
+    label: above
+    settings:
+      image_link: ''
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_youtube_url:
+    type: video_embed_field_video
+    label: hidden
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+hidden:
+  addtoany: true
+  langcode: true
+  search_api_excerpt: true

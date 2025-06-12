@@ -1,0 +1,37 @@
+uuid: fa66b5f7-8514-4520-a3dc-b4703a5966d4
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_section_items
+    - paragraphs.paragraphs_type.featured_section
+    - paragraphs.paragraphs_type.featured_section_items
+  module:
+    - entity_reference_revisions
+id: paragraph.featured_section.field_featured_section_items
+field_name: field_featured_section_items
+entity_type: paragraph
+bundle: featured_section
+label: 'Featured Section items'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:paragraph'
+  handler_settings:
+    target_bundles:
+      featured_section_items: featured_section_items
+    negate: 0
+    target_bundles_drag_drop:
+      featured_section:
+        weight: 4
+        enabled: false
+      featured_section_items:
+        weight: 5
+        enabled: true
+      hero_banner:
+        weight: 6
+        enabled: false
+field_type: entity_reference_revisions

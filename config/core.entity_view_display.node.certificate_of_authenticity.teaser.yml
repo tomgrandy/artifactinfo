@@ -1,0 +1,27 @@
+uuid: c8f2dab2-7969-4edf-8bd5-3248b1c082d0
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.certificate_of_authenticity.field_coa_image
+    - field.field.node.certificate_of_authenticity.field_instructions
+    - node.type.certificate_of_authenticity
+  module:
+    - user
+id: node.certificate_of_authenticity.teaser
+targetEntityType: node
+bundle: certificate_of_authenticity
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  field_coa_image: true
+  field_instructions: true
+  langcode: true
+  search_api_excerpt: true

@@ -1,0 +1,25 @@
+uuid: 8ba53f4a-f74c-42a8-9ad1-e1b92b2c63ad
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_youtube_url
+    - node.type.videos_for_learning_center
+  module:
+    - video_embed_field
+id: node.videos_for_learning_center.field_youtube_url
+field_name: field_youtube_url
+entity_type: node
+bundle: videos_for_learning_center
+label: 'YouTube URL'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_providers:
+    youtube: youtube
+    vimeo: '0'
+    youtube_playlist: '0'
+field_type: video_embed_field
