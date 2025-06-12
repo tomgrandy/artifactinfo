@@ -1,0 +1,22 @@
+uuid: dc8bee3f-8e96-4a66-bb06-0971c9f5fd5f
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: artifacts
+label: Artifacts
+type: 'canonical_entities:node'
+pattern: 'artifacts/[node:field_keyword]/[node:nid]'
+selection_criteria:
+  c47bea4f-563b-4817-8269-f618bc31e0de:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: c47bea4f-563b-4817-8269-f618bc31e0de
+    context_mapping:
+      node: node
+    bundles:
+      artifacts: artifacts
+selection_logic: and
+weight: -10
+relationships: {  }

@@ -10,7 +10,6 @@
 
 # Ignore vendor dependencies and Composer files
 /vendor
-composer.lock
 
 # Ignore files for SASS and other preprocessors
 .sass-cache/
@@ -95,7 +94,6 @@ error_log
 /sites/*/private/
 
 # Ignore configuration sync directory
-/config/sync/
 sites/*/config/sync/
 
 # Ignore translations

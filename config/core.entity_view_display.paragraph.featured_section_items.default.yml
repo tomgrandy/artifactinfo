@@ -1,0 +1,40 @@
+uuid: b0ecf893-05f3-45e4-9d15-28a4d682abf6
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.featured_section_items.field_featured_image
+    - field.field.paragraph.featured_section_items.field_featured_short_desc
+    - field.field.paragraph.featured_section_items.field_featured_title
+    - paragraphs.paragraphs_type.featured_section_items
+id: paragraph.featured_section_items.default
+targetEntityType: paragraph
+bundle: featured_section_items
+mode: default
+content:
+  field_featured_image:
+    type: entity_reference_entity_view
+    label: hidden
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_featured_short_desc:
+    type: basic_string
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_featured_title:
+    type: string
+    label: hidden
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 1
+    region: content
+hidden:
+  search_api_excerpt: true

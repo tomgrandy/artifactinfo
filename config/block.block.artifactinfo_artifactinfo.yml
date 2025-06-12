@@ -1,0 +1,25 @@
+uuid: 30980f9a-c6a7-4379-81b3-370a3c425db6
+langcode: en
+status: true
+dependencies:
+  config:
+    - system.menu.artifact-info
+  module:
+    - system
+  theme:
+    - artifactinfo
+id: artifactinfo_artifactinfo
+theme: artifactinfo
+region: footer_first
+weight: 0
+provider: null
+plugin: 'system_menu_block:artifact-info'
+settings:
+  id: 'system_menu_block:artifact-info'
+  label: 'ARTIFACT INFO'
+  label_display: '0'
+  provider: system
+  level: 1
+  depth: 0
+  expand_all_items: false
+visibility: {  }

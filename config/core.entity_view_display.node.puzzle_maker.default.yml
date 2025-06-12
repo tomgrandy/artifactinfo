@@ -1,0 +1,41 @@
+uuid: ab87f6f7-192a-46c1-a764-4f1d54afd8ab
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.puzzle_maker.field_puzzle_embed_code
+    - node.type.puzzle_maker
+  module:
+    - iframe
+    - user
+id: node.puzzle_maker.default
+targetEntityType: node
+bundle: puzzle_maker
+mode: default
+content:
+  field_puzzle_embed_code:
+    type: iframe_only
+    label: hidden
+    settings:
+      url: ''
+      title: ''
+      headerlevel: '3'
+      class: ''
+      frameborder: '0'
+      scrolling: ''
+      transparency: '0'
+      allowfullscreen: '0'
+      tokensupport: '0'
+      width: ''
+      height: ''
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  search_api_excerpt: true

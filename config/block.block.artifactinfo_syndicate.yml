@@ -1,0 +1,23 @@
+uuid: 6a90f1e8-2fca-454f-a4f2-2a07f60a1147
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+  theme:
+    - artifactinfo
+_core:
+  default_config_hash: 0gq3VPg-_UM69FCCWurLFIrrnIjC2HLKhwo9iQNtcUo
+id: artifactinfo_syndicate
+theme: artifactinfo
+region: hidden
+weight: -3
+provider: null
+plugin: node_syndicate_block
+settings:
+  id: node_syndicate_block
+  label: 'RSS feed'
+  label_display: '0'
+  provider: node
+  block_count: 10
+visibility: {  }

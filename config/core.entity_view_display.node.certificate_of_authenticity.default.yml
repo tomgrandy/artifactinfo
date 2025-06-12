@@ -1,0 +1,45 @@
+uuid: 826f7a67-3a5a-48e5-bf81-cc1fbda8235d
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.certificate_of_authenticity.field_coa_image
+    - field.field.node.certificate_of_authenticity.field_instructions
+    - image.style.large
+    - node.type.certificate_of_authenticity
+  module:
+    - image
+    - text
+    - user
+id: node.certificate_of_authenticity.default
+targetEntityType: node
+bundle: certificate_of_authenticity
+mode: default
+content:
+  field_coa_image:
+    type: image
+    label: hidden
+    settings:
+      image_link: file
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  field_instructions:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 102
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  addtoany: true
+  langcode: true
+  search_api_excerpt: true

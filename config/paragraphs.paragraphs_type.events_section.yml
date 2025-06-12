@@ -1,0 +1,10 @@
+uuid: c219fc17-8d65-40ea-9d1f-10e508ca8074
+langcode: en
+status: true
+dependencies: {  }
+id: events_section
+label: 'Events Section'
+icon_uuid: null
+icon_default: null
+description: ''
+behavior_plugins: {  }

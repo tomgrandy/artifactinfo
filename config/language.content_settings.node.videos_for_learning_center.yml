@@ -1,0 +1,11 @@
+uuid: 17bcc1d3-545a-4f2c-bb4b-375f1761446c
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.videos_for_learning_center
+id: node.videos_for_learning_center
+target_entity_type_id: node
+target_bundle: videos_for_learning_center
+default_langcode: site_default
+language_alterable: false

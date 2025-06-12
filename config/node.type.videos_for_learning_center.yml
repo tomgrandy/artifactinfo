@@ -1,0 +1,17 @@
+uuid: 5e6ccbab-0834-4b65-b412-f4ab66671cc3
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: 'Learning Center Videos'
+type: videos_for_learning_center
+description: 'Use this for uploading videos to be shown in The Learning Center'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

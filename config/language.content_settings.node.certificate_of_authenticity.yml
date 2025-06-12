@@ -1,0 +1,11 @@
+uuid: 842654ed-3b33-43f1-baee-c0920caaff70
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.certificate_of_authenticity
+id: node.certificate_of_authenticity
+target_entity_type_id: node
+target_bundle: certificate_of_authenticity
+default_langcode: site_default
+language_alterable: false

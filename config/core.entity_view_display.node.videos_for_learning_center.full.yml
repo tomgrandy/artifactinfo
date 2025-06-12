@@ -1,0 +1,40 @@
+uuid: 55767445-7837-4b80-b04f-80cee2229057
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.full
+    - field.field.node.videos_for_learning_center.body
+    - field.field.node.videos_for_learning_center.field_feature_photo
+    - field.field.node.videos_for_learning_center.field_youtube_url
+    - image.style.medium
+    - node.type.videos_for_learning_center
+  module:
+    - image
+    - user
+id: node.videos_for_learning_center.full
+targetEntityType: node
+bundle: videos_for_learning_center
+mode: full
+content:
+  field_feature_photo:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: medium
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  body: true
+  field_youtube_url: true
+  langcode: true
+  search_api_excerpt: true

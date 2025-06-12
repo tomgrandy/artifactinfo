@@ -1,0 +1,24 @@
+uuid: be065b3e-faa9-46e6-866f-f253d69b9106
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.puzzle_maker.field_puzzle_embed_code
+    - node.type.puzzle_maker
+  module:
+    - user
+id: node.puzzle_maker.teaser
+targetEntityType: node
+bundle: puzzle_maker
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_puzzle_embed_code: true
+  langcode: true
+  search_api_excerpt: true

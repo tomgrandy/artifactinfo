@@ -1,0 +1,8 @@
+uuid: 367ce13f-92f8-4b13-9512-0c37bd10b995
+langcode: en
+status: true
+dependencies: {  }
+id: resources
+label: RESOURCES
+description: ''
+locked: false

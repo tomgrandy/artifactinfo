@@ -1,0 +1,22 @@
+uuid: c348503d-95bc-48ec-ae02-290940f4f278
+langcode: en
+status: true
+dependencies:
+  module:
+    - node
+id: puzzles
+label: Puzzles
+type: 'canonical_entities:node'
+pattern: 'puzzles/[node:title]'
+selection_criteria:
+  b2079435-d044-41cb-bfeb-4788f34fb875:
+    id: 'entity_bundle:node'
+    negate: false
+    uuid: b2079435-d044-41cb-bfeb-4788f34fb875
+    context_mapping:
+      node: node
+    bundles:
+      puzzle_maker: puzzle_maker
+selection_logic: and
+weight: -7
+relationships: {  }

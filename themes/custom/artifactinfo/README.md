@@ -118,12 +118,14 @@ artifactinfo/
 
 The CSS is organized into multiple files for maintainability:
 
-1. **style.css**: Base styles, typography, and utilities
-2. **layout.css**: Grid systems, containers, and layout utilities
-3. **components.css**: UI components (cards, buttons, forms)
-4. **responsive.css**: Media queries and responsive adjustments
-5. **user-forms.css**: User authentication forms
-6. **print.css**: Print-specific styles
+1. **typography.css**: Font system, Google Fonts, and typography variables
+2. **style.css**: Base styles, reset, and utilities
+3. **layout.css**: Grid systems, containers, and layout utilities
+4. **components.css**: UI components (cards, buttons, forms)
+5. **responsive.css**: Media queries and responsive adjustments
+6. **user-forms.css**: User authentication forms
+7. **admin-compatibility.css**: Drupal admin toolbar compatibility
+8. **print.css**: Print-specific styles
 
 ## JavaScript Behaviors
 
@@ -193,11 +195,16 @@ npm run watch
 
 ### Adding Custom Fonts
 
+The theme uses Google Fonts with CSS custom properties:
+
 ```css
 :root {
-  --font-family-base: 'Your Font', sans-serif;
+  --font-family-headings: "Cormorant Garamond", Georgia, serif;
+  --font-family-body: "Montserrat", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
 }
 ```
+
+To change fonts, update these variables in your custom CSS.
 
 ### Custom Layout Widths
 

@@ -1,0 +1,9 @@
+uuid: 264d1a10-99c6-4450-a95b-eeff799fbb35
+langcode: en
+status: true
+dependencies: {  }
+name: 'Blog Terms'
+vid: blog_terms
+description: 'Terms that can be searchable and return Blog posts about these subjects.'
+weight: 0
+new_revision: false

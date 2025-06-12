@@ -1,0 +1,137 @@
+uuid: 8f925545-3a8a-4031-951a-bb2f258963e0
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.artifacts.feeds_item
+    - field.field.node.artifacts.field_artifact_description
+    - field.field.node.artifacts.field_artifact_image_1
+    - field.field.node.artifacts.field_artifact_image_2
+    - field.field.node.artifacts.field_artifact_image_3
+    - field.field.node.artifacts.field_artifact_image_4
+    - field.field.node.artifacts.field_date_sold
+    - field.field.node.artifacts.field_keyword
+    - field.field.node.artifacts.field_lot_number
+    - field.field.node.artifacts.field_place_of_origin
+    - field.field.node.artifacts.field_sale_price
+    - field.field.node.artifacts.field_search_categories
+    - node.type.artifacts
+  module:
+    - datetime
+    - image
+    - text
+    - user
+id: node.artifacts.default
+targetEntityType: node
+bundle: artifacts
+mode: default
+content:
+  field_artifact_description:
+    type: text_default
+    label: above
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_artifact_image_1:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: file
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 5
+    region: content
+  field_artifact_image_2:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: file
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 6
+    region: content
+  field_artifact_image_3:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: file
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 7
+    region: content
+  field_artifact_image_4:
+    type: image
+    label: visually_hidden
+    settings:
+      image_link: file
+      image_style: ''
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 8
+    region: content
+  field_date_sold:
+    type: datetime_default
+    label: above
+    settings:
+      timezone_override: ''
+      format_type: auction_date
+    third_party_settings: {  }
+    weight: 1
+    region: content
+  field_keyword:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 9
+    region: content
+  field_lot_number:
+    type: string
+    label: above
+    settings:
+      link_to_entity: false
+    third_party_settings: {  }
+    weight: 3
+    region: content
+  field_place_of_origin:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 4
+    region: content
+  field_sale_price:
+    type: number_decimal
+    label: above
+    settings:
+      thousand_separator: ','
+      decimal_separator: .
+      scale: 0
+      prefix_suffix: true
+    third_party_settings: {  }
+    weight: 2
+    region: content
+  field_search_categories:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 10
+    region: content
+hidden:
+  addtoany: true
+  feeds_item: true
+  langcode: true
+  links: true
+  search_api_excerpt: true

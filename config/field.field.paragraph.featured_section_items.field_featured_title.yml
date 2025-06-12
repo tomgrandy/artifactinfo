@@ -1,0 +1,19 @@
+uuid: 80f20e04-f03e-45a3-872e-1a698e536288
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_title
+    - paragraphs.paragraphs_type.featured_section_items
+id: paragraph.featured_section_items.field_featured_title
+field_name: field_featured_title
+entity_type: paragraph
+bundle: featured_section_items
+label: 'Featured Title'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string

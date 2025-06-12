@@ -1,0 +1,20 @@
+uuid: 94ac39bf-2c4b-4d37-bf98-80e8475c434f
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus:
+      - main
+    parent: 'main:'
+_core:
+  default_config_hash: Fe3N1uqaAyyKJbVkqT-btXy3t98puW8GCRD822xjl10
+name: 'Learning Center Articles'
+type: article
+description: 'Use <em>articles</em> for time-sensitive content like news, press releases or blog posts.'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: true

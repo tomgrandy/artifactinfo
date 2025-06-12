@@ -1,0 +1,31 @@
+uuid: 00a0ba7f-9074-4193-b734-58d0d4df5044
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_puzzle_embed_code
+    - node.type.puzzle_maker
+  module:
+    - iframe
+id: node.puzzle_maker.field_puzzle_embed_code
+field_name: field_puzzle_embed_code
+entity_type: node
+bundle: puzzle_maker
+label: 'Puzzle Embed Code'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  title: null
+  headerlevel: '3'
+  class: ''
+  frameborder: '1'
+  scrolling: null
+  transparency: null
+  allowfullscreen: '0'
+  tokensupport: null
+  width: null
+  height: null
+field_type: iframe

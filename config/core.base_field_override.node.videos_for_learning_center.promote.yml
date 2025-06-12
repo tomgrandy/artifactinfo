@@ -1,0 +1,22 @@
+uuid: 572daa71-0496-463a-aace-3a2d196e3a0e
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.videos_for_learning_center
+id: node.videos_for_learning_center.promote
+field_name: promote
+entity_type: node
+bundle: videos_for_learning_center
+label: 'Promoted to front page'
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

@@ -1,0 +1,24 @@
+uuid: eb592b38-05f4-4867-a4f1-c915b8009085
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_5050_video_iframe
+    - filter.format.full_html
+    - paragraphs.paragraphs_type.5050_section
+  module:
+    - text
+id: paragraph.5050_section.field_5050_video_iframe
+field_name: field_5050_video_iframe
+entity_type: paragraph
+bundle: 5050_section
+label: 'Video IFRAME'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  allowed_formats:
+    - full_html
+field_type: text_long

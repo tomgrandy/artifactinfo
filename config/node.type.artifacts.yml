@@ -1,0 +1,17 @@
+uuid: 9e519871-d50d-4390-bc3f-72d9210b5cd1
+langcode: en
+status: true
+dependencies:
+  module:
+    - menu_ui
+third_party_settings:
+  menu_ui:
+    available_menus: {  }
+    parent: ''
+name: Artifacts
+type: artifacts
+description: 'Artifacts sold at Premiere Auctions Group'
+help: null
+new_revision: true
+preview_mode: 1
+display_submitted: false

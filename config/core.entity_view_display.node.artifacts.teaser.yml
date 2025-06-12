@@ -1,0 +1,46 @@
+uuid: b315ead8-1ee4-4c49-bcbd-f249bea47f70
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.artifacts.feeds_item
+    - field.field.node.artifacts.field_artifact_description
+    - field.field.node.artifacts.field_artifact_image_1
+    - field.field.node.artifacts.field_artifact_image_2
+    - field.field.node.artifacts.field_artifact_image_3
+    - field.field.node.artifacts.field_artifact_image_4
+    - field.field.node.artifacts.field_date_sold
+    - field.field.node.artifacts.field_keyword
+    - field.field.node.artifacts.field_lot_number
+    - field.field.node.artifacts.field_place_of_origin
+    - field.field.node.artifacts.field_sale_price
+    - field.field.node.artifacts.field_search_categories
+    - node.type.artifacts
+  module:
+    - user
+id: node.artifacts.teaser
+targetEntityType: node
+bundle: artifacts
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  feeds_item: true
+  field_artifact_description: true
+  field_artifact_image_1: true
+  field_artifact_image_2: true
+  field_artifact_image_3: true
+  field_artifact_image_4: true
+  field_date_sold: true
+  field_keyword: true
+  field_lot_number: true
+  field_place_of_origin: true
+  field_sale_price: true
+  field_search_categories: true
+  langcode: true
+  search_api_excerpt: true

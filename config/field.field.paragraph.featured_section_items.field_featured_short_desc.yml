@@ -1,0 +1,19 @@
+uuid: b076f06a-9374-448c-acd5-8de254162de7
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.paragraph.field_featured_short_desc
+    - paragraphs.paragraphs_type.featured_section_items
+id: paragraph.featured_section_items.field_featured_short_desc
+field_name: field_featured_short_desc
+entity_type: paragraph
+bundle: featured_section_items
+label: 'Featured Short Desc'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings: {  }
+field_type: string_long

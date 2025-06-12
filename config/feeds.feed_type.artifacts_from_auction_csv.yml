@@ -1,0 +1,246 @@
+uuid: 52c0b488-5527-4fdb-ba41-f1efa2041276
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.artifacts.field_artifact_description
+    - field.field.node.artifacts.field_artifact_image_1
+    - field.field.node.artifacts.field_artifact_image_2
+    - field.field.node.artifacts.field_artifact_image_3
+    - field.field.node.artifacts.field_artifact_image_4
+    - field.field.node.artifacts.field_date_sold
+    - field.field.node.artifacts.field_keyword
+    - field.field.node.artifacts.field_lot_number
+    - field.field.node.artifacts.field_place_of_origin
+    - field.field.node.artifacts.field_sale_price
+    - field.field.node.artifacts.field_search_categories
+    - node.type.artifacts
+  module:
+    - feeds_log
+    - feeds_tamper
+    - node
+third_party_settings:
+  feeds_log:
+    status: true
+    operations:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+      cleaned: cleaned
+    items:
+      created: created
+      updated: updated
+      deleted: deleted
+      skipped: skipped
+      failed: failed
+    source: true
+  feeds_tamper:
+    tampers: {  }
+label: 'Artifacts from Auction CSV'
+id: artifacts_from_auction_csv
+description: ''
+help: ''
+import_period: -1
+fetcher: upload
+fetcher_configuration:
+  allowed_extensions: csv
+  directory: 'private://feeds'
+parser: csv
+parser_configuration:
+  delimiter: ','
+  no_headers: false
+  line_limit: 100
+processor: 'entity:node'
+processor_configuration:
+  values:
+    type: artifacts
+  langcode: en
+  insert_new: 1
+  update_existing: 1
+  update_non_existent: _keep
+  skip_hash_check: false
+  skip_validation: true
+  skip_validation_types:
+    - ReferenceAccess
+    - ValidReference
+    - EntityType
+  authorize: true
+  revision: false
+  expire: -1
+  owner_feed_author: false
+  owner_id: 1
+custom_sources:
+  descript:
+    value: DESCRIPT
+    label: DESCRIPT
+    machine_name: descript
+    type: csv
+  image_1:
+    value: IMAGE_1
+    label: IMAGE_1
+    machine_name: image_1
+    type: csv
+  image_2:
+    value: IMAGE_2
+    label: IMAGE_2
+    machine_name: image_2
+    type: csv
+  image_3:
+    value: IMAGE_3
+    label: IMAGE_3
+    machine_name: image_3
+    type: csv
+  image_4:
+    value: IMAGE_4
+    label: IMAGE_4
+    machine_name: image_4
+    type: csv
+  date_sold:
+    value: DATE_SOLD
+    label: DATE_SOLD
+    machine_name: date_sold
+    type: csv
+  keyword:
+    value: KEYWORD
+    label: KEYWORD
+    machine_name: keyword
+    type: csv
+  place_of_origin:
+    value: PLACE_OF_ORIGIN
+    label: PLACE_OF_ORIGIN
+    machine_name: place_of_origin
+    type: csv
+  sale_price:
+    value: SALE_PRICE
+    label: SALE_PRICE
+    machine_name: sale_price
+    type: csv
+  search_category:
+    value: SEARCH_CATEGORY
+    label: SEARCH_CATEGORY
+    machine_name: search_category
+    type: csv
+  lot_title:
+    value: LOT_TITLE
+    label: LOT_TITLE
+    machine_name: lot_title
+    type: csv
+  lot:
+    value: LOT
+    label: LOT
+    machine_name: lot
+    type: csv
+mappings:
+  -
+    target: field_artifact_description
+    map:
+      value: descript
+    settings:
+      language: null
+      format: plain_text
+  -
+    target: field_date_sold
+    map:
+      value: date_sold
+    settings:
+      language: ''
+      timezone: America/New_York
+  -
+    target: field_keyword
+    map:
+      target_id: keyword
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+      autocreate_bundle: keywords
+  -
+    target: field_place_of_origin
+    map:
+      target_id: place_of_origin
+    settings:
+      language: null
+      reference_by: name
+      autocreate: false
+      autocreate_bundle: place_of_origin
+  -
+    target: field_sale_price
+    map:
+      value: sale_price
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: field_lot_number
+    map:
+      value: lot
+    settings:
+      language: null
+    unique: {  }
+  -
+    target: title
+    map:
+      value: lot_title
+    settings:
+      language: null
+    unique:
+      value: 1
+  -
+    target: field_search_categories
+    map:
+      target_id: search_category
+    settings:
+      language: ''
+      reference_by: name
+      autocreate: 0
+      autocreate_bundle: search_categories
+  -
+    target: field_artifact_image_1
+    map:
+      target_id: image_1
+      alt: ''
+      title: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+      autocreate_bundle: false
+  -
+    target: field_artifact_image_2
+    map:
+      target_id: image_2
+      alt: ''
+      title: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+      autocreate_bundle: false
+  -
+    target: field_artifact_image_3
+    map:
+      target_id: image_3
+      alt: ''
+      title: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+      autocreate_bundle: false
+  -
+    target: field_artifact_image_4
+    map:
+      target_id: image_4
+      alt: ''
+      title: ''
+    settings:
+      existing: 2
+      language: null
+      reference_by: filename
+      autocreate: false
+      autocreate_bundle: false

@@ -1,0 +1,20 @@
+uuid: 5e3ea0f6-a555-47eb-84bd-c164a55c1440
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+    - paragraphs
+id: paragraph.field_banner_background
+field_name: field_banner_background
+entity_type: paragraph
+type: entity_reference
+settings:
+  target_type: media
+module: core
+locked: false
+cardinality: 1
+translatable: true
+indexes: {  }
+persist_with_no_fields: false
+custom_storage: false

@@ -1,0 +1,24 @@
+uuid: bdaf1714-e78d-433a-bf4f-ba881e174371
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.puzzle_images.field_puzzle_image
+    - node.type.puzzle_images
+  module:
+    - user
+id: node.puzzle_images.teaser
+targetEntityType: node
+bundle: puzzle_images
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_puzzle_image: true
+  langcode: true
+  search_api_excerpt: true

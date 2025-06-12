@@ -1,0 +1,31 @@
+uuid: f195f8c8-e5b5-442b-a604-4dc71e18adb3
+langcode: en
+status: true
+dependencies:
+  config:
+    - feeds.feed_type.artifacts_from_auction_csv
+    - field.storage.node.feeds_item
+    - node.type.artifacts
+  module:
+    - feeds
+id: node.artifacts.feeds_item
+field_name: feeds_item
+entity_type: node
+bundle: artifacts
+label: 'Feeds item'
+description: ''
+required: false
+translatable: true
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:feeds_feed'
+  handler_settings:
+    target_bundles:
+      artifacts_from_auction_csv: artifacts_from_auction_csv
+    sort:
+      field: _none
+      direction: ASC
+    auto_create: false
+    auto_create_bundle: ''
+field_type: feeds_item

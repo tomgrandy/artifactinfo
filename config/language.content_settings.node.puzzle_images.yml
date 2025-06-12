@@ -1,0 +1,11 @@
+uuid: 56f5aa2e-bea6-4636-a04b-cded58122f12
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.puzzle_images
+id: node.puzzle_images
+target_entity_type_id: node
+target_bundle: puzzle_images
+default_langcode: site_default
+language_alterable: false
