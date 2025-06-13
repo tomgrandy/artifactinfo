@@ -35,7 +35,7 @@
   grid-template-columns: 1fr 1fr;
   gap: 70px;
   align-items: center;
-  max-width: 950px;
+  max-width: 830px;
   backdrop-filter: blur(10px);
   box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
 }

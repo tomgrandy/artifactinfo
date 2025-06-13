@@ -30,18 +30,18 @@
 {% endif %}
 
 <section{{ attributes.addClass(classes) }}{% if background_style %} style="{{ background_style }}"{% endif %}>
-  <div class="hero-container">
+  <div class="features-container">
     <div class="hero-content">
       <div class="hero-info-box">
         {% if content.field_banner_descriptions %}
           {{ content.field_banner_descriptions }}
         {% endif %}
-        
+
         <div class="hero-database">
-          <h2>Our Database</h2>
+          <h2>{{'Our Database'|t}}</h2>
           <div class="database-counter">
             <p><span class="counter-number" id="artifact-counter" data-once="counter-animation">{{ dynamic_text }}</span></p>
-            <p class="counter-label">Artifacts and Counting</p>
+            <p class="counter-label">{{'Artifacts and Counting'|t}}</p>
           </div>
         </div>
       </div>

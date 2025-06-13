@@ -262,7 +262,6 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   line-height: var(--line-height-relaxed);
   color: #DFE0E1;
   margin-bottom: 18px;
-  font-weight: var(--font-weight-bold);
 }
 
 .hero-description {
@@ -279,9 +278,8 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 
 .hero-database h2 {
   font-family: var(--font-family-headings);
-  font-size: var(--font-size-3xl);
+  font-size: var(--font-size-4xl);
   color: #FFFFFF;
-  margin-bottom: 25px;
   font-weight: var(--font-weight-light);
   letter-spacing: var(--letter-spacing-tight);
 }
