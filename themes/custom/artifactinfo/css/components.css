@@ -768,3 +768,154 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   color: #A8A6A1;
   font-size: var(--font-size-sm);
 }
+
+/* ========================================
+   ADS BANNER COMPONENTS
+======================================== */
+
+/**
+ * Ads banner component for promotional content.
+ * Follows theme design patterns with hover effects and responsive design.
+ */
+.ads-banner {
+  position: relative;
+  width: 100%;
+  height: 180px;
+  background: url('/ads-banner.png') center center / cover no-repeat;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  overflow: hidden;
+  border-radius: 8px;
+  border: 1px solid rgba(168, 166, 161, 0.1);
+  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+}
+
+.ads-banner:hover {
+  transform: scale(1.02);
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.4);
+  border-color: rgba(168, 166, 161, 0.3);
+}
+
+.ads-banner::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, rgba(0, 0, 0, 0.1) 0%, rgba(168, 166, 161, 0.05) 100%);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+  z-index: 1;
+}
+
+.ads-banner:hover::before {
+  opacity: 1;
+}
+
+.ads-banner::after {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(45deg, transparent 30%, rgba(168, 166, 161, 0.1) 50%, transparent 70%);
+  transform: translateX(-100%);
+  transition: transform 0.6s ease;
+  z-index: 2;
+}
+
+.ads-banner:hover::after {
+  transform: translateX(100%);
+}
+
+.banner-link {
+  display: block;
+  width: 100%;
+  height: 100%;
+  text-decoration: none;
+  position: relative;
+  z-index: 3;
+}
+
+.banner-link:focus {
+  outline: 2px solid #A8A6A1;
+  outline-offset: 2px;
+}
+
+/* Banner content overlay (if needed for text content) */
+.ads-banner-content {
+  position: absolute;
+  bottom: 20px;
+  left: 20px;
+  right: 20px;
+  z-index: 4;
+  color: #FFFFFF;
+  text-shadow: 0 2px 4px rgba(0, 0, 0, 0.7);
+}
+
+.ads-banner-title {
+  font-family: var(--font-family-headings);
+  font-size: var(--font-size-xl);
+  font-weight: var(--font-weight-bold);
+  margin-bottom: 5px;
+  letter-spacing: var(--letter-spacing-wide);
+}
+
+.ads-banner-subtitle {
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  color: #A8A6A1;
+  letter-spacing: var(--letter-spacing-normal);
+}
+
+/* Responsive adjustments */
+@media screen and (max-width: 768px) {
+  .ads-banner {
+    height: 150px;
+    border-radius: 6px;
+  }
+
+  .ads-banner-content {
+    bottom: 15px;
+    left: 15px;
+    right: 15px;
+  }
+
+  .ads-banner-title {
+    font-size: var(--font-size-lg);
+  }
+
+  .ads-banner-subtitle {
+    font-size: var(--font-size-xs);
+  }
+}
+
+@media screen and (max-width: 480px) {
+  .ads-banner {
+    height: 120px;
+    border-radius: 4px;
+  }
+
+  .ads-banner-content {
+    bottom: 10px;
+    left: 10px;
+    right: 10px;
+  }
+
+  .ads-banner-title {
+    font-size: var(--font-size-base);
+  }
+}
+
+/* Dark theme compatibility */
+@media (prefers-color-scheme: dark) {
+  .ads-banner {
+    border-color: rgba(168, 166, 161, 0.2);
+  }
+
+  .ads-banner:hover {
+    border-color: rgba(168, 166, 161, 0.4);
+  }
+}

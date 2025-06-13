@@ -20,13 +20,11 @@
 
 {# Process link field directly in Twig #}
 {% set link_url = '#' %}
-{% set link_title = 'View Events' %}
-{% set aria_label = 'View events' %}
 
 {% if paragraph.field_events_link.0 %}
   {% set link_field = paragraph.field_events_link.0 %}
   {% set link_url = link_field.url %}
-  {% set link_title = link_field.title ?: 'View Events' %}
+  {% set link_title = link_field.title %}
   {% set aria_label = 'View ' ~ link_title|lower %}
 {% endif %}
 
@@ -41,7 +39,7 @@
             <h2 class="events-title">
               {{ link_title }}
             </h2>
-            {% if content.field_events_text %}
+            {% if content.field_events_text.0.value is not empty %}
               <p class="events-subtitle">
                 {{ content.field_events_text }}
                 <span class="events-cta-arrow">→</span>
