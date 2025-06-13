@@ -103,3 +103,19 @@ function artifactinfo_preprocess_block(array &$variables): void {
     $variables['attributes']['class'][] = 'block--region-' . Html::getClass($region);
   }
 }
+
+
+/**
+ * Implements hook_preprocess_HOOK() for block.html.twig.
+ */
+function artifactinfo_preprocess_paragraph(array &$variables): void {
+  if ($variables['paragraph']->bundle() === 'hero_banner') {
+    // Inject a dynamic value.
+    $count = \Drupal::entityQuery('node')
+      ->accessCheck(TRUE)
+      ->condition('type', 'artifacts')
+      ->count()
+      ->execute();
+    $variables['dynamic_text'] = $count;
+  }
+}
