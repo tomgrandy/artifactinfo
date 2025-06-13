@@ -6,10 +6,11 @@ dependencies:
     - field.field.paragraph.5050_section.field_5050_description
     - field.field.paragraph.5050_section.field_5050_note
     - field.field.paragraph.5050_section.field_5050_title
-    - field.field.paragraph.5050_section.field_video_iframe
+    - field.field.paragraph.5050_section.field_video_embed
     - paragraphs.paragraphs_type.5050_section
   module:
     - text
+    - video_embed_field
 id: paragraph.5050_section.default
 targetEntityType: paragraph
 bundle: 5050_section
@@ -38,12 +39,16 @@ content:
     third_party_settings: {  }
     weight: 2
     region: content
-  field_video_iframe:
-    type: text_default
+  field_video_embed:
+    type: video_embed_field_video
     label: hidden
-    settings: {  }
+    settings:
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
     third_party_settings: {  }
-    weight: 3
+    weight: 4
     region: content
 hidden:
   search_api_excerpt: true

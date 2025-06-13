@@ -32,9 +32,9 @@
         </div>
 
         <div class="video-container" id="videoContainer-{{ paragraph.id() }}">
-          {% if content.field_5050_video_iframe and content.field_5050_video_iframe['#items'] %}
+          {% if content.field_video_embed and content.field_video_embed['#items'] %}
             <!-- Video iframe content -->
-            {{ content.field_5050_video_iframe }}
+            {{ content.field_video_embed }}
           {% endif %}
         </div>
 
