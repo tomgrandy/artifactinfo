@@ -523,3 +523,80 @@
     animation: none !important;
   }
 }
+
+/* ========================================
+   SEARCH PAGE RESPONSIVE STYLES
+======================================== */
+
+/* Mobile Responsive for Search Page */
+@media(max-width: 768px) {
+  /* Search Page Container */
+  .container {
+    padding: 15px;
+  }
+
+  .page-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  /* Mobile Controls */
+  .mobile-controls {
+    display: flex;
+  }
+
+  .search-subtitle {
+    display: block;
+  }
+
+  /* Layout Changes */
+  .search-layout {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobile Sidebar */
+  .search-filters {
+    position: fixed;
+    top: 0;
+    left: -300px;
+    width: 280px;
+    height: 100vh;
+    background-color: #000000;
+    padding: 20px;
+    z-index: 1000;
+    overflow-y: auto;
+    border-right: 1px solid #38383B;
+  }
+
+  .search-filters.active {
+    transform: translateX(300px);
+  }
+
+  .filter-close {
+    display: block;
+    background: none;
+    border: none;
+    color: #A8A6A1;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 5px;
+  }
+
+  /* Results Display */
+  .results-header {
+    display: none;
+  }
+
+  .results-list {
+    display: none;
+  }
+
+  .mobile-cards {
+    display: grid;
+  }
+
+  .pagination {
+    padding: 20px 0;
+  }
+}

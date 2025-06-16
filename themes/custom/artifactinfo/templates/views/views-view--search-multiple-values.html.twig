@@ -1,0 +1,22 @@
+{# views-view.html.twig #}
+<div
+	class="search-layout">
+	{# Left Sidebar - Exposed Filters #}
+	{% if exposed %}
+		<div class="search-filters" id="search-filters">
+			<button class="filter-close" id="filter-close">×</button>
+			<h3 class="filters-title">{{ 'Search Filters'|t }}</h3>
+			{{ exposed }}
+		</div>
+	{% endif %}
+
+	{# Right Content - Search Results #}
+	<div class="results-content">
+		{{ rows }}
+
+		{% if pager %}
+			{{ pager }}
+		{% endif %}
+	</div>
+</div>
+

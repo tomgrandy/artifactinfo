@@ -11,10 +11,12 @@
 {% set background_style = '' %}
 {% if paragraph.field_events_background_image.entity %}
   {% set media_entity = paragraph.field_events_background_image.entity %}
-  {% if media_entity.field_media_image.entity %}
-    {% set file_entity = media_entity.field_media_image.entity %}
-    {% set image_url = file_url(file_entity.uri.value) %}
-    {% set background_style = 'background-image: url(' ~ image_url ~ '); background-size: cover; background-position: center; background-repeat: no-repeat;' %}
+  {% if media_entity.field_media_image.entity and media_entity.field_media_image.entity.uri.value %}
+    {% set file_uri = media_entity.field_media_image.entity.uri.value %}
+    {% if file_uri starts with 'public://' or file_uri starts with 'private://' or file_uri starts with 'temporary://' %}
+      {% set image_url = file_url(file_uri) %}
+      {% set background_style = 'background-image: url(' ~ image_url ~ '); background-size: cover; background-position: center; background-repeat: no-repeat;' %}
+    {% endif %}
   {% endif %}
 {% endif %}
 

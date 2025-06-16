@@ -23,9 +23,11 @@
 {% set background_style = '' %}
 {% if paragraph.field_banner_background.entity %}
   {% set media_entity = paragraph.field_banner_background.entity %}
-  {% if media_entity.field_media_image.entity %}
-    {% set file_entity = media_entity.field_media_image.entity %}
-    {% set background_style = 'background-image: url(' ~ file_url(file_entity.uri.value) ~ ');' %}
+  {% if media_entity.field_media_image.entity and media_entity.field_media_image.entity.uri.value %}
+    {% set file_uri = media_entity.field_media_image.entity.uri.value %}
+    {% if file_uri starts with 'public://' or file_uri starts with 'private://' or file_uri starts with 'temporary://' %}
+      {% set background_style = 'background-image: url(' ~ file_url(file_uri) ~ ');' %}
+    {% endif %}
   {% endif %}
 {% endif %}
 
