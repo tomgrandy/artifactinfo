@@ -34,7 +34,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Search Multiple Values'
+      title: 'Artifact database search Result'
       fields:
         field_artifact_image_1:
           id: field_artifact_image_1
@@ -405,18 +405,16 @@ display:
           separator: ', '
           field_api_classes: false
       pager:
-        type: full
+        type: mini
         options:
           offset: 0
           pagination_heading_level: h4
-          items_per_page: 50
+          items_per_page: 10
           total_pages: null
           id: 0
           tags:
-            next: ››
-            previous: ‹‹
-            first: '« First'
-            last: 'Last »'
+            next: 'Next ››'
+            previous: '‹‹ Previous'
           expose:
             items_per_page: false
             items_per_page_label: 'Items per page'
@@ -425,7 +423,6 @@ display:
             items_per_page_options_all_label: '- All -'
             offset: false
             offset_label: Offset
-          quantity: 10
       exposed_form:
         type: bef
         options:
@@ -956,7 +953,7 @@ display:
         options:
           grouping: {  }
           row_class: ''
-          default_row_class: true
+          default_row_class: false
           columns:
             field_artifact_image_1: field_artifact_image_1
             title: title
@@ -964,48 +961,48 @@ display:
             field_place_of_origin: field_place_of_origin
             field_search_categories: field_search_categories
             field_sale_price: field_sale_price
-          default: '-1'
+          default: title
           info:
             field_artifact_image_1:
               sortable: false
               default_sort_order: asc
-              align: views-align-center
-              separator: '|'
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             title:
               sortable: true
               default_sort_order: asc
-              align: views-align-center
-              separator: '|'
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             field_keyword:
-              sortable: true
+              sortable: false
               default_sort_order: asc
-              align: views-align-center
-              separator: '|'
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             field_place_of_origin:
-              sortable: true
+              sortable: false
               default_sort_order: asc
-              align: views-align-center
-              separator: '|'
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             field_search_categories:
-              sortable: true
+              sortable: false
               default_sort_order: asc
-              align: views-align-center
-              separator: '|'
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
             field_sale_price:
               sortable: true
-              default_sort_order: desc
-              align: views-align-center
-              separator: '|'
+              default_sort_order: asc
+              align: ''
+              separator: ''
               empty_column: false
               responsive: ''
           override: true

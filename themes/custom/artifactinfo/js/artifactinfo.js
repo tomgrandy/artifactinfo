@@ -389,4 +389,111 @@
     }
   };
 
+  /**
+   * Filter and Sort functionality behavior.
+   */
+  Drupal.behaviors.filterSortBehavior = {
+    attach: function (context, settings) {
+
+      // Initialize filter sidebar functionality
+      once('filter-sidebar', '#filter-btn', context).forEach(function (element) {
+        const filterBtn = element;
+        const sortBtn = context.getElementById('sort-btn');
+        const searchFilters = context.getElementById('search-filters');
+        const filterClose = context.getElementById('filter-close');
+        const sidebarOverlay = context.getElementById('sidebar-overlay');
+
+        // Only proceed if all required elements exist
+        if (!filterBtn || !searchFilters || !filterClose || !sidebarOverlay) {
+          return;
+        }
+
+        /**
+         * Close filter sidebar function
+         */
+        function closeFilters() {
+          searchFilters.classList.remove('active');
+          sidebarOverlay.classList.remove('active');
+          document.body.style.overflow = 'auto';
+        }
+
+        // Mobile filter sidebar toggle
+        filterBtn.addEventListener('click', function (e) {
+          e.preventDefault();
+          searchFilters.classList.add('active');
+          sidebarOverlay.classList.add('active');
+          document.body.style.overflow = 'hidden';
+        });
+
+        // Close filter sidebar
+        filterClose.addEventListener('click', function (e) {
+          e.preventDefault();
+          closeFilters();
+        });
+
+        sidebarOverlay.addEventListener('click', function (e) {
+          e.preventDefault();
+          closeFilters();
+        });
+
+        // Handle window resize
+        function handleResize() {
+          if (window.innerWidth > 768) {
+            closeFilters();
+          }
+        }
+
+        window.addEventListener('resize', handleResize);
+
+        // Store reference for potential cleanup
+        element.closeFilters = closeFilters;
+        element.handleResize = handleResize;
+      });
+
+      // Touch scroll prevention - only attach once per page
+      once('touch-scroll-prevention', 'body', context).forEach(function () {
+        function preventScroll(e) {
+          const searchFilters = document.getElementById('search-filters');
+          if (searchFilters && searchFilters.classList.contains('active')) {
+            if (!searchFilters.contains(e.target)) {
+              e.preventDefault();
+            }
+          }
+        }
+
+        document.addEventListener('touchmove', preventScroll, { passive: false });
+
+        // Store reference for potential cleanup
+        document.body.preventScroll = preventScroll;
+      });
+    },
+
+    detach: function (context, settings, trigger) {
+      // Cleanup when behavior is detached
+      if (trigger === 'unload') {
+        // Remove event listeners and cleanup
+        const preventScroll = document.body.preventScroll;
+        if (preventScroll) {
+          document.removeEventListener('touchmove', preventScroll);
+          delete document.body.preventScroll;
+        }
+
+        // Remove any existing sort menus
+        const existingSortMenu = document.querySelector('.sort-menu');
+        if (existingSortMenu) {
+          document.body.removeChild(existingSortMenu);
+        }
+
+        // Clean up window resize listeners
+        const filterBtns = context.querySelectorAll('#filter-btn');
+        filterBtns.forEach(function (btn) {
+          if (btn.handleResize) {
+            window.removeEventListener('resize', btn.handleResize);
+            delete btn.handleResize;
+          }
+        });
+      }
+    }
+  };
+
 })(Drupal, jQuery, once);

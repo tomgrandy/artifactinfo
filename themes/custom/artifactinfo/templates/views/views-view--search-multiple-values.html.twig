@@ -1,6 +1,4 @@
-{# views-view.html.twig #}
-<div
-	class="search-layout">
+<div class="search-layout">
 	{# Left Sidebar - Exposed Filters #}
 	{% if exposed %}
 		<div class="search-filters" id="search-filters">
@@ -9,14 +7,44 @@
 			{{ exposed }}
 		</div>
 	{% endif %}
-
 	{# Right Content - Search Results #}
 	<div class="results-content">
 		{{ rows }}
-
+		<div class="mobile-cards">
+			{% for row in view.result %}
+				{% set entity = row._entity %}
+				<div class="artifact-card">
+					<div class="card-image">
+						{% if entity.field_artifact_image_1.entity and entity.field_artifact_image_1.entity.uri.value %}
+							{% set image_uri = entity.field_artifact_image_1.entity.uri.value %}
+							{% set image_alt = entity.field_artifact_image_1.alt|default(entity.title.value) %}
+							{% set image_url = file_url(image_uri) %}
+							{% if image_url %}
+								<img loading="lazy" src="{{ image_url }}" width="100" height="100" alt="{{ image_alt }}">
+							{% else %}
+								<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg?height=100&width=100' }}" width="100" height="100" alt="Artifact">
+							{% endif %}
+						{% else %}
+							<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg?height=100&width=100' }}" width="100" height="100" alt="Artifact">
+						{% endif %}
+					</div>
+					<div class="card-title">{{ entity.title.value }}</div>
+					<div class="card-price">
+						{% if entity.field_sale_price.value %}
+							${{ entity.field_sale_price.value|number_format(2) }}
+						{% endif %}
+					</div>
+					<div class="card-location">
+						{% if entity.field_search_categories.entity %}
+							{{ entity.field_search_categories.entity.name.value }}
+						{% endif %}
+					</div>
+				</div>
+			{% endfor %}
+		</div>
 		{% if pager %}
 			{{ pager }}
 		{% endif %}
 	</div>
 </div>
-
+<div class="sidebar-overlay" id="sidebar-overlay"></div>

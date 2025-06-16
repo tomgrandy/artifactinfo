@@ -988,14 +988,6 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   transition: transform 0.3s ease;
 }
 
-.filters-title {
-  color: #A8A6A1;
-  font-size: 16px;
-  margin-bottom: 20px;
-  border-bottom: 1px solid #38383B;
-  padding-bottom: 10px;
-}
-
 .filter-group {
   margin-bottom: 25px;
 }
@@ -1338,7 +1330,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 /* Container */
 .path--search-multi .container {
   max-width: 1400px;
-  margin: 0 auto;
+  margin: 50px auto;
   padding: 20px;
 }
 
@@ -1397,14 +1389,15 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 /* Search Filters Sidebar */
 .path--search-multi .search-filters {
   background-color: #000000;
+  margin-top: 35px;
   transition: transform 0.3s ease;
 }
 
 .path--search-multi .filters-title {
   color: #A8A6A1;
-  font-size: 16px;
+  font-size: 25px !important;
   margin-bottom: 20px;
-  border-bottom: 1px solid #38383B;
+  border-bottom: 2px solid #38383B;
   padding-bottom: 10px;
 }
 
@@ -1505,7 +1498,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   border-bottom: 2px solid #38383B;
   font-weight: 500;
   font-size: 14px;
-  color: #0000FF;
+  color: #A8A6A1 !important;
   text-transform: uppercase;
 }
 
@@ -1558,13 +1551,15 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   max-width: 300px;
 }
 
-.path--search-multi .views-field-title a {
+.path--search-multi .views-field-title a,
+.path--search-multi .views-field-field-sale-price a {
   color: #A8A6A1;
   text-decoration: none;
   line-height: 1.4;
 }
 
-.path--search-multi .views-field-title a:hover {
+.path--search-multi .views-field-title a:hover,
+.path--search-multi .views-field-field-sale-price a:hover {
   color: #DFE0E1;
   text-decoration: underline;
 }
