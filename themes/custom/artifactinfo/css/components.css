@@ -1483,17 +1483,17 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 /* Table Styling */
-.path--search-multi table.cols-6 {
+.path--search-multi table.cols-5 {
   width: 100%;
   border-collapse: collapse;
   background-color: #000000;
 }
 
-.path--search-multi table.cols-6 thead {
+.path--search-multi table.cols-5 thead {
   background-color: #000000;
 }
 
-.path--search-multi table.cols-6 th {
+.path--search-multi table.cols-5 th {
   padding: 15px 10px;
   border-bottom: 2px solid #38383B;
   font-weight: 500;
@@ -1502,30 +1502,31 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   text-transform: uppercase;
 }
 
-.path--search-multi table.cols-6 th:first-child {
+.path--search-multi table.cols-5 th:first-child {
   text-align: left;
 }
 
-.path--search-multi table.cols-6 th:nth-child(2) {
+.path--search-multi table.cols-5 th:nth-child(2) {
   text-align: center;
 }
 
-.path--search-multi table.cols-6 th:nth-child(n+3) {
-  text-align: right;
+.path--search-multi table.cols-5 th:nth-child(n+3) {
+  text-align: center;
 }
 
-.path--search-multi table.cols-6 tbody tr {
+.path--search-multi table.cols-5 tbody tr {
   border-bottom: 1px solid #38383B;
   transition: background-color 0.3s;
 }
 
-.path--search-multi table.cols-6 tbody tr:hover {
+.path--search-multi table.cols-5 tbody tr:hover {
   background-color: rgba(56, 56, 59, 0.3);
 }
 
-.path--search-multi table.cols-6 td {
+.path--search-multi table.cols-5 td {
   padding: 15px 10px;
   vertical-align: top;
+  color: #A8A6A1;
 }
 
 /* Views field styling */
@@ -1579,13 +1580,14 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 
 .path--search-multi .views-field-field-keyword a:hover,
 .path--search-multi .views-field-field-place-of-origin a:hover,
-.path--search-multi .views-field-field-search-categories a:hover {
+.path--search-multi .views-field-field-search-categories a:hover,
+.path--search-multi table.cols-5 td:hover {
   color: #DFE0E1;
   text-decoration: underline;
 }
 
 .path--search-multi .views-field-field-sale-price {
-  text-align: right;
+  text-align: center;
   color: #FFFFFF;
   font-weight: 500;
 }
@@ -1781,7 +1783,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
     padding: 5px;
   }
 
-  .path--search-multi table.cols-6 {
+  .path--search-multi table.cols-5 {
     display: none;
   }
 
