@@ -88,7 +88,7 @@ display:
           click_sort_column: target_id
           type: image
           settings:
-            image_link: ''
+            image_link: content
             image_style: medium
             image_loading:
               attribute: lazy
@@ -1075,6 +1075,19 @@ display:
     display_plugin: page
     position: 1
     display_options:
+      defaults:
+        header: false
+      header:
+        result:
+          id: result
+          table: views
+          field: result
+          relationship: none
+          group_type: group
+          admin_label: ''
+          plugin_id: result
+          empty: false
+          content: 'Displaying @start - @end of @total'
       display_extenders: {  }
       path: search-multi
     cache_metadata:

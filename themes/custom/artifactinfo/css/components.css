@@ -1624,12 +1624,13 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   object-fit: cover;
 }
 
-.path--search-multi .card-title {
-  color: #FFFFFF;
+.path--search-multi .card-title a {
+  color: #DFE0E1;
   font-size: 16px;
   font-weight: 500;
   margin-bottom: 10px;
   line-height: 1.3;
+  text-decoration: none;
 }
 
 .path--search-multi .card-price {
@@ -1754,6 +1755,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   .path--search-multi .search-filters {
     position: fixed;
     top: 0;
+    margin-top: 0;
     left: -300px;
     width: 280px;
     height: 100vh;
