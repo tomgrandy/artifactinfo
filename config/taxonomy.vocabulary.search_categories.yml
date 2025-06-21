@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 name: 'Search Category'
 vid: search_categories
-description: null
+description: 'Category of types of artifacts for database search.'
 weight: 0
 new_revision: false

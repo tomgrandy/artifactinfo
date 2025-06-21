@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 name: Keyword
 vid: keywords
-description: null
+description: 'Keywords for artifact database search.'
 weight: 0
 new_revision: false

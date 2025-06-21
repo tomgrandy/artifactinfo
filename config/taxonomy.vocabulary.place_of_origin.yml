@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 name: 'Place of Origin'
 vid: place_of_origin
-description: null
+description: 'State from which the artifact is originates for artifact database search.'
 weight: 0
 new_revision: false

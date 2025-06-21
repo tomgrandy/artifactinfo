@@ -1,0 +1,11 @@
+uuid: 58ab9c48-ac92-46af-82da-ef192611e9a8
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.learning_center_categories
+id: node.learning_center_categories
+target_entity_type_id: node
+target_bundle: learning_center_categories
+default_langcode: site_default
+language_alterable: false

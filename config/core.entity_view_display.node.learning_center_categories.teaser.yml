@@ -1,0 +1,24 @@
+uuid: fbb03662-7a10-4956-b9a3-06929431ee56
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.learning_center_categories.field_learning_center_category_p
+    - node.type.learning_center_categories
+  module:
+    - user
+id: node.learning_center_categories.teaser
+targetEntityType: node
+bundle: learning_center_categories
+mode: teaser
+content:
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_learning_center_category_p: true
+  langcode: true
+  search_api_excerpt: true

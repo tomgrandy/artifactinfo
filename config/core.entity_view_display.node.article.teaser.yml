@@ -6,6 +6,7 @@ dependencies:
     - core.entity_view_mode.node.teaser
     - field.field.node.article.body
     - field.field.node.article.field_feature_photo
+    - field.field.node.article.field_learning_center_category
     - node.type.article
   module:
     - text
@@ -35,5 +36,6 @@ content:
     region: content
 hidden:
   field_feature_photo: true
+  field_learning_center_category: true
   langcode: true
   search_api_excerpt: true

@@ -1,0 +1,38 @@
+uuid: 55ea1fe3-f367-4a7c-aa64-21eb015b34b9
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_center_category_p
+    - node.type.learning_center_categories
+  module:
+    - image
+id: node.learning_center_categories.field_learning_center_category_p
+field_name: field_learning_center_category_p
+entity_type: node
+bundle: learning_center_categories
+label: 'Learning Center Category Photo'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:file'
+  handler_settings: {  }
+  file_directory: '[date:custom:Y]-[date:custom:m]'
+  file_extensions: 'png gif jpg jpeg webp'
+  max_filesize: ''
+  max_resolution: ''
+  min_resolution: ''
+  alt_field: true
+  alt_field_required: false
+  title_field: false
+  title_field_required: false
+  default_image:
+    uuid: ''
+    alt: ''
+    title: ''
+    width: null
+    height: null
+field_type: image

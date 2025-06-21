@@ -5,11 +5,11 @@ dependencies:
   config:
     - field.field.node.article.body
     - field.field.node.article.field_feature_photo
+    - field.field.node.article.field_learning_center_category
     - image.style.thumbnail
     - node.type.article
   module:
     - image
-    - path
     - text
 _core:
   default_config_hash: ewbd6G2uX456-bgwseM2Q-KQG3RkASoyHmTh-XR3oLU
@@ -30,42 +30,21 @@ content:
     third_party_settings: {  }
   field_feature_photo:
     type: image_image
-    weight: 3
+    weight: 1
     region: content
     settings:
       progress_indicator: throbber
       preview_image_style: thumbnail
     third_party_settings: {  }
-  langcode:
-    type: language_select
-    weight: 1
-    region: content
-    settings:
-      include_locked: true
-    third_party_settings: {  }
-  path:
-    type: path
-    weight: 6
+  field_learning_center_category:
+    type: options_select
+    weight: 3
     region: content
     settings: {  }
     third_party_settings: {  }
-  promote:
-    type: boolean_checkbox
-    weight: 4
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
   status:
     type: boolean_checkbox
-    weight: 7
-    region: content
-    settings:
-      display_label: true
-    third_party_settings: {  }
-  sticky:
-    type: boolean_checkbox
-    weight: 5
+    weight: 4
     region: content
     settings:
       display_label: true
@@ -80,4 +59,8 @@ content:
     third_party_settings: {  }
 hidden:
   created: true
+  langcode: true
+  path: true
+  promote: true
+  sticky: true
   uid: true

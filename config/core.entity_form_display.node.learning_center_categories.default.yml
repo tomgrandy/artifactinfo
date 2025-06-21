@@ -1,0 +1,59 @@
+uuid: 5a69c1f2-f4da-4173-9711-8fdc024892b5
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.learning_center_categories.field_learning_center_category_p
+    - image.style.media_library
+    - node.type.learning_center_categories
+  module:
+    - image
+id: node.learning_center_categories.default
+targetEntityType: node
+bundle: learning_center_categories
+mode: default
+content:
+  created:
+    type: datetime_timestamp
+    weight: 3
+    region: content
+    settings: {  }
+    third_party_settings: {  }
+  field_learning_center_category_p:
+    type: image_image
+    weight: 1
+    region: content
+    settings:
+      progress_indicator: throbber
+      preview_image_style: media_library
+    third_party_settings: {  }
+  status:
+    type: boolean_checkbox
+    weight: 4
+    region: content
+    settings:
+      display_label: true
+    third_party_settings: {  }
+  title:
+    type: string_textfield
+    weight: 0
+    region: content
+    settings:
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+  uid:
+    type: entity_reference_autocomplete
+    weight: 2
+    region: content
+    settings:
+      match_operator: CONTAINS
+      match_limit: 10
+      size: 60
+      placeholder: ''
+    third_party_settings: {  }
+hidden:
+  langcode: true
+  path: true
+  promote: true
+  sticky: true

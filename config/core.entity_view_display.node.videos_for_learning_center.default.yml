@@ -5,6 +5,7 @@ dependencies:
   config:
     - field.field.node.videos_for_learning_center.body
     - field.field.node.videos_for_learning_center.field_feature_photo
+    - field.field.node.videos_for_learning_center.field_learning_center_category
     - field.field.node.videos_for_learning_center.field_youtube_url
     - node.type.videos_for_learning_center
   module:
@@ -33,7 +34,15 @@ content:
       image_loading:
         attribute: lazy
     third_party_settings: {  }
-    weight: 1
+    weight: 2
+    region: content
+  field_learning_center_category:
+    type: entity_reference_label
+    label: above
+    settings:
+      link: true
+    third_party_settings: {  }
+    weight: 3
     region: content
   field_youtube_url:
     type: video_embed_field_video
@@ -46,12 +55,8 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 2
-    region: content
 hidden:
   addtoany: true
   langcode: true
+  links: true
   search_api_excerpt: true

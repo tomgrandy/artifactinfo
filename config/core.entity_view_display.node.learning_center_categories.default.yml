@@ -1,0 +1,31 @@
+uuid: a5ff3787-4304-42af-becb-cee4cdcef539
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.node.learning_center_categories.field_learning_center_category_p
+    - image.style.large
+    - node.type.learning_center_categories
+  module:
+    - image
+    - user
+id: node.learning_center_categories.default
+targetEntityType: node
+bundle: learning_center_categories
+mode: default
+content:
+  field_learning_center_category_p:
+    type: image
+    label: hidden
+    settings:
+      image_link: ''
+      image_style: large
+      image_loading:
+        attribute: lazy
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  langcode: true
+  links: true
+  search_api_excerpt: true

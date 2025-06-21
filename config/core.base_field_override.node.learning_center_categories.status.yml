@@ -1,0 +1,22 @@
+uuid: 8a21b0a7-40f4-4dfb-8abe-cb1dcb743c23
+langcode: en
+status: true
+dependencies:
+  config:
+    - node.type.learning_center_categories
+id: node.learning_center_categories.status
+field_name: status
+entity_type: node
+bundle: learning_center_categories
+label: Published
+description: ''
+required: false
+translatable: true
+default_value:
+  -
+    value: 0
+default_value_callback: ''
+settings:
+  on_label: 'On'
+  off_label: 'Off'
+field_type: boolean

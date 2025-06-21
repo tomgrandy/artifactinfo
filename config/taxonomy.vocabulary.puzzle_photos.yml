@@ -4,6 +4,6 @@ status: true
 dependencies: {  }
 name: 'Puzzle Photos'
 vid: puzzle_photos
-description: null
+description: "A place for uploading photos to be used with puzzles for Collector's Connection."
 weight: 0
 new_revision: false

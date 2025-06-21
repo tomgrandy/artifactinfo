@@ -1,0 +1,11 @@
+uuid: 95825da6-d159-40a1-bdf5-59b668b4022c
+langcode: en
+status: true
+dependencies:
+  config:
+    - taxonomy.vocabulary.place_of_origin
+id: taxonomy_term.place_of_origin
+target_entity_type_id: taxonomy_term
+target_bundle: place_of_origin
+default_langcode: site_default
+language_alterable: false

@@ -1,0 +1,29 @@
+uuid: 58cd8266-9ea4-477c-8973-5f7d21f6a48b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.storage.node.field_learning_center_category
+    - node.type.videos_for_learning_center
+    - taxonomy.vocabulary.tags
+id: node.videos_for_learning_center.field_learning_center_category
+field_name: field_learning_center_category
+entity_type: node
+bundle: videos_for_learning_center
+label: 'Learning Center Category'
+description: ''
+required: false
+translatable: false
+default_value: {  }
+default_value_callback: ''
+settings:
+  handler: 'default:taxonomy_term'
+  handler_settings:
+    target_bundles:
+      tags: tags
+    sort:
+      field: name
+      direction: asc
+    auto_create: false
+    auto_create_bundle: ''
+field_type: entity_reference
