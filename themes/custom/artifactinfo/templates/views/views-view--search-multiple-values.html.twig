@@ -21,9 +21,9 @@
 								{% set image_alt = entity.field_artifact_image_1.alt|default(entity.title.value) %}
 								{% set image_url = file_url(image_uri) %}
 								{% if image_url %}
-									<img loading="lazy" src="{{ image_url }}" width="100" height="100" alt="{{ image_alt }}">
+									<img loading="lazy" src="{{ image_url }}" alt="{{ image_alt }}">
 								{% else %}
-									<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg?height=100&width=100' }}" width="100" height="100" alt="Artifact">
+									<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg' }}" alt="Artifact">
 								{% endif %}
 							{% else %} #}
 								<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg?height=100&width=100' }}" width="100" height="100" alt="Artifact">
