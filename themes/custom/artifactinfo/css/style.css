@@ -17,6 +17,10 @@
   background: linear-gradient(135deg, #000000 0%, #1a1a1a 50%, #000000 100%);
   min-height: 100vh;
 }
+.layout-main,
+.layout-highlighted {
+  padding-top: 80px;
+}
 
 /* ========================================
    BUTTONS
