@@ -2,6 +2,7 @@
 
 /**
  * @file
+ * Functions to support the Artifact Info theme.
  */
 
 declare(strict_types=1);
@@ -12,6 +13,7 @@ declare(strict_types=1);
  */
 
 use Drupal\Component\Utility\Html;
+use Drupal\Core\Database\Database;
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
@@ -112,7 +114,7 @@ function artifactinfo_preprocess_block(array &$variables): void {
 /**
  * Implements hook_preprocess_HOOK() for paragraph.html.twig.
  */
-function artifactinfo_preprocess_paragraph(array &$variables): void {
+function artifactinfo_preprocess_paragraph(array &$variables) {
   if ($variables['paragraph']->bundle() === 'hero_banner') {
     // Inject a dynamic value.
     $count = \Drupal::entityQuery('node')
@@ -120,9 +122,33 @@ function artifactinfo_preprocess_paragraph(array &$variables): void {
       ->condition('type', 'artifacts')
       ->count()
       ->execute();
-    $variables['dynamic_text'] = $count;
+    $variables['artifactCount'] = $count;
 
     // Pass the count to JavaScript settings.
     $variables['#attached']['drupalSettings']['artifactinfo']['artifactCount'] = (int) $count;
+  }
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for webform.html.twig.
+ */
+function artifactinfo_preprocess_webform(array &$variables): void {
+  // Attach user-form library to all webforms.
+  $variables['#attached']['library'][] = 'artifactinfo/user-form';
+}
+
+/**
+ * Implements hook_preprocess_HOOK() for page.html.twig.
+ */
+function artifactinfo_preprocess_page_alter(array &$variables): void {
+  // Attach user-form library to contact pages.
+  $route_name = \Drupal::routeMatch()->getRouteName();
+  $current_path = \Drupal::service('path.current')->getPath();
+
+  // Check if we're on a contact form page or webform page.
+  if (strpos($route_name, 'contact') !== FALSE ||
+      strpos($route_name, 'webform') !== FALSE ||
+      strpos($current_path, '/contact') !== FALSE) {
+    $variables['#attached']['library'][] = 'artifactinfo/user-form';
   }
 }

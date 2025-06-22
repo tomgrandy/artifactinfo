@@ -27,6 +27,7 @@ regions:
 libraries:
   - artifactinfo/global-styling
   - artifactinfo/global-scripts
+  - artifactinfo/user-form
 
 # Libraries to remove from pages
 libraries-override:
