@@ -461,3 +461,29 @@ input[type="file"]::-webkit-file-upload-button:hover {
     display: none;
   }
 }
+
+/* ========================================
+   ARTIFACT CORRECTIONS FORM STYLES
+======================================== */
+
+/* Report Corrections Form */
+.corrections-section {
+  background-color: #38383B;
+  padding: 40px;
+  border-radius: 8px;
+  margin: 60px 0;
+}
+
+.corrections-title {
+  color: #A8A6A1;
+  font-size: 20px;
+  margin-bottom: 20px;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+.corrections-description {
+  color: #DFE0E1;
+  margin-bottom: 30px;
+  line-height: 1.6;
+}

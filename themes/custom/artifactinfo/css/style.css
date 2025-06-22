@@ -187,3 +187,99 @@
   opacity: 1;
   transform: translateY(0);
 }
+
+/* Base Message Styles */
+[data-drupal-messages] {
+  margin-bottom: 30px;
+}
+
+[data-drupal-messages]>div {
+  padding: 20px 25px;
+  border-radius: 8px;
+  border-left: 5px solid;
+  position: relative;
+  font-size: 16px;
+  line-height: 1.6;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.3);
+  transition: all 0.3s ease;
+}
+
+[data-drupal-messages]>div::before {
+  content: '';
+  position: absolute;
+  left: 15px;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  font-size: 14px;
+}
+
+[data-drupal-messages]>div {
+  padding-left: 60px;
+}
+
+/* Success Messages */
+[data-drupal-messages]>div[role="contentinfo"],
+[data-drupal-messages] .messages--status {
+  background-color: #38383B;
+  border-left-color: #A8A6A1;
+  color: #DFE0E1;
+}
+
+[data-drupal-messages]>div[role="contentinfo"]::before,
+[data-drupal-messages] .messages--status::before {
+  content: '✓';
+  background-color: #A8A6A1;
+  color: #000000;
+}
+
+/* Warning Messages */
+[data-drupal-messages] .messages--warning {
+  background-color: #38383B;
+  border-left-color: #FFA500;
+  color: #DFE0E1;
+}
+
+[data-drupal-messages] .messages--warning::before {
+  content: '⚠';
+  background-color: #FFA500;
+  color: #000000;
+}
+
+/* Error Messages */
+[data-drupal-messages] .messages--error {
+  background-color: #38383B;
+  border-left-color: #FF6B6B;
+  color: #DFE0E1;
+}
+
+[data-drupal-messages] .messages--error::before {
+  content: '✕';
+  background-color: #FF6B6B;
+  color: #FFFFFF;
+}
+
+/* Info Messages */
+[data-drupal-messages] .messages--info {
+  background-color: #38383B;
+  border-left-color: #0066CC;
+  color: #DFE0E1;
+}
+
+[data-drupal-messages] .messages--info::before {
+  content: 'i';
+  background-color: #0066CC;
+  color: #FFFFFF;
+}
+
+/* Hover Effects */
+[data-drupal-messages]>div:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 12px rgba(0, 0, 0, 0.4);
+}

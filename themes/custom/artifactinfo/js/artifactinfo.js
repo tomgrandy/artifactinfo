@@ -496,4 +496,232 @@
     }
   };
 
+    /**
+   * Artifact Image Gallery and Lightbox behavior.
+   */
+  Drupal.behaviors.artifactImageGallery = {
+    attach: function (context, settings) {
+
+      // Make changeImage function globally available immediately
+      if (!window.changeImage) {
+        window.changeImage = function(thumbnail, imageSrc) {
+          console.log('changeImage called with:', thumbnail, imageSrc);
+
+          // Try multiple selectors to find the main image
+          let mainImage = document.getElementById('mainImage');
+          if (!mainImage) {
+            mainImage = document.querySelector('.main-image');
+          }
+          if (!mainImage) {
+            mainImage = document.querySelector('.main-image-container img');
+          }
+
+          console.log('Found main image:', mainImage);
+
+          if (mainImage && imageSrc) {
+            mainImage.src = imageSrc;
+            console.log('Updated main image src to:', imageSrc);
+
+            // Update active thumbnail
+            const thumbnails = document.querySelectorAll('.thumbnail');
+            thumbnails.forEach(thumb => thumb.classList.remove('active'));
+            if (thumbnail && thumbnail.classList) {
+              thumbnail.classList.add('active');
+              console.log('Set thumbnail as active:', thumbnail);
+            }
+          } else {
+            console.warn('Main image not found or no image source provided');
+          }
+        };
+      }
+
+      // Initialize image gallery functionality
+      $(once('artifact-gallery', '.artifact-details', context)).each(function() {
+        const artifactContainer = this;
+        const mainImage = artifactContainer.querySelector('#mainImage');
+        const thumbnails = artifactContainer.querySelectorAll('.thumbnail');
+        const thumbnailSlider = artifactContainer.querySelector('.thumbnail-slider');
+
+        if (!mainImage || !thumbnails.length) {
+          return;
+        }
+
+        // Add click handlers to thumbnails
+        thumbnails.forEach(function(thumbnail) {
+          thumbnail.addEventListener('click', function(e) {
+            e.preventDefault();
+            console.log('Thumbnail clicked:', this);
+            const imageSrc = this.getAttribute('data-full-image') || this.src;
+            console.log('Image source:', imageSrc);
+            window.changeImage(this, imageSrc);
+          });
+        });
+
+        // Initialize thumbnail slider scroll functionality
+        if (thumbnailSlider) {
+          let isDown = false;
+          let startX;
+          let scrollLeft;
+
+          // Mouse events for desktop
+          thumbnailSlider.addEventListener('mousedown', function(e) {
+            isDown = true;
+            this.style.cursor = 'grabbing';
+            startX = e.pageX - this.offsetLeft;
+            scrollLeft = this.scrollLeft;
+          });
+
+          thumbnailSlider.addEventListener('mouseleave', function() {
+            isDown = false;
+            this.style.cursor = 'grab';
+          });
+
+          thumbnailSlider.addEventListener('mouseup', function() {
+            isDown = false;
+            this.style.cursor = 'grab';
+          });
+
+          thumbnailSlider.addEventListener('mousemove', function(e) {
+            if (!isDown) return;
+            e.preventDefault();
+            const x = e.pageX - this.offsetLeft;
+            const walk = (x - startX) * 2;
+            this.scrollLeft = scrollLeft - walk;
+          });
+
+          // Touch events for mobile
+          thumbnailSlider.addEventListener('touchstart', function(e) {
+            startX = e.touches[0].pageX - this.offsetLeft;
+            scrollLeft = this.scrollLeft;
+          });
+
+          thumbnailSlider.addEventListener('touchmove', function(e) {
+            const x = e.touches[0].pageX - this.offsetLeft;
+            const walk = (x - startX) * 2;
+            this.scrollLeft = scrollLeft - walk;
+          });
+
+          // Initialize cursor style
+          thumbnailSlider.style.cursor = 'grab';
+        }
+      });
+
+      // Initialize lightbox functionality
+      $(once('artifact-lightbox', 'body', context)).each(function() {
+        /**
+         * Open lightbox function
+         */
+        function openLightbox(imageSrc) {
+          let lightbox = document.getElementById('lightbox');
+          let lightboxImage;
+
+          // Create lightbox if it doesn't exist
+          if (!lightbox) {
+            lightbox = document.createElement('div');
+            lightbox.id = 'lightbox';
+            lightbox.className = 'lightbox';
+
+            const closeButton = document.createElement('span');
+            closeButton.className = 'lightbox-close';
+            closeButton.innerHTML = '&times;';
+            closeButton.addEventListener('click', closeLightbox);
+
+            lightboxImage = document.createElement('img');
+            lightboxImage.id = 'lightboxImage';
+            lightboxImage.className = 'lightbox-image';
+
+            lightbox.appendChild(closeButton);
+            lightbox.appendChild(lightboxImage);
+            document.body.appendChild(lightbox);
+          } else {
+            lightboxImage = lightbox.querySelector('#lightboxImage');
+          }
+
+          if (lightboxImage && imageSrc) {
+            lightboxImage.src = imageSrc;
+            lightbox.classList.add('active');
+            document.body.style.overflow = 'hidden';
+          }
+        }
+
+        /**
+         * Close lightbox function
+         */
+        function closeLightbox() {
+          const lightbox = document.getElementById('lightbox');
+          if (lightbox) {
+            lightbox.classList.remove('active');
+            document.body.style.overflow = 'auto';
+          }
+        }
+
+        // Add click event to main image for lightbox
+        const mainImage = document.getElementById('mainImage');
+        if (mainImage) {
+          mainImage.addEventListener('click', function() {
+            openLightbox(this.src);
+          });
+        }
+
+        // Close lightbox when clicking outside the image
+        $(document).on('click', '#lightbox', function(e) {
+          if (e.target === this) {
+            closeLightbox();
+          }
+        });
+
+        // Close lightbox with Escape key
+        $(document).on('keydown', function(e) {
+          if (e.key === 'Escape') {
+            closeLightbox();
+          }
+        });
+
+        // Store functions for potential cleanup
+        this.openLightbox = openLightbox;
+        this.closeLightbox = closeLightbox;
+      });
+
+      // Initialize corrections form functionality
+      $(once('corrections-form', '#correctionsForm', context)).on('submit', function(e) {
+        e.preventDefault();
+
+        const formData = new FormData(this);
+        const name = formData.get('yourName');
+        const corrections = formData.get('corrections');
+
+        if (!name || !corrections) {
+          alert('Please fill in all required fields.');
+          return;
+        }
+
+        // Here you would typically send the data to your backend
+        // For now, show a success message
+        alert('Thank you, ' + name + '! Your corrections have been submitted for review.');
+
+        // Reset form
+        this.reset();
+      });
+    },
+
+    detach: function (context, settings, trigger) {
+      // Cleanup when behavior is detached
+      if (trigger === 'unload') {
+        // Remove global changeImage function
+        if (window.changeImage) {
+          delete window.changeImage;
+        }
+
+        // Remove lightbox from DOM if it exists
+        const lightbox = document.getElementById('lightbox');
+        if (lightbox) {
+          document.body.removeChild(lightbox);
+        }
+
+        // Restore body overflow
+        document.body.style.overflow = 'auto';
+      }
+    }
+  };
+
 })(Drupal, jQuery, once);
