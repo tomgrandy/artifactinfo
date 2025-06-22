@@ -1,0 +1,11 @@
+<div class="container">
+  <article{{ attributes }}>
+    <h1>{{ label }}</h1>
+    <div class="article-header">
+      {% trans %} Article by {{ author_name }} - Posted on {{ date|date('F j y') }}{% endtrans %}
+    </div>
+    <div{{ content_attributes }}>
+      {{ content }}
+    </div>
+  </article>
+</div>

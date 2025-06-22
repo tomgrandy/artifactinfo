@@ -1999,3 +1999,96 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 .lightbox-close:hover {
   color: #A8A6A1;
 }
+
+/* ========================================
+   CONTENT BLOCK COMPONENTS
+======================================== */
+
+/* Article Meta */
+.article-meta {
+  color: #DFE0E1;
+  font-size: 14px;
+  margin-bottom: 30px;
+  padding-bottom: 15px;
+  border-bottom: 1px solid #38383B;
+}
+
+/* Content Block */
+#block-artifactinfo-content {
+  font-size: 16px;
+  line-height: 1.7;
+  color: #DFE0E1;
+}
+
+#block-artifactinfo-content p {
+  margin-bottom: 20px;
+  text-align: justify;
+}
+
+#block-artifactinfo-content h1,
+#block-artifactinfo-content h2,
+#block-artifactinfo-content h3 {
+  color: #A8A6A1;
+  margin: 30px 0 20px 0;
+  line-height: 1.3;
+}
+
+#block-artifactinfo-content h1 {
+  margin-bottom: 30px;
+}
+
+#block-artifactinfo-content h2 {
+  font-size: 24px;
+}
+
+#block-artifactinfo-content h3 {
+  font-size: 20px;
+}
+
+/* Image Alignment Classes */
+#block-artifactinfo-content img {
+  max-width: 100%;
+  height: auto;
+  border-radius: 8px;
+  border: 2px solid #38383B;
+  transition: transform 0.3s ease, border-color 0.3s ease;
+}
+
+#block-artifactinfo-content img:hover {
+  transform: scale(1.02);
+  border-color: #A8A6A1;
+  cursor: zoom-in;
+}
+
+/* Center Aligned Images */
+#block-artifactinfo-content img.align-center {
+  display: block;
+  margin: 30px auto;
+  clear: both;
+}
+
+/* Left Aligned Images */
+#block-artifactinfo-content img.align-left {
+  float: left;
+  margin: 0 25px 20px 0;
+  max-width: 45%;
+}
+
+/* Right Aligned Images */
+#block-artifactinfo-content img.align-right {
+  float: right;
+  margin: 0 0 20px 25px;
+  max-width: 45%;
+}
+
+/* Clear floats after content */
+#block-artifactinfo-content::after {
+  content: "";
+  display: table;
+  clear: both;
+}
+
+/* Ensure paragraphs flow around floated images */
+#block-artifactinfo-content p {
+  overflow: hidden;
+}

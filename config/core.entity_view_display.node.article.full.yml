@@ -7,10 +7,8 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_feature_photo
     - field.field.node.article.field_learning_center_category
-    - image.style.medium
     - node.type.article
   module:
-    - image
     - text
     - user
 _core:
@@ -32,18 +30,8 @@ content:
     third_party_settings: {  }
     weight: 0
     region: content
-  field_feature_photo:
-    type: image
-    label: hidden
-    settings:
-      image_link: ''
-      image_style: medium
-      image_loading:
-        attribute: lazy
-    third_party_settings: {  }
-    weight: 1
-    region: content
 hidden:
+  field_feature_photo: true
   field_learning_center_category: true
   langcode: true
   links: true

@@ -714,3 +714,76 @@
     padding: 15px;
   }
 }
+
+/* ========================================
+   CONTENT BLOCK RESPONSIVE STYLES
+======================================== */
+
+/* Responsive Design */
+@media (max-width: 768px) {
+  .container {
+    padding: 20px 15px;
+  }
+
+  #block-artifactinfo-content {
+    font-size: 15px;
+  }
+
+  #block-artifactinfo-content h1 {
+    font-size: 28px;
+  }
+
+  #block-artifactinfo-content h2 {
+    font-size: 22px;
+  }
+
+  #block-artifactinfo-content h3 {
+    font-size: 18px;
+  }
+
+  /* On mobile, make all images center-aligned for better readability */
+  #block-artifactinfo-content img.align-left,
+  #block-artifactinfo-content img.align-right {
+    float: none;
+    display: block;
+    margin: 20px auto;
+    max-width: 100%;
+  }
+
+  .lightbox-close {
+    font-size: 30px;
+    top: 15px;
+    right: 20px;
+  }
+}
+
+@media (max-width: 480px) {
+  .container {
+    padding: 15px 10px;
+  }
+
+  #block-artifactinfo-content {
+    font-size: 14px;
+  }
+
+  #block-artifactinfo-content h1 {
+    font-size: 24px;
+  }
+
+  #block-artifactinfo-content img.align-left,
+  #block-artifactinfo-content img.align-right {
+    margin: 15px auto;
+  }
+}
+
+/* Print Styles */
+@media print {
+  body {
+    background-color: white;
+    color: black;
+  }
+
+  #block-artifactinfo-content img {
+    border: 1px solid #ccc;
+  }
+}
