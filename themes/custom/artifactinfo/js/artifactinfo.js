@@ -136,24 +136,15 @@
     }
   };
 
-      /**
+  /**
    * Counter animation behavior.
    */
   Drupal.behaviors.artifactCounter = {
     attach: function (context, settings) {
-      // Try alternative approach for once function
-
-      // Method 1: Try with document context
       const onceWithDocument = $(once('counter-animation', '#artifact-counter', document));
-
-      // Method 2: Try without context
       const onceWithoutContext = $(once('counter-animation', '#artifact-counter'));
-
-      // Use the working approach
       let workingOnce = onceWithDocument.length > 0 ? onceWithDocument : onceWithoutContext;
-
       if (workingOnce.length === 0) {
-        // Manual once implementation
         const manualElement = document.getElementById('artifact-counter');
         if (manualElement && !manualElement.hasAttribute('data-once-counter-animation')) {
           manualElement.setAttribute('data-once-counter-animation', 'true');
@@ -163,19 +154,9 @@
 
       workingOnce.each(function() {
         const counter = this;
-
-        // Get count from data-target attribute first, then Drupal settings, then fallback
         const targetAttribute = counter.getAttribute('data-target');
-        const artifactCount = targetAttribute
-          ? parseInt(targetAttribute, 10)
-          : (settings.artifactinfo && settings.artifactinfo.artifactCount
-             ? settings.artifactinfo.artifactCount
-             : 66173);
-
-        // Clear the existing content and show 0 initially
+        const artifactCount = targetAttribute ? parseInt(targetAttribute, 10) : (settings.artifactinfo.artifactCount);
         counter.textContent = '0';
-
-        // Counter animation function
         function animateCounter(element, target, duration) {
           const start = 0;
           const startTime = performance.now();
@@ -204,6 +185,57 @@
         // Start animation after a short delay
         setTimeout(() => {
           animateCounter(counter, artifactCount, 2000);
+        }, 500);
+      });
+    }
+  };
+
+  Drupal.behaviors.artifactImageCounter = {
+    attach: function (context, settings) {
+      const onceWithDocument = $(once('counter-animation', '#image-counter', document));
+      const onceWithoutContext = $(once('counter-animation', '#image-counter'));
+      let workingOnce = onceWithDocument.length > 0 ? onceWithDocument : onceWithoutContext;
+      if (workingOnce.length === 0) {
+        const manualElement = document.getElementById('image-counter');
+        if (manualElement && !manualElement.hasAttribute('data-once-counter-animation')) {
+          manualElement.setAttribute('data-once-counter-animation', 'true');
+          workingOnce = $(manualElement);
+        }
+      }
+
+      workingOnce.each(function() {
+        const counter = this;
+        const targetAttribute = counter.getAttribute('data-target');
+        const artifactImageCount = targetAttribute ? parseInt(targetAttribute, 10) : (settings.artifactinfo.totalImageCount);
+        counter.textContent = '0';
+        function animateCounter(element, target, duration) {
+          const start = 0;
+          const startTime = performance.now();
+
+          function update(currentTime) {
+            const elapsed = currentTime - startTime;
+            const progress = Math.min(elapsed / duration, 1);
+
+            // Easing function for smooth animation
+            const easeOut = 1 - Math.pow(1 - progress, 3);
+            const current = Math.floor(start + (target - start) * easeOut);
+
+            // Format number with commas
+            element.textContent = current.toLocaleString();
+
+            if (progress < 1) {
+              requestAnimationFrame(update);
+            } else {
+              element.textContent = target.toLocaleString();
+            }
+          }
+
+          requestAnimationFrame(update);
+        }
+
+        // Start animation after a short delay
+        setTimeout(() => {
+          animateCounter(counter, artifactImageCount, 2000);
         }, 500);
       });
     }

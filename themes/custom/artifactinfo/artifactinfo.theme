@@ -13,7 +13,6 @@ declare(strict_types=1);
  */
 
 use Drupal\Component\Utility\Html;
-use Drupal\Core\Database\Database;
 
 /**
  * Implements hook_preprocess_HOOK() for html.html.twig.
@@ -123,9 +122,10 @@ function artifactinfo_preprocess_paragraph(array &$variables) {
       ->count()
       ->execute();
     $variables['artifactCount'] = $count;
+    $variables['totalImageCount'] = getTotalImageCountOptimized();
 
-    // Pass the count to JavaScript settings.
     $variables['#attached']['drupalSettings']['artifactinfo']['artifactCount'] = (int) $count;
+    $variables['#attached']['drupalSettings']['artifactinfo']['totalImageCount'] = (int) $variables['totalImageCount'];
   }
 }
 
@@ -151,4 +151,71 @@ function artifactinfo_preprocess_page_alter(array &$variables): void {
       strpos($current_path, '/contact') !== FALSE) {
     $variables['#attached']['library'][] = 'artifactinfo/user-form';
   }
+}
+
+/**
+ * Get total count of images from all artifact nodes.
+ *
+ * @return int
+ *   The total count of images across all artifact nodes.
+ */
+function getTotalImageCountOptimized(): int {
+  $total_count = 0;
+  $database = \Drupal::database();
+
+  // Image field machine names for artifacts.
+  $image_fields = [
+    'field_artifact_image_1',
+    'field_artifact_image_2',
+    'field_artifact_image_3',
+    'field_artifact_image_4',
+  ];
+
+  // Get all published artifact node IDs first.
+  $query = \Drupal::entityQuery('node')
+    ->condition('type', 'artifacts')
+    ->condition('status', 1)
+    ->accessCheck(FALSE);
+
+  $nids = $query->execute();
+
+  // Debug: Check if we have any artifact nodes.
+  \Drupal::logger('artifactinfo')->info('Found @count artifact nodes: @nids', [
+    '@count' => count($nids),
+    '@nids' => implode(', ', $nids),
+  ]);
+
+  if (!empty($nids)) {
+    foreach ($image_fields as $field_name) {
+      $field_table = 'node__' . $field_name;
+
+      // Check if table exists.
+      if (!$database->schema()->tableExists($field_table)) {
+        \Drupal::logger('artifactinfo')->warning('Table @table does not exist', ['@table' => $field_table]);
+        continue;
+      }
+
+      // Build the query to count non-empty image fields.
+      $field_query = $database->select($field_table, 'f')
+        ->condition('f.entity_id', $nids, 'IN')
+        ->condition('f.bundle', 'artifacts')
+        ->isNotNull('f.' . $field_name . '_target_id');
+
+      $field_query->addExpression('COUNT(*)', 'image_count');
+      $result = $field_query->execute()->fetchField();
+      $field_count = (int) $result;
+
+      // Debug: Log count for each field.
+      \Drupal::logger('artifactinfo')->info('Field @field has @count images', [
+        '@field' => $field_name,
+        '@count' => $field_count,
+      ]);
+
+      $total_count += $field_count;
+    }
+  }
+
+  \Drupal::logger('artifactinfo')->info('Total image count: @count', ['@count' => $total_count]);
+
+  return $total_count;
 }

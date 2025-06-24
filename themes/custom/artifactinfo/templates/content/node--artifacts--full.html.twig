@@ -1,95 +1,88 @@
-<div class="container">
-  <div class="artifact-details">
-    <!-- Left Column - Images -->
-    <div class="images-column">
-                <div class="main-image-container">
-          {% if content.field_artifact_image_1['#items'] and content.field_artifact_image_1['#items'].entity %}
-              <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Main artifact image" class="main-image" id="mainImage">
-          {% else %}
-              <img src="/placeholder.svg?height=500&width=400" alt="Main artifact image" class="main-image" id="mainImage">
-          {% endif %}
-      </div>
-
-        <div class="thumbnail-slider">
-          {% if content.field_artifact_image_1 %}
-              <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Thumbnail 1" class="thumbnail active" data-full-image="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}">
-          {% endif %}
-          {% if content.field_artifact_image_2 %}
-              <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
-          {% endif %}
-          {% if content.field_artifact_image_3 %}
-              <img src="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}" alt="Thumbnail 3" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}">
-          {% endif %}
-          {% if content.field_artifact_image_4 %}
-              <img src="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}" alt="Thumbnail 4" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}">
-          {% endif %}
-      </div>
-    </div>
-
-    <!-- Right Column - Details -->
-    <div class="details-column">
-        <h1 class="artifact-title">{{ label }}</h1>
-
-        {% if content.field_artifact_description %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Artifact Description:'|t}}</span>
-            <span class="detail-value">{{ content.field_artifact_description }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.feeds_item %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Item Sold:'|t}}</span>
-            <span class="detail-value sold-status">{{ content.feeds_item }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_date_sold %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Sale Date:'|t}}</span>
-            <span class="detail-value">{{ content.field_date_sold }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_sale_price %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Sale Price:'|t}}</span>
-            <span class="detail-value price-highlight">{{ content.field_sale_price }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_lot_number %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Lot Number:'|t}}</span>
-            <span class="detail-value">{{ content.field_lot_number }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_place_of_origin %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Place of Origin:'|t}}</span>
-            <span class="detail-value">{{ content.field_place_of_origin }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_keyword %}
-        <div class="detail-item">
-            <span class="detail-label">{{'Keyword:'|t}}</span>
-            <span class="detail-value">{{ content.field_keyword }}</span>
-        </div>
-        {% endif %}
-
-        {% if content.field_search_categories %}
-        <div class="search-category">
-            <div class="category-title">{{'Search Category'|t}}</div>
-            {{ content.field_search_categories }}
-        </div>
+<div class="artifact-details">
+<!-- Left Column - Images -->
+<div class="images-column">
+    <div class="main-image-container">
+        {% if content.field_artifact_image_1['#items'] and content.field_artifact_image_1['#items'].entity %}
+            <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Main artifact image" class="main-image" id="mainImage">
+        {% else %}
+            <img src="/placeholder.svg?height=500&width=400" alt="Main artifact image" class="main-image" id="mainImage">
         {% endif %}
     </div>
-  </div>
-  <div class="corrections-section">
+
+    <div class="thumbnail-slider">
+        {% if content.field_artifact_image_2 %}
+            <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
+        {% endif %}
+        {% if content.field_artifact_image_3 %}
+            <img src="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}" alt="Thumbnail 3" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}">
+        {% endif %}
+        {% if content.field_artifact_image_4 %}
+            <img src="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}" alt="Thumbnail 4" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}">
+        {% endif %}
+    </div>
+</div>
+
+<!-- Right Column - Details -->
+<div class="details-column">
+    <h1 class="artifact-title">{{ label }}</h1>
+
+    {% if content.field_artifact_description %}
+    <div class="detail-item">
+        <span class="detail-value">{{ content.field_artifact_description }}</span>
+    </div>
+    {% endif %}
+
+    {% if content.feeds_item %}
+    <div class="detail-item">
+        <span class="detail-label">{{'Item Sold:'|t}}</span>
+        <span class="detail-value sold-status">{{ content.feeds_item }}</span>
+    </div>
+    {% endif %}
+
+    {% if content.field_date_sold %}
+    <div class="detail-item">
+        <span class="detail-label">{{'Sale Date:'|t}}</span>
+        <span class="detail-value">{{ content.field_date_sold }}</span>
+    </div>
+    {% endif %}
+
+    {% if content.field_sale_price %}
+    <div class="detail-item">
+        <span class="detail-label">{{'Sale Price:'|t}}</span>
+        <span class="detail-value price-highlight">{{ content.field_sale_price }}</span>
+    </div>
+    {% endif %}
+
+    {% if content.field_lot_number %}
+    <div class="detail-item">
+        <span class="detail-label">{{'Lot Number:'|t}}</span>
+        <span class="detail-value">{{ content.field_lot_number }}</span>
+    </div>
+    {% endif %}
+
+    {% if content.field_place_of_origin %}
+    <div class="detail-item">
+        <span class="detail-label">{{'Place of Origin:'|t}}</span>
+        <span class="detail-value">
+            <a href="/search-multi?field_place_of_origin_target_id={{ content.field_place_of_origin['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_place_of_origin }}</a>
+        </span>
+    </div>
+    {% endif %}
+
+    {% if content.field_search_categories %}
+        <div class="detail-item">
+            <span class="detail-label">{{'Search Category'|t}}</span>
+            <span class="detail-value">
+                <a href="/search-multi?field_search_categories_target_id={{ content.field_search_categories['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_search_categories }}</a>
+            </span>
+        </div>
+    {% endif %}
+</div>
+</div>
+<div class="corrections-section">
     <h2 class="corrections-title">{{'Report Corrections'|t}}</h2>
-    <p class="corrections-description">{{'Please let us know if you find there is information on this page that needs correction.'|t}}</p>
+    <p class="corrections-description">
+        {{'Please let us know if you find there is information on this page that needs correction.'|t}}
+    </p>
     {{ drupal_entity('webform', 'report_corrections') }}
-  </div>
 </div>
