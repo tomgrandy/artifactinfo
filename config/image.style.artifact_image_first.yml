@@ -1,0 +1,15 @@
+uuid: 4d29ad77-57a8-4100-be2b-e3bf001bc925
+langcode: en
+status: true
+dependencies: {  }
+name: artifact_image_first
+label: 'ARTIFACT Image First'
+effects:
+  be7fc26a-5c5c-4be7-8604-d53f03efcef8:
+    uuid: be7fc26a-5c5c-4be7-8604-d53f03efcef8
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 600
+      height: 500
+      anchor: center-center

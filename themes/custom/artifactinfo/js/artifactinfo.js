@@ -756,4 +756,69 @@
     }
   };
 
+  Drupal.behaviors.typeFilterCheckboxes = {
+    attach(context) {
+      once('type-filter-processed', '#views-exposed-form-learning-center-detail-page-1', context).forEach((formElement) => {
+        const actionsDiv = formElement.querySelector('#edit-actions--2');
+
+        // Add checkboxes if they don't exist
+        if (actionsDiv && !formElement.querySelector('.type-filter-wrapper')) {
+
+          // Create wrapper div with checkboxes
+          const wrapper = document.createElement('div');
+          wrapper.className = 'type-filter-wrapper';
+          wrapper.innerHTML = `
+            <input type="checkbox" id="type-article" value="article"> Articles
+            <input type="checkbox" id="type-videos" value="videos_for_learning_center"> Videos
+          `;
+
+          // Insert after actions div
+          actionsDiv.insertAdjacentElement('afterend', wrapper);
+
+          // Handle checkbox changes
+          wrapper.addEventListener('change', function(e) {
+            if (e.target.type === 'checkbox') {
+              const url = new URL(window.location.href);
+
+              // Only one checkbox can be selected at a time
+              if (e.target.checked) {
+                // Uncheck all other checkboxes
+                wrapper.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                  if (checkbox !== e.target) {
+                    checkbox.checked = false;
+                  }
+                });
+
+                // Update URL with selected type
+                url.searchParams.set('type', e.target.value);
+
+                // Reload page with new URL
+                window.location.href = url.toString();
+              } else {
+                // If unchecked, don't allow it (keep at least one selected)
+                e.target.checked = true;
+              }
+            }
+          });
+
+          // Initialize checkboxes based on current URL or set default
+          const currentUrl = new URL(window.location.href);
+          const typeParam = currentUrl.searchParams.get('type');
+
+          if (typeParam) {
+            // Check the checkbox matching URL parameter
+            const targetCheckbox = wrapper.querySelector(`input[value="${typeParam}"]`);
+            if (targetCheckbox) {
+              targetCheckbox.checked = true;
+            }
+          } else {
+            // Set default ?type=article and reload only if not already set
+            currentUrl.searchParams.set('type', 'article');
+            window.location.replace(currentUrl.toString());
+          }
+        }
+      });
+    }
+  };
+
 })(Drupal, jQuery, once);

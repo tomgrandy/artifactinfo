@@ -1,0 +1,37 @@
+{%
+  set classes = [
+    'views-view-grid',
+    options.alignment,
+    'cols-' ~ options.columns,
+    'clearfix',
+    'articles-grid',
+  ]
+%}
+{% if options.row_class_default %}
+  {%
+    set row_classes = [
+      'views-row',
+      options.alignment == 'horizontal' ? 'clearfix',
+    ]
+  %}
+{% endif %}
+{% if options.col_class_default %}
+  {%
+    set col_classes = [
+      'views-col',
+      options.alignment == 'vertical' ? 'clearfix',
+    ]
+  %}
+{% endif %}
+{% if title %}
+  <h3>{{ title }}</h3>
+{% endif %}
+<div{{attributes.addClass(classes)}}>
+  {% if options.alignment == 'horizontal' %}
+    {% for row in items %}
+      {% for column in row.content %}
+        {{- column.content -}}
+      {% endfor %}
+    {% endfor %}
+  {% endif %}
+</div>
