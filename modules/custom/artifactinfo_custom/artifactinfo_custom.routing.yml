@@ -1,0 +1,7 @@
+artifactinfo_custom.learning_config:
+  path: '/admin/config/content/learning-page-configurations'
+  defaults:
+    _form: '\Drupal\artifactinfo_custom\Form\LearningPageConfigForm'
+    _title: 'Learning Page Configurations'
+  requirements:
+    _permission: 'administer site configuration'

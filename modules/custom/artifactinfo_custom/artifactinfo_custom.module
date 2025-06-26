@@ -1,0 +1,47 @@
+<?php
+
+declare(strict_types=1);
+
+/**
+ * @file
+ * Contains artifactinfo_custom.module.
+ */
+
+use Drupal\Core\Routing\RouteMatchInterface;
+use Drupal\file\Entity\File;
+
+/**
+ * Implements hook_help().
+ */
+function artifactinfo_custom_help(string $route_name, RouteMatchInterface $route_match): string {
+  switch ($route_name) {
+    case 'help.page.artifactinfo_custom':
+      $output = '';
+      $output .= '<h3>' . t('About') . '</h3>';
+      $output .= '<p>' . t('Custom module for learning page configurations.') . '</p>';
+      return $output;
+
+    default:
+  }
+  return '';
+}
+
+/**
+ * Implements hook_preprocess_page().
+ */
+function artifactinfo_custom_preprocess_page(array &$variables): void {
+  $route_name = \Drupal::routeMatch()->getRouteName();
+
+    // Only apply to learning center page.
+  if ($route_name === 'view.the_learning_center_new.page_1') {
+    $config = \Drupal::config('artifactinfo_custom.settings');
+    $file_id = $config->get('learning_page_background_image');
+
+    if ($file_id) {
+      $file = File::load($file_id);
+      if ($file) {
+        $variables['learning_page_background_image_url'] = $file->createFileUrl();
+      }
+    }
+  }
+}

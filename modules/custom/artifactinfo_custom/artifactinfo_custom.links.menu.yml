@@ -1,0 +1,5 @@
+artifactinfo_custom.learning_config:
+  title: 'Learning Page Configurations'
+  description: 'Configure settings for the learning center page'
+  parent: system.admin_config
+  route_name: artifactinfo_custom.learning_config
