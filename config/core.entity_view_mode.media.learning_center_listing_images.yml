@@ -1,0 +1,11 @@
+uuid: 351b4107-212a-4312-a55e-ff7a4d415f4c
+langcode: en
+status: true
+dependencies:
+  module:
+    - media
+id: media.learning_center_listing_images
+label: 'Learning Center Listing Images'
+description: ''
+targetEntityType: media
+cache: true

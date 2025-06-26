@@ -1,0 +1,15 @@
+uuid: 0450b115-61b9-46b0-8c27-cf2b39e6d180
+langcode: en
+status: true
+dependencies: {  }
+name: learning_center_listing
+label: 'Learning Center Listing'
+effects:
+  25629af4-fa56-4f9a-8b15-27f78e85011e:
+    uuid: 25629af4-fa56-4f9a-8b15-27f78e85011e
+    id: image_scale_and_crop
+    weight: 1
+    data:
+      width: 313
+      height: 200
+      anchor: center-center
