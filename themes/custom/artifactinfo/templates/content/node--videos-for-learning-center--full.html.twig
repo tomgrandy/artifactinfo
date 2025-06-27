@@ -1,0 +1,11 @@
+<article{{ attributes }}>
+
+  <div class="video-header">
+    <h1 class="video-main-title">{{ label }}</h1>
+  </div>
+  {{ content.field_youtube_url }}
+  <section class="video-content-section">
+    <h2 class="video-section-title">{{ 'Description' }}</h2>
+    {{ content.body }}
+  </section>
+</article>

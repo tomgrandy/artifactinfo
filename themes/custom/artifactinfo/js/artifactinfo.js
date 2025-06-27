@@ -537,7 +537,6 @@
       // Make changeImage function globally available immediately
       if (!window.changeImage) {
         window.changeImage = function(thumbnail, imageSrc) {
-          console.log('changeImage called with:', thumbnail, imageSrc);
 
           // Try multiple selectors to find the main image
           let mainImage = document.getElementById('mainImage');
@@ -548,18 +547,14 @@
             mainImage = document.querySelector('.main-image-container img');
           }
 
-          console.log('Found main image:', mainImage);
-
           if (mainImage && imageSrc) {
             mainImage.src = imageSrc;
-            console.log('Updated main image src to:', imageSrc);
 
             // Update active thumbnail
             const thumbnails = document.querySelectorAll('.thumbnail');
             thumbnails.forEach(thumb => thumb.classList.remove('active'));
             if (thumbnail && thumbnail.classList) {
               thumbnail.classList.add('active');
-              console.log('Set thumbnail as active:', thumbnail);
             }
           } else {
             console.warn('Main image not found or no image source provided');
@@ -582,9 +577,7 @@
         thumbnails.forEach(function(thumbnail) {
           thumbnail.addEventListener('click', function(e) {
             e.preventDefault();
-            console.log('Thumbnail clicked:', this);
             const imageSrc = this.getAttribute('data-full-image') || this.src;
-            console.log('Image source:', imageSrc);
             window.changeImage(this, imageSrc);
           });
         });
@@ -817,6 +810,78 @@
             window.location.replace(currentUrl.toString());
           }
         }
+      });
+    }
+  };
+
+  Drupal.behaviors.puzzleSelector = {
+    attach: function (context, settings) {
+      // Get puzzle data from drupalSettings
+      var puzzles = drupalSettings.puzzleSelector ? drupalSettings.puzzleSelector.puzzles : {};
+      
+      // Manual once implementation for dropdown
+      $('.puzzle-selector-dropdown', context).each(function() {
+        if ($(this).hasClass('puzzle-selector-processed')) {
+          return; // Skip if already processed
+        }
+        $(this).addClass('puzzle-selector-processed');
+        
+        $(this).on('change', function() {
+          var selectedNid = $(this).val();
+          var $displayArea = $('#puzzle-display-area');
+          var $titleArea = $('#puzzle-title');
+          var $wrapperArea = $('.puzzle-display-wrapper');
+          
+          if (selectedNid === '' || !puzzles[selectedNid]) {
+            $displayArea.html('<p class="no-selection">Please select a puzzle to display.</p>');
+            $titleArea.html('');
+            $wrapperArea.removeClass('has-content');
+            return;
+          }
+          
+          var puzzle = puzzles[selectedNid];
+          
+          // Update title
+          $titleArea.html('<h3>' + puzzle.title + '</h3>');
+          
+          // Update embed code
+          if (puzzle.embed_code && puzzle.embed_code.trim() !== '') {
+            $displayArea.html(puzzle.embed_code);
+            $wrapperArea.addClass('has-content');
+          } else {
+            $displayArea.html('<p class="no-embed">No embed code available for this puzzle.</p>');
+            $wrapperArea.removeClass('has-content');
+          }
+          
+          // Trigger a custom event for other scripts
+          $(document).trigger('puzzleLoaded', [puzzle]);
+        });
+        if ($(this).find('option').length > 1 && $(this).val() === '') {
+        }
+      });
+      
+      // Manual once implementation for search
+      $('.puzzle-search-input', context).each(function() {
+        if ($(this).hasClass('puzzle-search-processed')) {
+          return; // Skip if already processed
+        }
+        $(this).addClass('puzzle-search-processed');
+        
+        $(this).on('input', function() {
+          var searchTerm = $(this).val().toLowerCase();
+          var $dropdown = $('.puzzle-selector-dropdown');
+          
+          $dropdown.find('option').each(function() {
+            var optionText = $(this).text().toLowerCase();
+            var optionValue = $(this).val();
+            
+            if (optionValue === '' || optionText.includes(searchTerm)) {
+              $(this).show();
+            } else {
+              $(this).hide();
+            }
+          });
+        });
       });
     }
   };

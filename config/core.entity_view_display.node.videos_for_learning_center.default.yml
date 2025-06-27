@@ -27,7 +27,7 @@ content:
     region: content
   field_feature_photo:
     type: image
-    label: above
+    label: hidden
     settings:
       image_link: ''
       image_style: ''
@@ -38,7 +38,7 @@ content:
     region: content
   field_learning_center_category:
     type: entity_reference_label
-    label: above
+    label: hidden
     settings:
       link: true
     third_party_settings: {  }

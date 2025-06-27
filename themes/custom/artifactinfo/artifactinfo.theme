@@ -12,6 +12,7 @@ declare(strict_types=1);
  * Functions to support the Artifact Info theme.
  */
 
+use Drupal\node\Entity\Node;
 use Drupal\Component\Utility\Html;
 
 /**
@@ -218,4 +219,85 @@ function getTotalImageCountOptimized(): int {
   \Drupal::logger('artifactinfo')->info('Total image count: @count', ['@count' => $total_count]);
 
   return $total_count;
+}
+
+/**
+ * Implements hook_preprocess_node().
+ */
+function artifactinfo_preprocess_node(&$variables) {
+  $node = $variables['node'];
+  
+  // Only add puzzle selector to specific content types or conditions
+  // Change 'your_target_content_type' to the content type where you want this to appear
+  if ($node->getType() == 'page') {
+    
+    // Load all puzzle_maker content
+    $query = \Drupal::entityQuery('node')
+      ->condition('type', 'puzzle_maker')
+      ->condition('status', 1) // Only published content
+      ->sort('title', 'ASC')
+      ->accessCheck(TRUE);
+    
+    $nids = $query->execute();
+    
+    $puzzle_options = [];
+    $puzzle_data = [];
+    
+    if (!empty($nids)) {
+      $puzzle_nodes = Node::loadMultiple($nids);
+      
+      foreach ($puzzle_nodes as $puzzle_node) {
+        $nid = $puzzle_node->id();
+        $title = $puzzle_node->getTitle();
+        
+        // Get the iframe field - handling iframe field type
+        $embed_code = '';
+        if ($puzzle_node->hasField('field_puzzle_embed_code') && !$puzzle_node->get('field_puzzle_embed_code')->isEmpty()) {
+          $iframe_field = $puzzle_node->get('field_puzzle_embed_code')->first();
+          
+          if ($iframe_field) {
+            // For iframe field type, get the URL
+            $iframe_url = $iframe_field->get('url')->getValue();
+            $iframe_width = $iframe_field->get('width')->getValue() ?: '100%';
+            $iframe_height = $iframe_field->get('height')->getValue() ?: '400';
+            $iframe_title = $iframe_field->get('title')->getValue() ?: $title;
+            
+            // Build the iframe HTML
+            if (!empty($iframe_url)) {
+              $embed_code = sprintf(
+                '<iframe src="%s" width="%s" height="%s" title="%s" frameborder="0" allowfullscreen></iframe>',
+                htmlspecialchars($iframe_url, ENT_QUOTES, 'UTF-8'),
+                htmlspecialchars($iframe_width, ENT_QUOTES, 'UTF-8'),
+                htmlspecialchars($iframe_height, ENT_QUOTES, 'UTF-8'),
+                htmlspecialchars($iframe_title, ENT_QUOTES, 'UTF-8')
+              );
+            }
+          }
+        }
+        
+        // Build options for dropdown
+        $puzzle_options[$nid] = $title;
+        
+        // Build data for JavaScript - ensure all values are strings
+        $puzzle_data[$nid] = [
+          'title' => (string) $title,
+          'embed_code' => (string) $embed_code,
+          'nid' => (int) $nid,
+          'has_embed' => !empty($embed_code),
+        ];
+      }
+    }
+    
+    // Pass data to Twig template
+    $variables['puzzle_selector'] = [
+      'options' => $puzzle_options,
+      'has_puzzles' => !empty($puzzle_options),
+      'count' => count($puzzle_options),
+    ];
+    
+    // Pass data to JavaScript via drupalSettings
+    $variables['#attached']['drupalSettings']['puzzleSelector'] = [
+      'puzzles' => $puzzle_data,
+    ];
+  }
 }

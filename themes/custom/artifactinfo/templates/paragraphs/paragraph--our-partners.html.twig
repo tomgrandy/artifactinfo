@@ -1,0 +1,41 @@
+{%
+  set classes = [
+    'paragraph',
+    'paragraph--type--' ~ paragraph.bundle|clean_class,
+    view_mode ? 'paragraph--view-mode--' ~ view_mode|clean_class,
+    not paragraph.isPublished() ? 'paragraph--unpublished'
+  ]
+%}
+{% block paragraph %}
+  <div{{ attributes.addClass(classes) }}>
+    {% block content %}
+      <section class="partners-section">
+        <h2 class="partners-title">{{'Our Partners'|t}}</h2>
+        <div class="marquee">
+          <div class="marquee__group">
+            {% if paragraph.field_partner_logo and not paragraph.field_partner_logo.isEmpty %}
+              {% for item in paragraph.field_partner_logo %}
+                {% if item.entity %}
+                  <div class="partner-icon">
+                    {{ item.entity|view }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+          <div class="marquee__group">
+            {% if paragraph.field_partner_logo and not paragraph.field_partner_logo.isEmpty %}
+              {% for item in paragraph.field_partner_logo %}
+                {% if item.entity %}
+                  <div class="partner-icon">
+                    {{ item.entity|view }}
+                  </div>
+                {% endif %}
+              {% endfor %}
+            {% endif %}
+          </div>
+        </div>
+      </section>
+    {% endblock %}
+  </div>
+{% endblock paragraph %}

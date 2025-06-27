@@ -1,4 +1,4 @@
-uuid: f85bf81b-c485-40a7-ae04-ecacf7f07399
+uuid: b437c764-ebd9-4ca9-9cbc-1d9be93e3678
 langcode: en
 status: open
 dependencies: {  }
@@ -8,21 +8,20 @@ close: null
 uid: 1
 template: false
 archive: false
-id: report_corrections
-title: 'Report Corrections'
+id: event_request
+title: 'Event Request'
 description: ''
 categories: {  }
 elements: |-
-  your_email:
-    '#type': email
-    '#title': 'Your Email:'
-  your_corrections_comments:
+  event_title:
+    '#type': textfield
+    '#title': 'Event Title'
+  event_date:
+    '#type': date
+    '#title': 'Event date'
+  event_details:
     '#type': textarea
-    '#title': 'Explainations of Correction:'
-  artifact_url:
-    '#type': hidden
-    '#title': 'Artifact URL'
-    '#default_value': '[current-page:url:absolute]'
+    '#title': 'Event Details'
 css: ''
 javascript: ''
 settings:
@@ -40,7 +39,7 @@ settings:
   form_open_message: ''
   form_close_message: ''
   form_exception_message: ''
-  form_previous_submissions: false
+  form_previous_submissions: true
   form_confidential: false
   form_confidential_message: ''
   form_disable_remote_addr: false
@@ -127,10 +126,10 @@ settings:
   draft_loaded_message: ''
   draft_pending_single_message: ''
   draft_pending_multiple_message: ''
-  confirmation_type: message
-  confirmation_url: ''
+  confirmation_type: url_message
+  confirmation_url: /collectors-connection
   confirmation_title: ''
-  confirmation_message: '<p>Thank you for your feedback. We’ve received your correction request and will review it shortly.</p>'
+  confirmation_message: '<p>Request have been recorded.</p>'
   confirmation_attributes: {  }
   confirmation_back: true
   confirmation_back_label: ''

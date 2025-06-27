@@ -21,7 +21,7 @@ content:
     region: content
   field_category_image:
     type: entity_reference_entity_view
-    label: above
+    label: hidden
     settings:
       view_mode: learning_center_listing_images
       link: false

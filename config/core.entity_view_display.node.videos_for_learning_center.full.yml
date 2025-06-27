@@ -8,35 +8,37 @@ dependencies:
     - field.field.node.videos_for_learning_center.field_feature_photo
     - field.field.node.videos_for_learning_center.field_learning_center_category
     - field.field.node.videos_for_learning_center.field_youtube_url
-    - image.style.medium
     - node.type.videos_for_learning_center
   module:
-    - image
+    - text
     - user
+    - video_embed_field
 id: node.videos_for_learning_center.full
 targetEntityType: node
 bundle: videos_for_learning_center
 mode: full
 content:
-  field_feature_photo:
-    type: image
+  body:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+  field_youtube_url:
+    type: video_embed_field_video
     label: hidden
     settings:
-      image_link: ''
-      image_style: medium
-      image_loading:
-        attribute: lazy
+      autoplay: true
+      responsive: true
+      width: 854
+      height: 480
     third_party_settings: {  }
     weight: 1
     region: content
-  links:
-    settings: {  }
-    third_party_settings: {  }
-    weight: 100
-    region: content
 hidden:
-  body: true
+  field_feature_photo: true
   field_learning_center_category: true
-  field_youtube_url: true
   langcode: true
+  links: true
   search_api_excerpt: true

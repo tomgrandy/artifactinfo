@@ -486,3 +486,37 @@ input[type="file"]::-webkit-file-upload-button:hover {
   margin-bottom: 30px;
   line-height: 1.6;
 }
+
+.form-date, input[type="date"] {
+  background-color: #38383B;
+  border: 2px solid #38383B;
+  border-radius: 6px;
+  padding: 12px 16px;
+  font-size: 16px;
+  color: #FFFFFF;
+  outline: none;
+  transition: all 0.3s ease;
+  width: 100%;
+  box-sizing: border-box;
+}
+  
+.form-date:focus,
+input[type="date"]:focus {
+  border-color: #A8A6A1;
+  box-shadow: 0 0 0 3px rgba(168, 166, 161, 0.2);
+}
+  
+.form-date:hover,
+input[type="date"]:hover {
+    border-color: #A8A6A1;
+}
+  
+.form-date::-webkit-calendar-picker-indicator,
+input[type="date"]::-webkit-calendar-picker-indicator {
+  background-color: #A8A6A1;
+  border-radius: 4px;
+  cursor: pointer;
+  padding: 4px;
+  margin-left: 8px;
+  filter: invert(1);
+}

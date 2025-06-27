@@ -1,0 +1,55 @@
+<article{{ attributes }}>
+  <div class="container">
+    <h1><span>{{'Collector\'s Connection'|t}}</span></h1>
+    {{ drupal_view('calendar_of_events', 'block_1') }}
+    <div class="event-button-container">
+      <a href="/form/event-request" class="use-ajax event-request-button" data-dialog-type="modal">
+        {{'Submit an Event'|t}}
+      </a>
+    </div>
+  </div>
+  {{content}}
+
+  <div class="container">
+    {# Add the puzzle selector if available #}
+    {% if puzzle_selector and puzzle_selector.has_puzzles %}
+      <div class="puzzle-selector-wrapper">
+        {# Dropdown selector #}
+        <div class="puzzle-dropdown-wrapper">
+          <label for="puzzle-selector" class="puzzle-selector-label">Select a Puzzle:</label>
+          <select id="puzzle-selector" 
+                  class="puzzle-selector-dropdown" 
+                  name="puzzle_selector"
+                  aria-describedby="puzzle-help">
+            <option value="">-- Choose a puzzle --</option>
+            {% for nid, title in puzzle_selector.options %}
+              <option value="{{ nid }}">{{ title }}</option>
+            {% endfor %}
+          </select>
+          <small id="puzzle-help" class="puzzle-help-text">
+            Select a puzzle from the dropdown to display it below.
+          </small>
+        </div>
+        
+        {# Display area #}
+        <div class="puzzle-display-wrapper">
+          <div id="puzzle-title" class="puzzle-title-area"></div>
+          <div id="puzzle-display-area" class="puzzle-content-area">
+            <div class="puzzle-placeholder">
+              <svg width="64" height="64" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5">
+                <path d="M12 2L2 7l10 5 10-5-10-5z"/>
+                <path d="m2 17 10 5 10-5"/>
+                <path d="m2 12 10 5 10-5"/>
+              </svg>
+              <p>Please select a puzzle to display.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    {% else %}
+      <div class="puzzle-selector-empty">
+        <p>No puzzles are currently available.</p>
+      </div>
+    {% endif %}
+  </div>
+</article>

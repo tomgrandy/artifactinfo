@@ -1,0 +1,23 @@
+uuid: cd541cb4-7044-4ac5-9458-3f3aa0e57e43
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.paragraph.our_partners.field_partner_logo
+    - paragraphs.paragraphs_type.our_partners
+id: paragraph.our_partners.default
+targetEntityType: paragraph
+bundle: our_partners
+mode: default
+content:
+  field_partner_logo:
+    type: entity_reference_entity_view
+    label: above
+    settings:
+      view_mode: default
+      link: false
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  search_api_excerpt: true

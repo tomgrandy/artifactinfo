@@ -11,13 +11,13 @@
     </div>
 
     <div class="thumbnail-slider">
-        {% if content.field_artifact_image_2 %}
+        {% if content.field_artifact_image_2['#items'].entity is not empty %}
             <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
         {% endif %}
-        {% if content.field_artifact_image_3 %}
+        {% if content.field_artifact_image_3['#items'].entity is not empty %}
             <img src="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}" alt="Thumbnail 3" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}">
         {% endif %}
-        {% if content.field_artifact_image_4 %}
+        {% if content.field_artifact_image_4['#items'].entity is not empty %}
             <img src="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}" alt="Thumbnail 4" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_4['#items'].entity.uri.value) }}">
         {% endif %}
     </div>

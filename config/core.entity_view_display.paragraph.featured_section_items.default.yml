@@ -6,7 +6,10 @@ dependencies:
     - field.field.paragraph.featured_section_items.field_featured_image
     - field.field.paragraph.featured_section_items.field_featured_short_desc
     - field.field.paragraph.featured_section_items.field_featured_title
+    - field.field.paragraph.featured_section_items.field_link
     - paragraphs.paragraphs_type.featured_section_items
+  module:
+    - link
 id: paragraph.featured_section_items.default
 targetEntityType: paragraph
 bundle: featured_section_items
@@ -35,6 +38,18 @@ content:
       link_to_entity: false
     third_party_settings: {  }
     weight: 2
+    region: content
+  field_link:
+    type: link
+    label: hidden
+    settings:
+      trim_length: 80
+      url_only: false
+      url_plain: false
+      rel: ''
+      target: ''
+    third_party_settings: {  }
+    weight: 3
     region: content
 hidden:
   search_api_excerpt: true

@@ -6,8 +6,10 @@ dependencies:
     - field.field.paragraph.featured_section_items.field_featured_image
     - field.field.paragraph.featured_section_items.field_featured_short_desc
     - field.field.paragraph.featured_section_items.field_featured_title
+    - field.field.paragraph.featured_section_items.field_link
     - paragraphs.paragraphs_type.featured_section_items
   module:
+    - link
     - media_library
 id: paragraph.featured_section_items.default
 targetEntityType: paragraph
@@ -36,6 +38,14 @@ content:
     settings:
       size: 60
       placeholder: ''
+    third_party_settings: {  }
+  field_link:
+    type: link_default
+    weight: 3
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
 hidden:
   created: true
