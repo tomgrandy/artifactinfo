@@ -548,7 +548,43 @@
           }
 
           if (mainImage && imageSrc) {
+            // Update the main image source
             mainImage.src = imageSrc;
+            
+            // Update data-magnify-src attribute for magnify plugin
+            // Use the same image URL for magnification (or get from thumbnail data attribute)
+            let magnifyImageSrc = imageSrc;
+            if (thumbnail && thumbnail.getAttribute('data-magnify-src')) {
+              magnifyImageSrc = thumbnail.getAttribute('data-magnify-src');
+            }
+            mainImage.setAttribute('data-magnify-src', magnifyImageSrc);
+            
+            // Reinitialize magnify plugin for the updated image (desktop only)
+            if (jQuery && jQuery.fn.magnify) {
+              const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                              'ontouchstart' in window || 
+                              navigator.maxTouchPoints > 0;
+              
+              if (!isMobile) {
+                const $mainImage = jQuery(mainImage);
+                // Destroy existing magnify instance
+                if ($mainImage.closest('.magnify').length) {
+                  $mainImage.magnify('destroy');
+                }
+                // Reinitialize magnify with new image
+                $mainImage.magnify({
+                  speed: 200,
+                  timeout: -1
+                });
+              } else {
+                // On mobile, ensure proper styling
+                jQuery(mainImage).css({
+                  'cursor': 'default',
+                  'max-width': '100%',
+                  'height': 'auto'
+                });
+              }
+            }
 
             // Update active thumbnail
             const thumbnails = document.querySelectorAll('.thumbnail');
@@ -584,58 +620,55 @@
 
         // Initialize thumbnail slider scroll functionality
         if (thumbnailSlider) {
-          let isDown = false;
-          let startX;
-          let scrollLeft;
+          // Check if mobile
+          const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                          'ontouchstart' in window || 
+                          navigator.maxTouchPoints > 0;
+          
+          if (!isMobile) {
+            // Desktop: Enable drag scrolling
+            let isDown = false;
+            let startX;
+            let scrollLeft;
 
-          // Mouse events for desktop
-          thumbnailSlider.addEventListener('mousedown', function(e) {
-            isDown = true;
-            this.style.cursor = 'grabbing';
-            startX = e.pageX - this.offsetLeft;
-            scrollLeft = this.scrollLeft;
-          });
+            // Mouse events for desktop
+            thumbnailSlider.addEventListener('mousedown', function(e) {
+              isDown = true;
+              this.style.cursor = 'grabbing';
+              startX = e.pageX - this.offsetLeft;
+              scrollLeft = this.scrollLeft;
+            });
 
-          thumbnailSlider.addEventListener('mouseleave', function() {
-            isDown = false;
-            this.style.cursor = 'grab';
-          });
+            thumbnailSlider.addEventListener('mouseleave', function() {
+              isDown = false;
+              this.style.cursor = 'grab';
+            });
 
-          thumbnailSlider.addEventListener('mouseup', function() {
-            isDown = false;
-            this.style.cursor = 'grab';
-          });
+            thumbnailSlider.addEventListener('mouseup', function() {
+              isDown = false;
+              this.style.cursor = 'grab';
+            });
 
-          thumbnailSlider.addEventListener('mousemove', function(e) {
-            if (!isDown) return;
-            e.preventDefault();
-            const x = e.pageX - this.offsetLeft;
-            const walk = (x - startX) * 2;
-            this.scrollLeft = scrollLeft - walk;
-          });
+            thumbnailSlider.addEventListener('mousemove', function(e) {
+              if (!isDown) return;
+              e.preventDefault();
+              const x = e.pageX - this.offsetLeft;
+              const walk = (x - startX) * 2;
+              this.scrollLeft = scrollLeft - walk;
+            });
 
-          // Touch events for mobile
-          thumbnailSlider.addEventListener('touchstart', function(e) {
-            startX = e.touches[0].pageX - this.offsetLeft;
-            scrollLeft = this.scrollLeft;
-          });
-
-          thumbnailSlider.addEventListener('touchmove', function(e) {
-            const x = e.touches[0].pageX - this.offsetLeft;
-            const walk = (x - startX) * 2;
-            this.scrollLeft = scrollLeft - walk;
-          });
-
-          // Initialize cursor style
-          thumbnailSlider.style.cursor = 'grab';
+            // Initialize cursor style for desktop
+            thumbnailSlider.style.cursor = 'grab';
+          } else {
+            // Mobile: Ensure proper mobile styles (thumbnails wrap instead of scroll)
+            thumbnailSlider.style.cursor = 'default';
+            thumbnailSlider.style.overflowX = 'visible';
+          }
         }
       });
 
       // Initialize lightbox functionality
       $(once('artifact-lightbox', 'body', context)).each(function() {
-        /**
-         * Open lightbox function
-         */
         function openLightbox(imageSrc) {
           let lightbox = document.getElementById('lightbox');
           let lightboxImage;
@@ -893,6 +926,34 @@
           });
         });
       });
+    }
+  };
+
+  Drupal.behaviors.magnifyImages = {
+    attach: function (context, settings) {
+      // Enhanced mobile detection
+      const isMobile = window.matchMedia('(max-width: 768px)').matches || 
+                       'ontouchstart' in window || 
+                       navigator.maxTouchPoints > 0;
+      
+      // Only initialize magnify on desktop devices
+      if (!isMobile) {
+        once('magnify', '.zoom', context).forEach(function(element) {
+          $(element).magnify({
+            speed: 200,
+            timeout: -1
+          });
+        });
+      } else {
+        // On mobile, ensure images are properly styled
+        once('mobile-images', '.zoom', context).forEach(function(element) {
+          $(element).css({
+            'cursor': 'default',
+            'max-width': '100%',
+            'height': 'auto'
+          });
+        });
+      }
     }
   };
 

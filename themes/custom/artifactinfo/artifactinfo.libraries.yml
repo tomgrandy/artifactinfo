@@ -22,7 +22,11 @@ global-styling:
 
 global-scripts:
   version: VERSION
+  css:
+    theme:
+      css/magnify.css: {}
   js:
+    js/jquery.magnify.js: {}
     js/artifactinfo.js: {}
   dependencies:
     - core/jquery

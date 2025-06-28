@@ -591,14 +591,6 @@
   .results-list {
     display: none;
   }
-
-  .mobile-cards {
-    display: grid;
-  }
-
-  .pagination {
-    padding: 20px 0;
-  }
 }
 
 /* ========================================
@@ -666,11 +658,37 @@
     justify-content: center;
     flex-wrap: wrap;
     gap: 8px;
+    overflow-x: visible; /* Allow wrapping instead of horizontal scroll */
+    padding: 10px 0;
   }
 
   .thumbnail {
     min-width: 70px;
     height: 70px;
+    flex-shrink: 0;
+  }
+
+  /* Ensure main image container works properly without magnify */
+  .main-image-container {
+    cursor: default !important;
+  }
+
+  .main-image {
+    max-width: 100%;
+    height: auto;
+  }
+
+  /* Override any magnify plugin styles on mobile */
+  .magnify {
+    display: block !important;
+    position: static !important;
+  }
+
+  .magnify .main-image,
+  .magnify img {
+    max-width: 100% !important;
+    height: auto !important;
+    position: static !important;
   }
 
   .corrections-section {

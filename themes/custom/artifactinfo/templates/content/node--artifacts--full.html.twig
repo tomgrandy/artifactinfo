@@ -4,7 +4,7 @@
 <div class="images-column">
     <div class="main-image-container">
         {% if content.field_artifact_image_1['#items'] and content.field_artifact_image_1['#items'].entity %}
-            <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Main artifact image" class="main-image" id="mainImage">
+            <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Main artifact image" class="main-image zoom" data-magnify-src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" id="mainImage">
         {% else %}
             <img src="/placeholder.svg?height=500&width=400" alt="Main artifact image" class="main-image" id="mainImage">
         {% endif %}
@@ -12,7 +12,7 @@
 
     <div class="thumbnail-slider">
         {% if content.field_artifact_image_2['#items'].entity is not empty %}
-            <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
+            <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail zoom" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
         {% endif %}
         {% if content.field_artifact_image_3['#items'].entity is not empty %}
             <img src="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}" alt="Thumbnail 3" class="thumbnail" data-full-image="{{ file_url(content.field_artifact_image_3['#items'].entity.uri.value) }}">

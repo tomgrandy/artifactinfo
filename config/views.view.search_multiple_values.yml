@@ -346,7 +346,7 @@ display:
           offset: 0
           pagination_heading_level: h4
           items_per_page: 50
-          total_pages: null
+          total_pages: 5
           id: 0
           tags:
             next: 'Next ››'
@@ -1541,21 +1541,13 @@ display:
         groups:
           1: AND
       defaults:
+        css_class: false
         fields: false
         filters: false
         filter_groups: false
         header: false
-      header:
-        result:
-          id: result
-          table: views
-          field: result
-          relationship: none
-          group_type: group
-          admin_label: ''
-          plugin_id: result
-          empty: false
-          content: 'Displaying @start - @end of @total'
+      css_class: ''
+      header: {  }
       display_extenders: {  }
       path: search-multi
     cache_metadata:
