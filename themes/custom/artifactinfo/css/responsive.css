@@ -725,25 +725,25 @@
     padding: 20px 15px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content {
+  .node-type--artifacts #block-artifactinfo-content {
     font-size: 15px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content h1 {
+  .node-type--artifacts #block-artifactinfo-content h1 {
     font-size: 28px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content h2 {
+  .node-type--artifacts #block-artifactinfo-content h2 {
     font-size: 22px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content h3 {
+  .node-type--artifacts #block-artifactinfo-content h3 {
     font-size: 18px;
   }
 
   /* On mobile, make all images center-aligned for better readability */
-  . node-type--artifacts #block-artifactinfo-content img.align-left,
-  . node-type--artifacts #block-artifactinfo-content img.align-right {
+  .node-type--artifacts #block-artifactinfo-content img.align-left,
+  .node-type--artifacts #block-artifactinfo-content img.align-right {
     float: none;
     display: block;
     margin: 20px auto;
@@ -762,16 +762,22 @@
     padding: 15px 10px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content {
+  .path--learning-center .container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .node-type--artifacts #block-artifactinfo-content {
     font-size: 14px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content h1 {
+  .node-type--artifacts #block-artifactinfo-content h1 {
     font-size: 24px;
   }
 
-  . node-type--artifacts #block-artifactinfo-content img.align-left,
-  . node-type--artifacts #block-artifactinfo-content img.align-right {
+  .node-type--artifacts #block-artifactinfo-content img.align-left,
+  .node-type--artifacts #block-artifactinfo-content img.align-right {
     margin: 15px auto;
   }
 }
@@ -783,7 +789,7 @@
     color: black;
   }
 
-  . node-type--artifacts #block-artifactinfo-content img {
+  .node-type--artifacts #block-artifactinfo-content img {
     border: 1px solid #ccc;
   }
 }

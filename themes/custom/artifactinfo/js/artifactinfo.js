@@ -772,25 +772,28 @@
           wrapper.addEventListener('change', function(e) {
             if (e.target.type === 'checkbox') {
               const url = new URL(window.location.href);
+              
+              // Remove existing type parameter
+              url.searchParams.delete('type');
+              
+              // Get checked values
+              const checkedValues = [];
+              wrapper.querySelectorAll('input[type="checkbox"]:checked').forEach(checkbox => {
+                checkedValues.push(checkbox.value);
+              });
 
-              // Only one checkbox can be selected at a time
-              if (e.target.checked) {
-                // Uncheck all other checkboxes
-                wrapper.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
-                  if (checkbox !== e.target) {
-                    checkbox.checked = false;
-                  }
-                });
-
-                // Update URL with selected type
-                url.searchParams.set('type', e.target.value);
-
-                // Reload page with new URL
-                window.location.href = url.toString();
-              } else {
-                // If unchecked, don't allow it (keep at least one selected)
-                e.target.checked = true;
+              // Set appropriate type parameter based on selection
+              if (checkedValues.length === 2) {
+                // Both selected = type=all
+                url.searchParams.set('type', 'all');
+              } else if (checkedValues.length === 1) {
+                // Only one selected = use specific type
+                url.searchParams.set('type', checkedValues[0]);
               }
+              // If none selected, no type parameter (let it be handled by backend)
+
+              // Reload page with new URL
+              window.location.href = url.toString();
             }
           });
 
@@ -799,14 +802,21 @@
           const typeParam = currentUrl.searchParams.get('type');
 
           if (typeParam) {
-            // Check the checkbox matching URL parameter
-            const targetCheckbox = wrapper.querySelector(`input[value="${typeParam}"]`);
-            if (targetCheckbox) {
-              targetCheckbox.checked = true;
+            if (typeParam === 'all') {
+              // Check both checkboxes
+              wrapper.querySelectorAll('input[type="checkbox"]').forEach(checkbox => {
+                checkbox.checked = true;
+              });
+            } else {
+              // Check specific checkbox
+              const targetCheckbox = wrapper.querySelector(`input[value="${typeParam}"]`);
+              if (targetCheckbox) {
+                targetCheckbox.checked = true;
+              }
             }
           } else {
-            // Set default ?type=article and reload only if not already set
-            currentUrl.searchParams.set('type', 'article');
+            // Set default to all and reload
+            currentUrl.searchParams.set('type', 'all');
             window.location.replace(currentUrl.toString());
           }
         }

@@ -231,7 +231,7 @@ display:
           exclude: false
           alter:
             alter_text: true
-            text: "<a href=\"/learning-center/{{tid}}?type=article\" class=\"category-card\">\r\n  <div class=\"category-image\">\r\n    {% if field_category_image %}\r\n{{field_category_image}}\r\n    {% else %}\r\n      <img src=\"themes/custom/artifactinfo/images/placeholder-image.jpeg\" alt=\"Placeholder image\">\r\n    {% endif %}\r\n  </div>\r\n  <div class=\"category-title\">{{name}}</div>\r\n</a>"
+            text: "<a href=\"/learning-center/{{tid}}?type=all\" class=\"category-card\">\r\n  <div class=\"category-image\">\r\n    {% if field_category_image %}\r\n{{field_category_image}}\r\n    {% else %}\r\n      <img src=\"themes/custom/artifactinfo/images/placeholder-image.jpeg\" alt=\"Placeholder image\">\r\n    {% endif %}\r\n  </div>\r\n  <div class=\"category-title\">{{name}}</div>\r\n</a>"
             make_link: false
             path: ''
             absolute: false
