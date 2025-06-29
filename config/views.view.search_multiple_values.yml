@@ -1208,7 +1208,7 @@ display:
           type: datetime_default
           settings:
             timezone_override: ''
-            format_type: olivero_medium
+            format_type: auction_date
           group_column: value
           group_columns: {  }
           group_rows: true
