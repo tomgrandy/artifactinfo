@@ -21,14 +21,10 @@
                   class="puzzle-selector-dropdown" 
                   name="puzzle_selector"
                   aria-describedby="puzzle-help">
-            <option value="">-- Choose a puzzle --</option>
             {% for nid, title in puzzle_selector.options %}
               <option value="{{ nid }}">{{ title }}</option>
             {% endfor %}
           </select>
-          <small id="puzzle-help" class="puzzle-help-text">
-            Select a puzzle from the dropdown to display it below.
-          </small>
         </div>
         
         {# Display area #}

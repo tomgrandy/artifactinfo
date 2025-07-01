@@ -14,7 +14,7 @@ mode: default
 content:
   field_partner_logo:
     type: media_library_widget
-    weight: 0
+    weight: 1
     region: content
     settings:
       media_types: {  }

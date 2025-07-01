@@ -859,8 +859,17 @@
 
   Drupal.behaviors.puzzleSelector = {
     attach: function (context, settings) {
-      // Get puzzle data from drupalSettings
-      var puzzles = drupalSettings.puzzleSelector ? drupalSettings.puzzleSelector.puzzles : {};
+      // Get puzzle data from drupalSettings with fallback
+      var puzzles = {};
+      
+      if (typeof drupalSettings !== 'undefined' && drupalSettings.puzzleSelector && drupalSettings.puzzleSelector.puzzles) {
+        puzzles = drupalSettings.puzzleSelector.puzzles;
+      }
+      
+      // Debug logging
+      console.log('Puzzle selector initialized');
+      console.log('Available puzzles:', puzzles);
+      console.log('Puzzle count:', Object.keys(puzzles).length);
       
       // Manual once implementation for dropdown
       $('.puzzle-selector-dropdown', context).each(function() {
@@ -869,14 +878,22 @@
         }
         $(this).addClass('puzzle-selector-processed');
         
-        $(this).on('change', function() {
-          var selectedNid = $(this).val();
+        var $dropdown = $(this);
+        
+        console.log('Processing dropdown with options:', $dropdown.find('option').length);
+        
+        // Function to load puzzle content
+        function loadPuzzle(selectedNid) {
           var $displayArea = $('#puzzle-display-area');
           var $titleArea = $('#puzzle-title');
           var $wrapperArea = $('.puzzle-display-wrapper');
           
-          if (selectedNid === '' || !puzzles[selectedNid]) {
-            $displayArea.html('<p class="no-selection">Please select a puzzle to display.</p>');
+          console.log('Loading puzzle with NID:', selectedNid);
+          console.log('Puzzle data for NID:', puzzles[selectedNid]);
+          
+          if (!puzzles[selectedNid]) {
+            console.warn('Puzzle not found for NID:', selectedNid);
+            $displayArea.html('<p class="no-embed">Puzzle not found or no puzzle data available.</p>');
             $titleArea.html('');
             $wrapperArea.removeClass('has-content');
             return;
@@ -889,18 +906,60 @@
           
           // Update embed code
           if (puzzle.embed_code && puzzle.embed_code.trim() !== '') {
+            console.log('Loading embed code:', puzzle.embed_code);
             $displayArea.html(puzzle.embed_code);
             $wrapperArea.addClass('has-content');
           } else {
+            console.warn('No embed code available for puzzle:', puzzle.title);
             $displayArea.html('<p class="no-embed">No embed code available for this puzzle.</p>');
             $wrapperArea.removeClass('has-content');
           }
           
           // Trigger a custom event for other scripts
           $(document).trigger('puzzleLoaded', [puzzle]);
-        });
-        if ($(this).find('option').length > 1 && $(this).val() === '') {
         }
+        
+        // Handle dropdown change
+        $dropdown.on('change', function() {
+          var selectedNid = $(this).val();
+          loadPuzzle(selectedNid);
+        });
+        
+        // Auto-select first option and load it by default
+        function initializeFirstPuzzle() {
+          if ($dropdown.find('option').length > 0) {
+            // Find first option (even if empty, then first non-empty)
+            var firstOption = $dropdown.find('option').first();
+            var firstNonEmptyOption = $dropdown.find('option[value!=""]').first();
+            
+            console.log('First option:', firstOption.val(), firstOption.text());
+            console.log('First non-empty option:', firstNonEmptyOption.val(), firstNonEmptyOption.text());
+            
+            // Prefer non-empty option, fallback to first option
+            var targetOption = firstNonEmptyOption.length ? firstNonEmptyOption : firstOption;
+            
+            if (targetOption.length && targetOption.val()) {
+              console.log('Setting dropdown to:', targetOption.val());
+              $dropdown.val(targetOption.val());
+              loadPuzzle(targetOption.val());
+            } else {
+              console.warn('No valid options found in dropdown');
+            }
+          } else {
+            console.warn('No options found in dropdown');
+          }
+        }
+        
+        // Try to initialize immediately
+        initializeFirstPuzzle();
+        
+        // Also try after a short delay in case DOM isn't fully ready
+        setTimeout(function() {
+          if ($('#puzzle-display-area').html().indexOf('Please select a puzzle') !== -1) {
+            console.log('Retrying puzzle initialization after delay...');
+            initializeFirstPuzzle();
+          }
+        }, 100);
       });
       
       // Manual once implementation for search

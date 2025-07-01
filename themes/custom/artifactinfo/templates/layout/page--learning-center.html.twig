@@ -2,7 +2,7 @@
 <div class="layout-container">
   <header class="header">
     <div class="header-container">
-      <a href="#" class="logo">
+      <a href="{{ front_page|default(path('<front>')) }}" class="logo">
         <img src="{{ logo_path|default(base_path ~ directory ~ '/images/Ai-Logo2proof.png') }}" class="logo-icon" alt="{{ site_name|default('Site Logo')|t }}">
       </a>
       {% if page.primary_menu %}

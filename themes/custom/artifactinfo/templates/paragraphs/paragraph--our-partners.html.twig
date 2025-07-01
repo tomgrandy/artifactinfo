@@ -17,7 +17,13 @@
               {% for item in paragraph.field_partner_logo %}
                 {% if item.entity %}
                   <div class="partner-icon">
-                    {{ item.entity|view }}
+                    {% if item.entity.field_partner_link and not item.entity.field_partner_link.isEmpty %}
+                      <a href="{{ item.entity.field_partner_link.uri }}" target="_blank" rel="noopener">
+                        {{ item.entity|view }}
+                      </a>
+                    {% else %}
+                      {{ item.entity|view }}
+                    {% endif %}
                   </div>
                 {% endif %}
               {% endfor %}
@@ -28,7 +34,13 @@
               {% for item in paragraph.field_partner_logo %}
                 {% if item.entity %}
                   <div class="partner-icon">
-                    {{ item.entity|view }}
+                    {% if item.entity.field_partner_link and not item.entity.field_partner_link.isEmpty %}
+                      <a href="{{ item.entity.field_partner_link.uri }}" target="_blank" rel="noopener">
+                        {{ item.entity|view }}
+                      </a>
+                    {% else %}
+                      {{ item.entity|view }}
+                    {% endif %}
                   </div>
                 {% endif %}
               {% endfor %}

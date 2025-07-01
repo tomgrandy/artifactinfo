@@ -2788,6 +2788,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   width: 100%;
   height: 100%;
   transition: inherit;
+  color: white;
 }
 
 @keyframes scroll-x {

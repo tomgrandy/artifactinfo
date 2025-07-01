@@ -5,6 +5,7 @@ dependencies:
   config:
     - core.entity_view_mode.media.media_library
     - field.field.media.vector_image.field_media_svg
+    - field.field.media.vector_image.field_partner_link
     - media.type.vector_image
   module:
     - svg_image_field
@@ -26,12 +27,16 @@ content:
       enable_alt: true
       enable_title: true
       link: ''
+      force_fill: false
+      sanitize: true
+      sanitize_remote: false
     third_party_settings: {  }
     weight: 0
     region: content
 hidden:
   addtoany: true
   created: true
+  field_partner_link: true
   langcode: true
   name: true
   search_api_excerpt: true

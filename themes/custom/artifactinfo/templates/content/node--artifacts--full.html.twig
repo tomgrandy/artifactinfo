@@ -1,4 +1,4 @@
-<a href="/search-multi" class="back-button">Back</a>
+<a href="javascript:history.back()" class="back-button">Back</a>
 
 <div class="artifact-details">
 <div class="images-column">
@@ -11,6 +11,9 @@
     </div>
 
     <div class="thumbnail-slider">
+        {% if content.field_artifact_image_1['#items'].entity is not empty %}
+            <img src="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}" alt="Thumbnail 1" class="thumbnail zoom" data-full-image="{{ file_url(content.field_artifact_image_1['#items'].entity.uri.value) }}">
+        {% endif %}
         {% if content.field_artifact_image_2['#items'].entity is not empty %}
             <img src="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}" alt="Thumbnail 2" class="thumbnail zoom" data-full-image="{{ file_url(content.field_artifact_image_2['#items'].entity.uri.value) }}">
         {% endif %}

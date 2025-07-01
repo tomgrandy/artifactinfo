@@ -4,8 +4,10 @@ status: true
 dependencies:
   config:
     - field.field.media.vector_image.field_media_svg
+    - field.field.media.vector_image.field_partner_link
     - media.type.vector_image
   module:
+    - link
     - path
     - svg_image_field
 _core:
@@ -29,6 +31,14 @@ content:
       progress_indicator: throbber
       preview_image_max_width: 300
       preview_image_max_height: 300
+    third_party_settings: {  }
+  field_partner_link:
+    type: link_default
+    weight: 31
+    region: content
+    settings:
+      placeholder_url: ''
+      placeholder_title: ''
     third_party_settings: {  }
   langcode:
     type: language_select
