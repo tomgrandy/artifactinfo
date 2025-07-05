@@ -6,6 +6,7 @@ dependencies:
     - field.storage.node.field_artifact_description
     - field.storage.node.field_date_sold
     - field.storage.node.field_keyword
+    - field.storage.node.field_place_of_origin
     - field.storage.node.field_sale_price
     - field.storage.node.field_search_categories
     - search_api.server.apache_solr_server
@@ -89,6 +90,14 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_keyword
+  field_place_of_origin:
+    label: 'Place of Origin'
+    datasource_id: 'entity:node'
+    property_path: field_place_of_origin
+    type: integer
+    dependencies:
+      config:
+        - field.storage.node.field_place_of_origin
   field_sale_price:
     label: 'Sale Price'
     datasource_id: 'entity:node'
@@ -101,7 +110,7 @@ field_settings:
     label: 'Search Category'
     datasource_id: 'entity:node'
     property_path: field_search_categories
-    type: text
+    type: integer
     dependencies:
       config:
         - field.storage.node.field_search_categories

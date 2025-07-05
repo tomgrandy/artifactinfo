@@ -915,864 +915,6 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 /* ========================================
-   SEARCH PAGE COMPONENTS
-======================================== */
-
-.container {
-  max-width: 1400px;
-  margin: 60px auto;
-  padding: 20px;
-}
-
-/* Page Title */
-.page-title {
-  font-size: 24px;
-  font-weight: normal;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
-/* Mobile Header Controls */
-.mobile-controls {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 15px 0;
-}
-
-.mobile-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: transparent;
-  border: 1px solid #A8A6A1;
-  color: #A8A6A1;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.mobile-btn:hover {
-  background-color: #A8A6A1;
-  color: #000000;
-}
-
-.search-subtitle {
-  display: none;
-  font-size: 18px;
-  color: #DFE0E1;
-  margin-bottom: 20px;
-}
-
-/* Main Layout */
-.search-layout {
-  display: grid;
-  grid-template-columns: 250px 1fr;
-  gap: 30px;
-}
-
-/* Search Filters Sidebar */
-.search-filters {
-  background-color: #000000;
-  transition: transform 0.3s ease;
-}
-
-.filter-group {
-  margin-bottom: 25px;
-}
-
-.filter-label {
-  display: block;
-  color: #DFE0E1;
-  font-size: 14px;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.filter-input,
-.filter-select {
-  width: 100%;
-  padding: 8px;
-  background-color: #38383B;
-  border: 1px solid #DFE0E1;
-  color: #FFFFFF;
-  font-size: 12px;
-  border-radius: 3px;
-}
-
-.filter-input:focus,
-.filter-select:focus {
-  outline: none;
-  border-color: #A8A6A1;
-}
-
-.filter-select option {
-  background-color: #38383B;
-  color: #FFFFFF;
-}
-
-/* Results Content */
-.results-content {
-  background-color: #000000;
-}
-
-/* Results Header */
-.results-header {
-  display: grid;
-  grid-template-columns: 120px 1fr auto auto auto auto;
-  gap: 20px;
-  padding: 15px 20px;
-  border-bottom: 1px solid #38383B;
-  font-size: 14px;
-  color: #DFE0E1;
-  align-items: center;
-  background-color: #000000;
-}
-
-.header-cell {
-  font-weight: 500;
-  text-transform: uppercase;
-}
-
-.header-image {
-  text-align: left;
-}
-
-.header-title {
-  text-align: center;
-}
-
-.header-keyword,
-.header-origin,
-.header-category,
-.header-price {
-  text-align: right;
-}
-
-.header-link {
-  color: #0000FF;
-  text-decoration: none;
-}
-
-.header-link:hover {
-  text-decoration: underline;
-}
-
-.results-count {
-  font-weight: 500;
-}
-
-.sort-link {
-  color: #A8A6A1;
-  text-decoration: none;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.sort-link:hover {
-  color: #DFE0E1;
-}
-
-/* Desktop Results List */
-.results-list {
-  background-color: #000000;
-}
-
-/* Filter Buttons */
-.filter-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 25px;
-  margin-bottom: 15px;
-}
-
-.filter-button {
-  padding: 8px 15px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.filter-apply {
-  background-color: #A8A6A1;
-  color: #000000;
-  border: none;
-}
-
-.filter-apply:hover {
-  background-color: #DFE0E1;
-}
-
-.filter-reset {
-  background-color: transparent;
-  color: #A8A6A1;
-  border: 1px solid #A8A6A1;
-}
-
-.filter-reset:hover {
-  background-color: #A8A6A1;
-  color: #000000;
-}
-
-.result-item {
-  display: grid;
-  grid-template-columns: 120px 1fr auto auto auto auto;
-  gap: 20px;
-  padding: 20px;
-  border-bottom: 1px solid #38383B;
-  align-items: center;
-  transition: background-color 0.3s;
-}
-
-.result-item:hover {
-  background-color: rgba(56, 56, 59, 0.3);
-}
-
-.artifact-image {
-  width: 100px;
-  height: 100px;
-}
-
-.artifact-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid #38383B;
-}
-
-.artifact-details {
-  flex: 1;
-}
-
-.artifact-title {
-  color: #A8A6A1;
-  text-decoration: none;
-  font-size: 14px;
-  line-height: 1.4;
-  display: block;
-  margin-bottom: 8px;
-}
-
-.artifact-title:hover {
-  color: #DFE0E1;
-}
-
-.artifact-meta {
-  color: #DFE0E1;
-  font-size: 12px;
-}
-
-.artifact-meta a {
-  color: #A8A6A1;
-  text-decoration: none;
-}
-
-.artifact-meta a:hover {
-  color: #DFE0E1;
-}
-
-.artifact-price {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
-  text-align: right;
-  min-width: 80px;
-}
-
-.artifact-location {
-  color: #A8A6A1;
-  font-size: 14px;
-  text-align: center;
-  min-width: 80px;
-}
-
-.artifact-date {
-  color: #DFE0E1;
-  font-size: 12px;
-  text-align: right;
-  min-width: 120px;
-}
-
-/* Mobile Card Layout */
-.mobile-cards {
-  display: none;
-  grid-template-columns: 1fr;
-  gap: 20px;
-  padding: 20px 0;
-}
-
-.artifact-card {
-  background-color: #38383B;
-  border-radius: 8px;
-  padding: 20px;
-  text-align: center;
-  transition: transform 0.3s ease;
-}
-
-.artifact-card:hover {
-  transform: translateY(-2px);
-}
-
-.card-image {
-  width: 200px;
-  height: 200px;
-  margin: 0 auto 15px;
-  border-radius: 8px;
-  overflow: hidden;
-}
-
-.card-image img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-}
-
-.card-title {
-  color: #FFFFFF;
-  font-size: 16px;
-  font-weight: 500;
-  margin-bottom: 10px;
-  line-height: 1.3;
-}
-
-.card-price {
-  color: #A8A6A1;
-  font-size: 18px;
-  font-weight: bold;
-  margin-bottom: 5px;
-}
-
-.card-location {
-  color: #DFE0E1;
-  font-size: 14px;
-}
-
-/* Pagination */
-.pagination {
-  display: flex;
-  justify-content: center;
-  gap: 15px;
-  padding: 30px 20px;
-  border-top: 1px solid #38383B;
-}
-
-.pagination-btn {
-  background-color: #A8A6A1;
-  color: #000000;
-  border: none;
-  padding: 10px 20px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  text-decoration: none;
-  transition: background-color 0.3s;
-}
-
-.pagination-btn:hover {
-  background-color: #DFE0E1;
-}
-
-.pagination-btn:disabled {
-  background-color: #38383B;
-  color: #DFE0E1;
-  cursor: not-allowed;
-}
-
-/* Mobile Sidebar Overlay */
-.sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.sidebar-overlay.active {
-  display: block;
-}
-
-.filter-close {
-  display: none;
-}
-
-/* Icons */
-.icon-filter::before {
-  content: "⚏";
-  margin-right: 5px;
-}
-
-.icon-sort::before {
-  content: "⇅";
-  margin-right: 5px;
-}
-
-/* ========================================
-   SEARCH MULTI PAGE SPECIFIC STYLES
-======================================== */
-
-/* Page Title */
-.path--search-multi .page-title {
-  font-size: 24px;
-  font-weight: normal;
-  margin-bottom: 30px;
-  letter-spacing: 1px;
-}
-
-/* Mobile Header Controls */
-.path--search-multi .mobile-controls {
-  display: none;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 20px;
-  padding: 15px 0;
-}
-
-.path--search-multi .mobile-btn {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  background-color: transparent;
-  border: 1px solid #A8A6A1;
-  color: #A8A6A1;
-  padding: 10px 15px;
-  border-radius: 4px;
-  cursor: pointer;
-  font-size: 14px;
-  font-weight: 500;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-}
-
-.path--search-multi .mobile-btn:hover {
-  background-color: #A8A6A1;
-  color: #000000;
-}
-
-.path--search-multi .search-subtitle {
-  display: none;
-  font-size: 18px;
-  color: #DFE0E1;
-  margin-bottom: 20px;
-}
-
-/* Main Layout */
-.path--search-multi .search-layout {
-  display: grid;
-  grid-template-columns: 280px 1fr;
-  gap: 30px;
-}
-
-/* Search Filters Sidebar */
-.path--search-multi .search-filters {
-  background-color: #000000;
-  margin-top: 35px;
-  transition: transform 0.3s ease;
-}
-
-.path--search-multi .filters-title {
-  color: #A8A6A1;
-  font-size: 25px !important;
-  margin-bottom: 20px;
-  border-bottom: 2px solid #38383B;
-  padding-bottom: 10px;
-}
-
-/* Drupal Form Styling */
-.path--search-multi .views-exposed-form {
-  background-color: #000000;
-}
-
-.path--search-multi .form-item {
-  margin-bottom: 20px;
-}
-
-.path--search-multi .form-item label {
-  display: block;
-  color: #DFE0E1;
-  font-size: 14px;
-  margin-bottom: 8px;
-  font-weight: 500;
-}
-
-.path--search-multi .form-text,
-.path--search-multi .form-select,
-.path--search-multi .form-date {
-  width: 100%;
-  padding: 8px;
-  background-color: #38383B;
-  border: 1px solid #DFE0E1;
-  color: #FFFFFF;
-  font-size: 12px;
-  border-radius: 3px;
-}
-
-.path--search-multi .form-text:focus,
-.path--search-multi .form-select:focus,
-.path--search-multi .form-date:focus {
-  outline: none;
-  border-color: #A8A6A1;
-}
-
-.path--search-multi .form-select option {
-  background-color: #38383B;
-  color: #FFFFFF;
-}
-
-.path--search-multi .form-actions {
-  display: flex;
-  gap: 10px;
-  margin-top: 25px;
-}
-
-.path--search-multi .form-submit {
-  padding: 8px 15px;
-  border-radius: 4px;
-  font-size: 14px;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-
-.path--search-multi .form-submit[value="Apply"] {
-  background-color: #A8A6A1;
-  color: #000000;
-  border: none;
-}
-
-.path--search-multi .form-submit[value="Apply"]:hover {
-  background-color: #DFE0E1;
-}
-
-.path--search-multi .form-submit[value="Reset"] {
-  background-color: transparent;
-  color: #A8A6A1;
-  border: 1px solid #A8A6A1;
-}
-
-.path--search-multi .form-submit[value="Reset"]:hover {
-  background-color: #A8A6A1;
-  color: #000000;
-}
-
-/* Results Content */
-.path--search-multi .results-content {
-  background-color: #000000;
-}
-
-/* Table Styling */
-.path--search-multi table.cols-5 {
-  width: 100%;
-  border-collapse: collapse;
-  background-color: #000000;
-}
-
-.path--search-multi table.cols-5 thead {
-  background-color: #000000;
-}
-
-.path--search-multi table.cols-5 th {
-  padding: 15px 10px;
-  border-bottom: 2px solid #38383B;
-  font-weight: 500;
-  font-size: 14px;
-  color: #A8A6A1 !important;
-  text-transform: uppercase;
-}
-
-.path--search-multi table.cols-5 th a {
-  color: #A8A6A1 !important;
-  text-transform: uppercase;
-  text-decoration: none;
-}
-
-.path--search-multi table.cols-5 th:first-child {
-  text-align: left;
-}
-
-.path--search-multi table.cols-5 th:nth-child(2) {
-  text-align: center;
-}
-
-.path--search-multi table.cols-5 th:nth-child(n+3) {
-  text-align: center;
-}
-
-.path--search-multi table.cols-5 tbody tr {
-  border-bottom: 1px solid #38383B;
-  transition: background-color 0.3s;
-}
-
-.path--search-multi table.cols-5 tbody tr:hover {
-  background-color: rgba(56, 56, 59, 0.3);
-}
-
-.path--search-multi table.cols-5 td {
-  padding: 15px 10px;
-  vertical-align: top;
-  color: #A8A6A1;
-}
-
-/* Views field styling */
-.path--search-multi .views-field {
-  font-size: 14px;
-}
-
-.path--search-multi .views-field-field-artifact-image-1 {
-  width: 120px;
-  text-align: center;
-}
-
-.path--search-multi .views-field-field-artifact-image-1 img {
-  object-fit: cover;
-  border-radius: 4px;
-  border: 1px solid #38383B;
-}
-
-.path--search-multi .views-field-title {
-  text-align: left;
-  max-width: 300px;
-}
-
-.path--search-multi .views-field-title a,
-.path--search-multi .views-field-field-sale-price a {
-  color: #A8A6A1;
-  text-decoration: none;
-  line-height: 1.4;
-}
-
-.path--search-multi .views-field-title a:hover,
-.path--search-multi .views-field-field-sale-price a:hover {
-  color: #DFE0E1;
-  text-decoration: underline;
-}
-
-.path--search-multi .views-field-field-keyword,
-.path--search-multi .views-field-field-place-of-origin,
-.path--search-multi .views-field-field-search-categories {
-  text-align: center;
-}
-
-.path--search-multi .views-field-field-keyword a,
-.path--search-multi .views-field-field-place-of-origin a,
-.path--search-multi .views-field-field-search-categories a,
-.artifact-details .detail-item a {
-  color: #A8A6A1;
-  text-decoration: none;
-}
-
-.path--search-multi .views-field-field-keyword a:hover,
-.path--search-multi .views-field-field-place-of-origin a:hover,
-.path--search-multi .views-field-field-search-categories a:hover,
-.path--search-multi table.cols-5 td:hover,
-.artifact-details .detail-item a:hover {
-  color: #DFE0E1;
-  text-decoration: underline;
-}
-
-.path--search-multi .views-field-field-sale-price {
-  text-align: center;
-  color: #FFFFFF;
-  font-weight: 500;
-}
-
-/* Mobile Sidebar Overlay */
-.path--search-multi .sidebar-overlay {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  z-index: 999;
-}
-
-.path--search-multi .sidebar-overlay.active {
-  display: block;
-}
-
-.path--search-multi .filter-close {
-  display: none;
-}
-
-/* Pagination Styling */
-.path--search-multi .pagination-nav {
-  margin-top: 30px;
-  padding-top: 20px;
-  border-top: 1px solid #38383B;
-}
-
-.path--search-multi .visually-hidden {
-  position: absolute !important;
-  width: 1px !important;
-  height: 1px !important;
-  padding: 0 !important;
-  margin: -1px !important;
-  overflow: hidden !important;
-  clip: rect(0, 0, 0, 0) !important;
-  white-space: nowrap !important;
-  border: 0 !important;
-}
-
-.path--search-multi .js-pager__items {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 15px;
-  list-style: none;
-  margin: 0;
-  padding: 0;
-  margin-top: 10px;
-}
-
-.path--search-multi .js-pager__items li {
-  display: flex;
-  align-items: center;
-}
-
-.path--search-multi .js-pager__items li:first-child {
-  color: #DFE0E1;
-  font-size: 14px;
-  font-weight: 500;
-}
-
-.path--search-multi .js-pager__items a {
-  display: inline-flex;
-  align-items: center;
-  padding: 8px 15px;
-  background-color: transparent;
-  border: 1px solid #A8A6A1;
-  color: #A8A6A1;
-  text-decoration: none;
-  border-radius: 4px;
-  font-size: 14px;
-  font-weight: 500;
-  transition: all 0.3s ease;
-}
-
-.path--search-multi .js-pager__items a:hover {
-  background-color: #A8A6A1;
-  color: #000000;
-}
-
-.path--search-multi .js-pager__items a:focus {
-  outline: 2px solid #A8A6A1;
-  outline-offset: 2px;
-}
-
-/* Mobile Responsive for Search Multi Page */
-@media (max-width: 768px) {
-  .path--search-multi .container {
-    padding: 15px;
-  }
-
-  .path--search-multi .page-title {
-    font-size: 20px;
-    margin-bottom: 20px;
-  }
-
-    .path--search-multi .mobile-controls {
-    display: flex;
-  }
-
-  .path--search-multi .search-subtitle {
-    display: block;
-  }
-
-  .path--search-multi .search-layout {
-    display: block;
-    max-width: 100%;
-  }
-
-  .path--search-multi .results-content {
-    width: 100%;
-    max-width: 100%;
-    margin: 0 auto;
-  }
-
-  .path--search-multi .search-filters {
-    position: fixed;
-    top: 0;
-    margin-top: 0;
-    left: -300px;
-    width: 280px;
-    height: 100vh;
-    background-color: #000000;
-    padding: 20px;
-    z-index: 1000;
-    overflow-y: auto;
-    border-right: 1px solid #38383B;
-  }
-
-  .path--search-multi .search-filters.active {
-    transform: translateX(300px);
-  }
-
-  .path--search-multi .filter-close {
-    display: block;
-    background: none;
-    border: none;
-    color: #A8A6A1;
-    font-size: 24px;
-    cursor: pointer;
-    margin-bottom: 20px;
-    padding: 5px;
-  }
-
-  .path--search-multi table.cols-5 {
-    display: none;
-  }
-
-
-
-  .path--search-multi .pagination-nav {
-    margin-top: 20px;
-    padding: 15px;
-    background-color: rgba(56, 56, 59, 0.3);
-    border-radius: 8px;
-  }
-
-  .path--search-multi .js-pager__items {
-    gap: 5px;
-    flex-wrap: nowrap;
-    justify-content: center;
-    padding: 0 5px;
-    overflow-x: auto;
-    scroll-behavior: smooth;
-  }
-
-  .path--search-multi .js-pager__items a {
-    padding: 10px 8px;
-    font-size: 12px;
-    min-width: 36px;
-    text-align: center;
-    touch-action: manipulation;
-    white-space: nowrap;
-    flex-shrink: 0;
-  }
-}
-
-/* Search Multi Page Icons */
-.path--search-multi .icon-filter::before {
-  content: "⚏";
-  margin-right: 5px;
-}
-
-.path--search-multi .icon-sort::before {
-  content: "⇅";
-  margin-right: 5px;
-}
-
-/* ========================================
    ARTIFACT DETAILS COMPONENTS
 ======================================== */
 
@@ -2904,6 +2046,10 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   }
 }
 
+.mobile-cards {
+  display: none;
+}
+
 /* ========================================
    MOBILE ARTIFACT CARDS - RESPONSIVE STYLES
 ======================================== */
@@ -3020,16 +2166,1293 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
   .mobile-cards .card-location {
     font-size: 13px;
   }
+}
 
-  /* Improved pager for small mobile */
-  .path--search-multi .js-pager__items {
-    gap: 3px;
-    padding: 0 3px;
+.search-category-container {
+  background-color: #38383B; /* Darker 1 - Section background */
+  border-radius: 8px;
+  padding: 0;
+  max-width: 400px;
+  margin: 0 auto;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+}
+
+.v0-block-header {
+  background-color: #A8A6A1; /* Bright 1 - Accent color */
+  color: #000000; /* Darkest 1 - Text on accent */
+  padding: 8px 16px;
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 8px 8px 0 0;
+}
+
+/* ========================================
+   SEARCH MULTI PAGE SPECIFIC STYLES - AJAX SAFE
+======================================== */
+
+/* Page Title */
+.path--artifact-search .page-title {
+  font-size: 24px;
+  font-weight: normal;
+  margin-bottom: 30px;
+  letter-spacing: 1px;
+}
+
+/* Mobile Header Controls */
+.path--artifact-search .mobile-controls {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 15px 0;
+}
+
+.path--artifact-search .mobile-btn {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background-color: transparent;
+  border: 1px solid #A8A6A1;
+  color: #A8A6A1;
+  padding: 10px 15px;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.path--artifact-search .mobile-btn:hover {
+  background-color: #A8A6A1;
+  color: #000000;
+}
+
+.path--artifact-search .search-subtitle {
+  display: none;
+  font-size: 18px;
+  color: #DFE0E1;
+  margin-bottom: 20px;
+}
+
+/* Main Layout */
+.path--artifact-search .search-layout {
+  display: grid;
+  grid-template-columns: 280px 1fr;
+  gap: 30px;
+}
+
+/* Search Filters Sidebar */
+.path--artifact-search .search-filters {
+  background-color: #000000;
+  margin-top: 13px;
+  transition: left 0.3s ease; /* ✅ Using left instead of transform */
+}
+
+.path--artifact-search .filters-title {
+  color: #A8A6A1;
+  font-size: 25px !important;
+  margin-bottom: 20px;
+  border-bottom: 2px solid #38383B;
+  padding-bottom: 10px;
+}
+
+/* Drupal Form Styling */
+.path--artifact-search .views-exposed-form {
+  background-color: #000000;
+}
+
+.path--artifact-search .form-item {
+  margin-bottom: 20px;
+}
+
+.path--artifact-search .form-item label{
+  display: block;
+  color: #DFE0E1;
+  font-size: 17px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+.path--artifact-search .facets-widget-checkbox .facets-widget-checkbox-label {
+  border-bottom: 1px solid #38383B;
+  display: block;
+  color: #DFE0E1;
+  font-size: 17px;
+  margin-bottom: 8px;
+  font-weight: 500;
+}
+
+.path--artifact-search .form-text,
+.path--artifact-search .form-select,
+.path--artifact-search .form-date {
+  width: 100%;
+  padding: 8px;
+  background-color: #38383B;
+  border: 1px solid #DFE0E1;
+  color: #FFFFFF;
+  font-size: 12px;
+  border-radius: 3px;
+}
+
+.path--artifact-search .form-text:focus,
+.path--artifact-search .form-select:focus,
+.path--artifact-search .form-date:focus {
+  outline: none;
+  border-color: #A8A6A1;
+}
+
+.path--artifact-search .form-select option {
+  background-color: #38383B;
+  color: #FFFFFF;
+}
+
+.path--artifact-search .form-actions {
+  display: flex;
+  gap: 10px;
+  margin-top: 25px;
+}
+
+.path--artifact-search .form-submit {
+  padding: 8px 15px;
+  border-radius: 4px;
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.path--artifact-search .form-submit[value="Apply"] {
+  background-color: #A8A6A1;
+  color: #000000;
+  border: none;
+}
+
+.path--artifact-search .form-submit[value="Apply"]:hover {
+  background-color: #DFE0E1;
+}
+
+.path--artifact-search .form-submit[value="Reset"] {
+  background-color: transparent;
+  color: #A8A6A1;
+  border: 1px solid #A8A6A1;
+}
+
+.path--artifact-search .form-submit[value="Reset"]:hover {
+  background-color: #A8A6A1;
+  color: #000000;
+}
+
+/* Results Content */
+.path--artifact-search .results-content {
+  background-color: #000000;
+}
+
+/* Table Styling */
+.path--artifact-search table.cols-5 {
+  width: 100%;
+  border-collapse: collapse;
+  background-color: #000000;
+}
+
+.path--artifact-search table.cols-5 thead {
+  background-color: #000000;
+}
+
+.path--artifact-search table.cols-5 th {
+  padding: 15px 10px;
+  border-bottom: 2px solid #38383B;
+  font-weight: 500;
+  font-size: 14px;
+  color: #A8A6A1 !important;
+  text-transform: uppercase;
+}
+
+.path--artifact-search table.cols-5 th a {
+  color: #A8A6A1 !important;
+  text-transform: uppercase;
+  text-decoration: none;
+}
+
+.path--artifact-search table.cols-5 th:first-child {
+  text-align: left;
+}
+
+.path--artifact-search table.cols-5 th:nth-child(2) {
+  text-align: center;
+}
+
+.path--artifact-search table.cols-5 th:nth-child(n+3) {
+  text-align: center;
+}
+
+.path--artifact-search table.cols-5 tbody tr {
+  border-bottom: 1px solid #38383B;
+  transition: background-color 0.3s;
+}
+
+.path--artifact-search table.cols-5 tbody tr:hover {
+  background-color: rgba(56, 56, 59, 0.3);
+}
+
+.path--artifact-search table.cols-5 td,
+.path--artifact-search table.cols-5 td a{
+  padding: 15px 10px;
+  vertical-align: top;
+  color: #A8A6A1;
+  text-decoration: none;
+}
+
+/* Views field styling */
+.path--artifact-search .views-field {
+  font-size: 14px;
+}
+
+.path--artifact-search .views-field-field-artifact-image-1 {
+  width: 120px;
+  text-align: center;
+}
+
+.path--artifact-search .views-field-field-artifact-image-1 img {
+  object-fit: cover;
+  border-radius: 4px;
+  border: 1px solid #38383B;
+}
+
+.path--artifact-search .views-field-title {
+  text-align: left;
+  max-width: 300px;
+}
+
+.path--artifact-search .views-field-title a,
+.path--artifact-search .views-field-field-sale-price a {
+  color: #A8A6A1;
+  text-decoration: none;
+  line-height: 1.4;
+}
+
+.path--artifact-search .views-field-title a:hover,
+.path--artifact-search .views-field-field-sale-price a:hover {
+  color: #DFE0E1;
+  text-decoration: underline;
+}
+
+.path--artifact-search .views-field-field-keyword,
+.path--artifact-search .views-field-field-place-of-origin,
+.path--artifact-search .views-field-field-search-categories {
+  text-align: center;
+}
+
+.path--artifact-search .views-field-field-keyword a,
+.path--artifact-search .views-field-field-place-of-origin a,
+.path--artifact-search .views-field-field-search-categories a,
+.artifact-details .detail-item a {
+  color: #A8A6A1;
+  text-decoration: none;
+}
+
+.path--artifact-search .views-field-field-keyword a:hover,
+.path--artifact-search .views-field-field-place-of-origin a:hover,
+.path--artifact-search .views-field-field-search-categories a:hover,
+.path--artifact-search table.cols-5 td:hover,
+.artifact-details .detail-item a:hover,
+.path--artifact-search table.cols-5 td a:hover {
+  color: #DFE0E1;
+  text-decoration: underline;
+}
+
+.path--artifact-search .views-field-field-sale-price {
+  text-align: center;
+  color: #FFFFFF;
+  font-weight: 500;
+}
+
+/* AJAX-Safe Mobile Sidebar Overlay */
+.path--artifact-search .sidebar-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9; /* ✅ Low z-index, won't conflict with Drupal AJAX */
+  pointer-events: none; /* ✅ Won't block AJAX clicks by default */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+.path--artifact-search .sidebar-overlay.active {
+  pointer-events: auto; /* ✅ Only capture events when active */
+  opacity: 1;
+  visibility: visible;
+}
+
+.path--artifact-search .filter-close {
+  display: none;
+}
+
+/* Pagination Styling */
+.path--artifact-search .pagination-nav {
+  margin-top: 30px;
+  padding-top: 20px;
+  border-top: 1px solid #38383B;
+}
+
+.path--artifact-search .visually-hidden {
+  position: absolute !important;
+  width: 1px !important;
+  height: 1px !important;
+  padding: 0 !important;
+  margin: -1px !important;
+  overflow: hidden !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+  border: 0 !important;
+}
+
+.path--artifact-search .js-pager__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px;
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  margin-top: 10px;
+}
+
+.path--artifact-search .js-pager__items li {
+  display: flex;
+  align-items: center;
+}
+
+.path--artifact-search .js-pager__items li:first-child {
+  color: #DFE0E1;
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.path--artifact-search .js-pager__items a {
+  display: inline-flex;
+  align-items: center;
+  padding: 8px 15px;
+  background-color: transparent;
+  border: 1px solid #A8A6A1;
+  color: #A8A6A1;
+  text-decoration: none;
+  border-radius: 4px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+}
+
+.path--artifact-search .js-pager__items a:hover {
+  background-color: #A8A6A1;
+  color: #000000;
+}
+
+.path--artifact-search .js-pager__items a:focus {
+  outline: 2px solid #A8A6A1;
+  outline-offset: 2px;
+}
+
+/* Mobile Responsive for Search Multi Page - AJAX SAFE */
+@media (max-width: 768px) {
+  .path--artifact-search .container {
+    padding: 15px;
   }
 
-  .path--search-multi .js-pager__items a {
-    padding: 8px 6px;
+  .path--artifact-search .page-title {
+    font-size: 20px;
+    margin-bottom: 20px;
+  }
+
+  .path--artifact-search .mobile-controls {
+    display: flex;
+  }
+
+  .path--artifact-search .search-subtitle {
+    display: block;
+  }
+
+  .path--artifact-search .search-layout {
+    display: block;
+    max-width: 100%;
+  }
+
+  .path--artifact-search .results-content {
+    width: 100%;
+    max-width: 100%;
+    margin: 0 auto;
+  }
+
+  /* AJAX-Safe Mobile Sidebar */
+  .path--artifact-search .search-filters {
+    position: fixed;
+    top: 50px;
+    margin-top: 0;
+    left: -500px; /* ✅ Start position */
+    width: 409px;
+    height: 100vh;
+    background-color: #000000;
+    padding: 20px;
+    z-index: 10; /* ✅ Low z-index, won't conflict with Drupal AJAX */
+    overflow-y: auto;
+    border-right: 1px solid #38383B;
+    transition: left 0.3s ease; /* ✅ Using left instead of transform */
+    pointer-events: auto; /* ✅ Explicit pointer events */
+  }
+
+  .path--artifact-search .search-filters.active {
+    left: 0; /* ✅ Using left positioning instead of transform */
+  }
+
+  .path--artifact-search .filter-close {
+    display: block;
+    background: none;
+    border: none;
+    color: #A8A6A1;
+    font-size: 24px;
+    cursor: pointer;
+    margin-bottom: 20px;
+    padding: 5px;
+    float: right;
+  }
+
+  .path--artifact-search table.cols-5 {
+    display: none;
+  }
+
+  .path--artifact-search .pagination-nav {
+    margin-top: 20px;
+    padding: 15px;
+    background-color: rgba(56, 56, 59, 0.3);
+    border-radius: 8px;
+    /* ✅ Ensure container accommodates wrapped content */
+    min-height: auto;
+  }
+
+  .path--artifact-search .js-pager__items {
+    gap: 8px;
+    flex-wrap: wrap; /* ✅ Allow wrapping to multiple lines */
+    justify-content: center;
+    padding: 0 10px;
+    /* ✅ Remove horizontal scrolling */
+  }
+
+  .path--artifact-search .js-pager__items a {
+    padding: 12px 10px;
+    font-size: 14px;
+    min-width: 42px;
+    min-height: 42px;
+    text-align: center;
+    touch-action: manipulation;
+    white-space: nowrap;
+    border-radius: 6px;
+    /* ✅ Allow buttons to wrap naturally */
+  }
+
+  .path--artifact-search .js-pager__items li:first-child {
+    font-size: 14px;
+    font-weight: 500;
+    margin-right: 6px;
+    /* ✅ Ensure it wraps nicely with other elements */
+  }
+
+  /* ✅ Add small vertical spacing between wrapped rows */
+  .path--artifact-search .js-pager__items li {
+    margin: 2px 0;
+  }
+}
+
+/* Search Multi Page Icons */
+.path--artifact-search .icon-filter::before {
+  content: "⚏";
+  margin-right: 5px;
+}
+
+.path--artifact-search .icon-sort::before {
+  content: "⇅";
+  margin-right: 5px;
+}
+
+/* ========================================
+   GENERAL PAGINATION STYLES - ALL PAGES
+======================================== */
+
+/* Base pager styles for all pages */
+.pager,
+.pager__items {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 8px;
+  list-style: none;
+  margin: 20px 0;
+  padding: 0;
+  flex-wrap: wrap;
+}
+
+.pager__item,
+.pager li {
+  display: flex;
+  align-items: center;
+}
+
+.pager__link,
+.pager a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 12px 16px;
+  min-width: 44px;
+  min-height: 44px;
+  background-color: transparent;
+  border: 2px solid #A8A6A1;
+  color: #A8A6A1;
+  text-decoration: none;
+  border-radius: 6px;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  touch-action: manipulation;
+  line-height: 1;
+}
+
+.pager__link:hover,
+.pager a:hover {
+  background-color: #A8A6A1;
+  color: #000000;
+  transform: translateY(-1px);
+  box-shadow: 0 2px 8px rgba(168, 166, 161, 0.3);
+}
+
+.pager__link:focus,
+.pager a:focus {
+  outline: 2px solid #A8A6A1;
+  outline-offset: 2px;
+}
+
+.pager__link--is-active,
+.pager .is-active a,
+.pager .pager-current {
+  background-color: #A8A6A1;
+  color: #000000;
+  border-color: #DFE0E1;
+  font-weight: 600;
+}
+
+/* Mobile responsive for all pagers */
+@media (max-width: 768px) {
+  .pager,
+  .pager__items {
+    gap: 8px;
+    margin: 15px 0;
+    padding: 0 10px;
+    /* ✅ Remove horizontal scrolling - let it wrap instead */
+    flex-wrap: wrap;
+    justify-content: center;
+  }
+
+  .pager__link,
+  .pager a {
+    padding: 12px 10px;
+    min-width: 42px;
+    min-height: 42px;
+    font-size: 14px;
+    border-radius: 6px;
+    white-space: nowrap;
+    /* ✅ Allow natural wrapping */
+  }
+
+  /* Ensure proper spacing between wrapped rows */
+  .pager__item,
+  .pager li {
+    margin: 2px 0;
+  }
+}
+
+@media (max-width: 480px) {
+  .pager,
+  .pager__items {
+    gap: 6px;
+    padding: 0 5px;
+  }
+
+  .pager__link,
+  .pager a {
+    padding: 10px 8px;
+    min-width: 38px;
+    min-height: 38px;
+    font-size: 13px;
+  }
+}
+
+/* ========================================
+   DRUPAL AJAX COMPATIBILITY FIXES
+======================================== */
+
+/* Ensure AJAX modals always appear above custom elements */
+.path--artifact-search .ui-dialog,
+.path--artifact-search .ui-widget-overlay,
+.path--artifact-search .ajax-progress,
+.path--artifact-search .drupal-modal,
+.path--artifact-search [data-drupal-ajax],
+.path--artifact-search .form-actions {
+  z-index: 1500 !important; /* ✅ Higher than any custom z-index */
+}
+
+/* Prevent custom overlays from interfering with AJAX */
+.path--artifact-search .sidebar-overlay.active {
+  z-index: 9 !important; /* ✅ Always below AJAX elements */
+}
+
+/* Ensure AJAX form elements are properly positioned */
+.path--artifact-search [data-drupal-ajax],
+.path--artifact-search .use-ajax,
+.path--artifact-search .ajax-trigger {
+  position: relative; /* ✅ Ensure proper positioning context */
+  z-index: auto; /* ✅ Let Drupal handle z-index */
+}
+
+/* Fix for AJAX progress indicators */
+.path--artifact-search .ajax-progress {
+  position: fixed !important;
+  z-index: 1600 !important;
+  pointer-events: none;
+}
+
+/* Ensure form submissions work properly */
+.path--artifact-search .views-exposed-form .form-actions,
+.path--artifact-search .views-exposed-form .form-submit {
+  position: relative;
+  z-index: auto;
+}
+
+/* Fix for any hover effects that might interfere with positioning */
+.path--artifact-search table.cols-5 tbody tr:hover {
+  /* ✅ Using background-color only, no transforms */
+  background-color: rgba(56, 56, 59, 0.3);
+}
+
+/* ========================================
+   AJAX-SAFE FACETS STYLING
+======================================== */
+
+/* Main facet list */
+.facet-inactive {
+  list-style: none;
+  margin: 0;
+}
+
+/* Facet item styling */
+.facet-item {
+  margin-bottom: 2px;
+  border-radius: 4px;
+  transition: all 0.2s ease;
+  position: relative;
+  list-style: none;
+}
+
+.facet-item:hover {
+  background-color: rgba(168, 166, 161, 0.1);
+}
+
+/* Parent item with expand arrow */
+.facet-item--expanded {
+  margin-bottom: 8px;
+}
+
+/* AJAX-Safe Expand arrow */
+.expand-arrow {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  color: #A8A6A1;
+  font-size: 12px;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.2s ease; /* ✅ Removed transform from transition */
+  z-index: 2; /* ✅ Low z-index, won't conflict with AJAX */
+  border-radius: 3px;
+  pointer-events: auto; /* ✅ Explicit pointer events */
+}
+
+.expand-arrow:hover {
+  background-color: rgba(168, 166, 161, 0.3);
+  color: #FFFFFF;
+}
+
+/* ✅ Using rotation without affecting AJAX positioning */
+.facet-item--expanded.collapsed .expand-arrow {
+  transform: rotate(-90deg);
+}
+
+/* Checkbox positioning */
+.facets-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 1.5px solid #A8A6A1;
+  border-radius: 2px;
+  background-color: transparent;
+  margin-right: 10px;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+/* Label styling - simple inline layout */
+.facet-item label {
+  cursor: pointer;
+  display: inline-block;
+  vertical-align: middle;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+  width: calc(100% - 26px);
+}
+
+/* Parent labels need space for expand arrow on the right */
+.facet-item--expanded > label {
+  width: calc(100% - 56px);
+  padding-right: 30px;
+}
+
+.facet-item label:hover {
+  color: #A8A6A1;
+}
+
+.facets-checkbox:hover {
+  border-color: #FFFFFF;
+  background-color: rgba(168, 166, 161, 0.1);
+}
+
+.facets-checkbox:checked {
+  background-color: #A8A6A1;
+  border-color: #A8A6A1;
+}
+
+.facets-checkbox:checked::after {
+  content: '✓';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  color: #000000;
+  font-size: 11px;
+  font-weight: bold;
+  line-height: 1;
+}
+
+.facets-checkbox:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(168, 166, 161, 0.4);
+}
+
+/* Text content - inline with checkbox */
+.facet-text-content {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  min-width: 0;
+}
+
+.facet-item__value {
+  color: #FFFFFF;
+  font-weight: 400;
+  flex: 1;
+  min-width: 0;
+  line-height: 1.4;
+}
+
+.facet-item__count {
+  color: #DFE0E1;
+  font-weight: 400;
+  font-size: 13px;
+  margin-left: 8px;
+  flex-shrink: 0;
+  line-height: 1.4;
+}
+
+/* ✅ AJAX-Safe: Style Drupal links instead of hiding them */
+.facet-item > a {
+  /* ✅ Don't hide - style them to match your design */
+  display: none !important;
+  padding: 8px 0;
+  color: #FFFFFF;
+  text-decoration: none;
+  transition: all 0.2s ease;
+  border-radius: 3px;
+  position: relative;
+  
+  /* ✅ Ensure AJAX functionality is preserved */
+  pointer-events: auto;
+  z-index: auto;
+}
+
+.facet-item > a:hover {
+  color: #A8A6A1;
+  background-color: rgba(168, 166, 161, 0.1);
+}
+
+.facet-item > a:focus {
+  outline: 2px solid #A8A6A1;
+  outline-offset: 2px;
+}
+
+/* ✅ Style the link content to match your checkbox design */
+.facet-item > a .facet-item__value {
+  color: inherit;
+}
+
+.facet-item > a .facet-item__count {
+  color: #DFE0E1;
+}
+
+.facet-item > a:hover .facet-item__value {
+  color: #A8A6A1;
+}
+
+/* Child facet widget styling */
+.facets-widget- {
+  margin-left: 20px;
+  border-left: 1px solid #38383B;
+  padding-left: 12px;
+  max-height: 1000px;
+  overflow: hidden;
+  transition: max-height 0.3s ease, opacity 0.2s ease;
+  opacity: 1;
+}
+
+/* ✅ AJAX-Safe collapsed state */
+.facets-widget-.collapsed {
+  max-height: 0;
+  opacity: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  /* ✅ Ensure AJAX elements remain accessible */
+  pointer-events: none;
+}
+
+.facets-widget-:not(.collapsed) {
+  pointer-events: auto; /* ✅ Re-enable when expanded */
+}
+
+/* Child list styling */
+.facets-widget- ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+}
+
+.facets-widget- .facet-item {
+  margin-bottom: 1px;
+}
+
+.facets-widget- .facet-item label {
+  padding: 6px 0;
+  font-size: 13px;
+  padding-left: 0;
+  width: calc(100% - 24px);
+  display: inline-block;
+  vertical-align: middle;
+}
+
+.facets-widget- .facets-checkbox {
+  width: 14px;
+  height: 14px;
+  margin-right: 8px;
+  vertical-align: middle;
+  display: inline-block;
+}
+
+.facets-widget- .facet-item__value {
+  color: #DFE0E1;
+  font-weight: 400;
+}
+
+.facets-widget- .facet-item__count {
+  font-size: 12px;
+  color: #A8A6A1;
+}
+
+/* ✅ AJAX-Safe child facet links */
+.facets-widget- .facet-item > a {
+  padding: 6px 0;
+  font-size: 13px;
+}
+
+/* Selected state styling */
+.facet-item.selected label {
+  background-color: rgba(168, 166, 161, 0.1);
+  border-radius: 3px;
+  margin: 0 -4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.facet-item--expanded.selected > label {
+  padding-right: 34px;
+}
+
+.facet-item.selected .facet-item__value {
+  color: #A8A6A1;
+}
+
+/* ✅ Selected state for AJAX links */
+.facet-item.selected > a {
+  background-color: rgba(168, 166, 161, 0.1);
+  border-radius: 3px;
+  margin: 0 -4px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+
+.facet-item.selected > a .facet-item__value {
+  color: #A8A6A1;
+}
+
+/* Parent category special styling */
+.facet-item--expanded > label .facet-item__value {
+  font-weight: 500;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.facet-item--expanded > label .facet-item__count {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* ✅ Parent category styling for AJAX links */
+.facet-item--expanded > a .facet-item__value {
+  font-weight: 500;
+  font-size: 15px;
+  text-transform: uppercase;
+  letter-spacing: 0.3px;
+}
+
+.facet-item--expanded > a .facet-item__count {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  body {
+    padding: 15px;
+  }
+
+  .search-category-container {
+    margin: 0;
+    border-radius: 6px;
+  }
+
+  /* ✅ Fix mobile facet alignment - use flexbox instead of min-height */
+  .facet-item {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 12px 0;
+    position: relative;
+  }
+
+  .facet-item label {
+    font-size: 13px;
+    padding: 0; /* Remove padding since parent has it */
+    flex: 1;
+    line-height: 1.4;
+    width: auto; /* Remove problematic width calculations */
+    display: flex;
+    align-items: center;
+  }
+
+  .facet-item--expanded {
+    padding-right: 30px; /* Space for expand arrow */
+  }
+
+  .facets-widget- .facet-item {
+    padding: 10px 0;
+    gap: 8px;
+  }
+
+  .facets-widget- .facet-item label {
+    font-size: 12px;
+    padding: 0;
+    flex: 1;
+    width: auto;
+  }
+
+  /* ✅ Mobile AJAX link styling with flexbox */
+  .facet-item > a {
+    padding: 12px 0;
+    font-size: 13px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    width: 100%;
+  }
+
+  .facets-widget- .facet-item > a {
+    padding: 10px 0;
+    font-size: 12px;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .facets-checkbox {
+    width: 18px;
+    height: 18px;
+    margin-right: 0; /* Remove margin since we use gap */
+    flex-shrink: 0; /* Prevent checkbox from shrinking */
+  }
+
+  .facets-widget- .facets-checkbox {
+    width: 16px;
+    height: 16px;
+    margin-right: 0;
+    flex-shrink: 0;
+  }
+
+  .expand-arrow {
+    width: 24px;
+    height: 24px;
+    right: 6px;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 14px;
+    z-index: 2; /* ✅ Keep low z-index on mobile too */
+  }
+}
+
+/* Custom scrollbar */
+.search-category-container {
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+.search-category-container::-webkit-scrollbar {
+  width: 4px;
+}
+
+.search-category-container::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.search-category-container::-webkit-scrollbar-thumb {
+  background: #A8A6A1;
+  border-radius: 2px;
+}
+
+/* ========================================
+   DRUPAL AJAX COMPATIBILITY FOR FACETS
+======================================== */
+
+/* ✅ Ensure AJAX facet links work properly */
+.facet-item [data-drupal-ajax],
+.facet-item .use-ajax,
+.facets-widget- [data-drupal-ajax],
+.facets-widget- .use-ajax {
+  position: relative;
+  z-index: auto;
+  pointer-events: auto;
+}
+
+/* ✅ Ensure AJAX progress indicators appear above facets */
+.facet-item .ajax-progress,
+.facets-widget- .ajax-progress {
+  z-index: 1500 !important;
+  position: fixed !important;
+}
+
+/* ✅ Prevent any custom styling from interfering with AJAX modals */
+.ui-dialog,
+.ui-widget-overlay,
+.drupal-modal {
+  z-index: 1600 !important;
+}
+
+/* ✅ Fix for any AJAX form elements within facets */
+.facets-widget-checkbox [data-drupal-ajax],
+.views-exposed-form [data-drupal-ajax] {
+  position: relative;
+  z-index: auto;
+}
+
+/* Facet Summary Container - Only for search_category_summary */
+div[data-drupal-facets-summary-id="search_category_summary"] {
+  display: inline-block;
+  margin: 5px 0;
+}
+
+/* Reset list styles */
+div[data-drupal-facets-summary-id="search_category_summary"] ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: inline-flex;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+
+div[data-drupal-facets-summary-id="search_category_summary"] li {
+  display: none;
+  margin: 0;
+  padding: 0;
+}
+
+/* Hide the source summary item (the ": BANNER" part) */
+div[data-drupal-facets-summary-id="search_category_summary"] .source-summary-item {
+  display: none;
+}
+
+/* Style the facet summary item as an orange pill */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-summary-item--facet {
+  background-color: #A8A6A1;
+  border-radius: 5px;
+  padding: 3px 5px;
+  display: inline-block;
+  font-size: 14px;
+  font-weight: 500;
+  color: #ffffff;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.1);
+  transition: all 0.2s ease;
+}
+
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-summary-item--facet:hover {
+  background-color: #606060;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.15);
+  color: #ffffff;
+}
+
+/* Style the link inside */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-summary-item--facet a {
+  text-decoration: none;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+
+/* Style the facet value text */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__value {
+  font-size: 14px;
+  font-weight: 500;
+  color: #333;
+}
+
+/* Style the close button */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status {
+  background: rgba(255, 255, 255, 0.3);
+  border-radius: 50%;
+  width: 18px;
+  height: 18px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  font-weight: bold;
+  color: #333;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+  margin-left: 4px;
+  order: 2; /* Move the X to the right */
+}
+
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status:hover {
+  background: rgba(255, 255, 255, 0.5);
+}
+
+/* Alternative X symbol styling */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status::before {
+  content: "×";
+  font-size: 14px;
+  line-height: 1;
+}
+
+/* Hide the default (-) text */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status {
+  font-size: 0; /* Hide the (-) text */
+}
+
+/* Responsive adjustments */
+@media (max-width: 768px) {
+  div[data-drupal-facets-summary-id="search_category_summary"] .facet-summary-item--facet {
+    font-size: 13px;
+    padding: 6px 10px;
+  }
+  
+  div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__value {
+    font-size: 13px;
+  }
+  
+  div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status {
+    width: 16px;
+    height: 16px;
     font-size: 11px;
-    min-width: 32px;
   }
+}
+
+/* Multiple facet items styling */
+div[data-drupal-facets-summary-id="search_category_summary"] ul li + li {
+  margin-left: 0; /* Remove any default spacing since we use gap */
+}
+
+/* Focus states for accessibility */
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-summary-item--facet a:focus {
+  outline: 2px solid #0066CC;
+  outline-offset: 2px;
+}
+
+div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status:focus {
+  outline: 2px solid #0066CC;
+  outline-offset: 1px;
+}
+
+.facets-widget-checkbox a.facets-soft-limit-link {
+  color: #FFFFFF;
+  text-decoration: none;
+  font-family: var(--font-family-body);
+  font-size: var(--font-size-sm);
+  font-weight: var(--font-weight-medium);
+  transition: color 0.3s ease;
+  letter-spacing: var(--letter-spacing-wide);
+  padding: 10px 0;
+  display: block;
+  position: relative;
+  text-align: right;
+}
+
+.facets-widget-checkbox a.facets-soft-limit-link::after {
+  content: '';
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 0;
+  height: 2px;
+  background-color: #A8A6A1;
+  transition: width 0.3s ease;
+}
+
+.facets-widget-checkbox a.facets-soft-limit-link:hover::after {
+  width: 100%;
+}
+
+.facets-widget-checkbox a.facets-soft-limit-link:hover {
+  color: #A8A6A1;
 }

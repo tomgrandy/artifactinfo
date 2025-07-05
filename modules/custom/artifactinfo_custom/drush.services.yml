@@ -1,0 +1,7 @@
+services:
+
+  artifactinfo_custom.taxonomy_migrate_commands:
+    class: \Drupal\artifactinfo_custom\Commands\TaxonomyMigrateCommands
+    tags:
+      - { name: drush.command }
+    arguments: ['@entity_type.manager', '@database', '@logger.factory']

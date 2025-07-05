@@ -10,6 +10,12 @@
     </div>
   </header>
 
+  {% if page.breadcrumb %}
+    <div class="layout-breadcrumb">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
   {% if page.highlighted %}
     <div class="layout-highlighted">
       {{ page.highlighted }}
@@ -18,6 +24,12 @@
 
   <main class="layout-main" role="main">
     <a id="main-content" tabindex="-1"></a>
+
+    {% if page.messages %}
+      <div class="layout-messages">
+        {{ page.messages }}
+      </div>
+    {% endif %}
 
     <div class="layout-content">
       {{ page.content }}

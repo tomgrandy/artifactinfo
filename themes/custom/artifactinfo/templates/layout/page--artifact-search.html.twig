@@ -24,13 +24,12 @@
 
   <main class="layout-main container" role="main">
     <a id="main-content" tabindex="-1"></a>
-    <!-- Mobile Controls -->
-    <div class="mobile-controls">
-      <button class="mobile-btn" id="filter-btn">
-        <span class="icon-filter"></span>
-        FILTER
-      </button>
-    </div>
+    
+    {% if page.messages %}
+      <div class="layout-messages">
+        {{ page.messages }}
+      </div>
+    {% endif %}
     <div class="layout-content">
       {{ page.content }}
     </div>

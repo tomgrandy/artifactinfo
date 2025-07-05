@@ -1,0 +1,84 @@
+{%
+  set classes = [
+    dom_id ? 'js-view-dom-id-' ~ dom_id,
+  ]
+%}
+<div{{attributes.addClass(classes)}}>
+	{# Mobile Controls - Contains filter button for mobile #}
+	<div class="mobile-controls">
+		<button class="mobile-btn icon-filter" id="filter-btn" aria-label="{{ 'Open filters'|t }}">
+			{{ 'Filters'|t }}
+		</button>
+	</div>
+	
+	{# Sidebar Overlay - Dark overlay behind mobile sidebar #}
+	<div class="sidebar-overlay" id="sidebar-overlay"></div>
+	
+	<div class="search-layout">
+		{# Left Sidebar - Exposed Filters #}
+		<div class="search-filters" id="search-filters">
+			<button class="filter-close" id="filter-close">×</button>
+			<h3 class="filters-title">{{ 'Search Filters'|t }}</h3>
+			{{ drupal_block('facets_summary_block:search_category_summary') }}
+			{{ exposed }}
+			{{ drupal_block('facet_block:surrounding_search') }}
+			{{ drupal_block('facet_block:search_category') }}
+		</div>
+		<div class="results-content">
+			{{ header }}
+			{{ rows }}
+			<div class="mobile-cards">
+				{% for row in view.result %}
+					{# Access Search API item data #}
+					{% set item = row._item %}
+					{% set entity = item.originalObject.entity %}
+					
+					{# Get field values from Search API fields #}
+					{% set title_field = item.field('title') %}
+					{% set price_field = item.field('field_sale_price') %}
+					{% set search_category_field = item.field('field_search_categories') %}
+					
+					<div class="artifact-card">
+						<div class="card-image">
+							<a href="{{ path('entity.node.canonical', {'node': entity.id}) }}">
+								{% if entity.field_artifact_image_1.entity and entity.field_artifact_image_1.entity.uri.value %}
+									{% set image_uri = entity.field_artifact_image_1.entity.uri.value %}
+									{% set image_alt = entity.field_artifact_image_1.alt|default(title_field ? title_field.values.0 : 'Artifact') %}
+									{% set image_url = file_url(image_uri) %}
+									{% if image_url %}
+										<img loading="lazy" src="{{ image_url }}" alt="{{ image_alt }}">
+									{% else %}
+										<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg' }}" alt="Artifact">
+									{% endif %}
+								{% else %}
+									<img loading="lazy" src="{{base_path ~ directory ~ '/images/placeholder-image.jpeg?height=100&width=100' }}" width="100" height="100" alt="Artifact">
+								{% endif %}
+							</a>
+						</div>
+						<div class="card-title">
+							<a href="{{ path('entity.node.canonical', {'node': entity.id}) }}">
+								{{ title_field ? title_field.values.0 : 'Untitled' }}
+							</a>
+						</div>
+						<div class="card-price">
+							{% if price_field and price_field.values.0 %}
+								${{ price_field.values.0|number_format(2) }}
+							{% endif %}
+						</div>
+						<div class="card-location">
+							{# Try indexed search categories first, then fall back to place of origin from entity #}
+							{% if search_category_field and search_category_field.values.0 %}
+								{{ search_category_field.values.0 }}
+							{% elseif entity.field_place_of_origin.entity %}
+								{{ entity.field_place_of_origin.entity.name.value }}
+							{% endif %}
+						</div>
+					</div>
+				{% endfor %}
+			</div>
+			{% if pager %}
+				{{ pager }}
+			{% endif %}
+		</div>
+	</div>
+</div>

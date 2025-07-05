@@ -18,6 +18,12 @@
   min-height: 100vh;
 }
 
+.container {
+  max-width: 1400px;
+  margin: 60px auto;
+  padding: 20px;
+}
+
 /* ========================================
    BUTTONS
 ======================================== */

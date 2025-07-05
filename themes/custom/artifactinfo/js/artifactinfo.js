@@ -430,10 +430,10 @@
       // Initialize filter sidebar functionality
       once('filter-sidebar', '#filter-btn', context).forEach(function (element) {
         const filterBtn = element;
-        const sortBtn = context.getElementById('sort-btn');
-        const searchFilters = context.getElementById('search-filters');
-        const filterClose = context.getElementById('filter-close');
-        const sidebarOverlay = context.getElementById('sidebar-overlay');
+        const sortBtn = document.getElementById('sort-btn');
+        const searchFilters = document.getElementById('search-filters');
+        const filterClose = document.getElementById('filter-close');
+        const sidebarOverlay = document.getElementById('sidebar-overlay');
 
         // Only proceed if all required elements exist
         if (!filterBtn || !searchFilters || !filterClose || !sidebarOverlay) {
@@ -866,11 +866,6 @@
         puzzles = drupalSettings.puzzleSelector.puzzles;
       }
       
-      // Debug logging
-      console.log('Puzzle selector initialized');
-      console.log('Available puzzles:', puzzles);
-      console.log('Puzzle count:', Object.keys(puzzles).length);
-      
       // Manual once implementation for dropdown
       $('.puzzle-selector-dropdown', context).each(function() {
         if ($(this).hasClass('puzzle-selector-processed')) {
@@ -880,16 +875,11 @@
         
         var $dropdown = $(this);
         
-        console.log('Processing dropdown with options:', $dropdown.find('option').length);
-        
         // Function to load puzzle content
         function loadPuzzle(selectedNid) {
           var $displayArea = $('#puzzle-display-area');
           var $titleArea = $('#puzzle-title');
           var $wrapperArea = $('.puzzle-display-wrapper');
-          
-          console.log('Loading puzzle with NID:', selectedNid);
-          console.log('Puzzle data for NID:', puzzles[selectedNid]);
           
           if (!puzzles[selectedNid]) {
             console.warn('Puzzle not found for NID:', selectedNid);
@@ -906,11 +896,9 @@
           
           // Update embed code
           if (puzzle.embed_code && puzzle.embed_code.trim() !== '') {
-            console.log('Loading embed code:', puzzle.embed_code);
             $displayArea.html(puzzle.embed_code);
             $wrapperArea.addClass('has-content');
           } else {
-            console.warn('No embed code available for puzzle:', puzzle.title);
             $displayArea.html('<p class="no-embed">No embed code available for this puzzle.</p>');
             $wrapperArea.removeClass('has-content');
           }
@@ -932,14 +920,10 @@
             var firstOption = $dropdown.find('option').first();
             var firstNonEmptyOption = $dropdown.find('option[value!=""]').first();
             
-            console.log('First option:', firstOption.val(), firstOption.text());
-            console.log('First non-empty option:', firstNonEmptyOption.val(), firstNonEmptyOption.text());
-            
             // Prefer non-empty option, fallback to first option
             var targetOption = firstNonEmptyOption.length ? firstNonEmptyOption : firstOption;
             
             if (targetOption.length && targetOption.val()) {
-              console.log('Setting dropdown to:', targetOption.val());
               $dropdown.val(targetOption.val());
               loadPuzzle(targetOption.val());
             } else {
@@ -956,7 +940,6 @@
         // Also try after a short delay in case DOM isn't fully ready
         setTimeout(function() {
           if ($('#puzzle-display-area').html().indexOf('Please select a puzzle') !== -1) {
-            console.log('Retrying puzzle initialization after delay...');
             initializeFirstPuzzle();
           }
         }, 100);
@@ -1013,6 +996,65 @@
           });
         });
       }
+    }
+  };
+
+  Drupal.behaviors.facetsExpandCollapse = {
+    attach: function (context, settings) {
+      // Use context to scope selectors and once() to prevent duplicate bindings
+      const expandArrows = once('facets-expand', '.expand-arrow', context);
+      const allCheckboxes = once('facets-checkbox', '.facets-checkbox', context);
+      const allLabels = once('facets-label', '.facet-item label', context);
+
+      // Handle expand/collapse functionality - ONLY on arrow click
+      $(expandArrows).on('click', function(e) {
+        e.stopPropagation();
+        e.preventDefault();
+        
+        const $parentItem = $(this).closest('.facet-item--expanded');
+        const $childWidget = $parentItem.find('.facets-widget-');
+        
+        if ($parentItem.hasClass('collapsed')) {
+          $parentItem.removeClass('collapsed');
+          $childWidget.removeClass('collapsed');
+        } else {
+          $parentItem.addClass('collapsed');
+          $childWidget.addClass('collapsed');
+        }
+      });
+
+      // Prevent label clicks from expanding/collapsing
+      $(allLabels).on('click', function(e) {
+        // Only handle checkbox toggle, don't expand/collapse
+        e.stopPropagation();
+      });
+
+      // Independent checkbox functionality - no parent-child relationship
+      $(allCheckboxes).on('change', function(e) {
+        e.stopPropagation();
+        updateItemState($(this));
+      });
+
+      /**
+       * Update visual state of facet items based on checkbox state.
+       *
+       * @param {jQuery} $checkbox
+       *   The checkbox element that was changed.
+       */
+      function updateItemState($checkbox) {
+        const $facetItem = $checkbox.closest('.facet-item');
+        
+        if ($checkbox.is(':checked')) {
+          $facetItem.addClass('selected');
+        } else {
+          $facetItem.removeClass('selected');
+        }
+      }
+
+      // Initialize states for all checkboxes in current context
+      $(allCheckboxes).each(function() {
+        updateItemState($(this));
+      });
     }
   };
 

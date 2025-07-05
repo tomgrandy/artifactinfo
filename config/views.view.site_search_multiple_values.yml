@@ -1,6 +1,6 @@
 uuid: 4306d7c9-cf26-4897-ae97-61cc75762ce8
 langcode: en
-status: true
+status: false
 dependencies:
   config:
     - field.storage.node.field_artifact_image_1

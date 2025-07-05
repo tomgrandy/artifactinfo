@@ -25,18 +25,4 @@ regions:
 
 # Theme libraries
 libraries:
-  - artifactinfo/global-styling
-  - artifactinfo/global-scripts
-  - artifactinfo/user-form
-
-# Libraries to remove from pages
-libraries-override:
-  system/base:
-    css:
-      component:
-        /core/themes/stable9/css/system/components/ajax-progress.module.css: false
-
-# Theme settings
-libraries-extend:
-  user/drupal.user:
-    - artifactinfo/user-form
+  - artifactinfo/global

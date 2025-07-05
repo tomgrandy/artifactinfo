@@ -861,6 +861,7 @@ display:
           replica: false
           query_tags: {  }
       relationships: {  }
+      use_ajax: true
       header: {  }
       footer: {  }
       display_extenders: {  }
@@ -1549,7 +1550,7 @@ display:
       css_class: ''
       header: {  }
       display_extenders: {  }
-      path: search-multi
+      path: search-multiasdasd
     cache_metadata:
       max-age: -1
       contexts:

@@ -1,0 +1,95 @@
+{% if cache_hash %}
+  <!-- facets cacheable metadata
+    hash: {{ cache_hash }}
+  {% if cache_contexts %}
+    contexts: {{ cache_contexts }}
+  {%- endif %}
+  {% if cache_tags %}
+    tags: {{ cache_tags }}
+  {%- endif %}
+  {% if cache_max_age %}
+    max age: {{ cache_max_age }}
+  {%- endif %}
+  -->
+{%- endif %}
+{# Check if this widget contains any parent items (expanded) and active trail #}
+{%- set has_parent_items = false -%}
+{%- set has_child_items = false -%}
+{%- set has_active_trail = false -%}
+{%- for item in items -%}
+  {%- set item_classes = item.attributes.class|join(' ') -%}
+  {%- if 'facet-item--expanded' in item_classes -%}
+    {%- set has_parent_items = true -%}
+    {# Check if any parent item has active trail #}
+    {%- if 'facet-item--active-trail' in item_classes -%}
+      {%- set has_active_trail = true -%}
+    {%- endif -%}
+  {%- else -%}
+    {%- set has_child_items = true -%}
+    {# For child items, check if any child has active trail (selected) #}
+    {%- if 'facet-item--active-trail' in item_classes -%}
+      {%- set has_active_trail = true -%}
+    {%- endif -%}
+  {%- endif -%}
+{%- endfor -%}
+
+{# Also check if facet has any results (indicating active selection) #}
+{%- set facet_has_results = facet.results is not empty -%}
+
+{# If this widget contains only child items (no parent items), it's a child wrapper #}
+{%- set is_child_wrapper = has_child_items and not has_parent_items -%}
+{%- set wrapper_classes = 'facets-widget-' ~ facet.widget.type -%}
+{# Only add collapsed class if it's a child wrapper AND no active trail AND no active results #}
+{%- if is_child_wrapper and not has_active_trail and not facet_has_results -%}
+  {%- set wrapper_classes = wrapper_classes ~ ' collapsed' -%}
+{%- endif -%}
+
+<div class="{{ wrapper_classes }}">
+  {% if facet.widget.type %}
+    {%- set attributes = attributes.addClass('item-list__' ~ facet.widget.type) %}
+  {% endif %}
+  {% if items or empty %}
+    {%- if title is not empty -%}
+      <label class="facets-widget-checkbox-label" for="edit-title--2">{{ title }}</label>
+    {%- endif -%}
+
+    {%- if items -%}
+      <{{ list_type }}{{ attributes }}>
+        {%- for item in items -%}
+          {%- set item_classes = item.attributes.class|join(' ') -%}
+          
+          {# Check if this is a parent item (has expanded class) #}
+          {%- if 'facet-item--expanded' in item_classes -%}
+            {# PARENT LI - has children and expanded class #}
+            {# Only add collapsed class if NOT active trail #}
+            {%- if 'facet-item--active-trail' in item_classes -%}
+              {# Active trail - should be expanded, no collapsed class #}
+              <li{{ item.attributes }}>
+                <div class="expand-arrow">▼</div>
+                {{ item.value }}
+              </li>
+            {%- else -%}
+              {# Not active trail - should be collapsed #}
+              {%- set parent_classes = item_classes ~ ' collapsed' -%}
+              <li{{ item.attributes.setAttribute('class', parent_classes) }}>
+                <div class="expand-arrow">▼</div>
+                {{ item.value }}
+              </li>
+            {%- endif -%}
+          {%- else -%}
+            {# CHILD LI - simple facet item without expanded class #}
+            <li{{ item.attributes }}>
+              {{ item.value }}
+            </li>
+          {%- endif -%}
+        {%- endfor -%}
+      </{{ list_type }}>
+    {%- else -%}
+      {{- empty -}}
+    {%- endif -%}
+  {%- endif %}
+
+{% if facet.widget.type == "dropdown" %}
+  <label id="facet_{{ facet.id }}_label">{{ 'Facet'|t }} {{ facet.label }}</label>
+{%- endif %}
+</div>

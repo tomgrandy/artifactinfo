@@ -5,3 +5,11 @@ artifactinfo_custom.learning_config:
     _title: 'Learning Page Configurations'
   requirements:
     _permission: 'administer site configuration'
+
+artifactinfo_custom.vocabulary_update:
+  path: '/admin/config/content/vocabulary-update'
+  defaults:
+    _form: '\Drupal\artifactinfo_custom\Form\VocabularyUpdateForm'
+    _title: 'Vocabulary Update via CSV'
+  requirements:
+    _permission: 'administer taxonomy'

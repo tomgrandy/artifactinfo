@@ -34,6 +34,7 @@ module:
   facets_exposed_filters: 0
   facets_range_widget: 0
   facets_searchbox_widget: 0
+  facets_summary: 0
   feeds: 0
   feeds_log: 0
   feeds_tamper: 0

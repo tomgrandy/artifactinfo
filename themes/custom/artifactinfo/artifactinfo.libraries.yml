@@ -5,7 +5,8 @@ google-fonts:
     theme:
       'https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300..700;1,300..700&family=Montserrat:ital,wght@0,100..900;1,100..900&family=Special+Gothic&display=swap': { type: external, preprocess: false }
 
-global-styling:
+# Combined global library with all styling and scripts
+global:
   version: VERSION
   css:
     theme:
@@ -15,32 +16,26 @@ global-styling:
       css/components.css: {}
       css/responsive.css: {}
       css/admin-compatibility.css: {}
-  dependencies:
-    - core/jquery
-    - core/drupal
-    - artifactinfo/google-fonts
-
-global-scripts:
-  version: VERSION
-  css:
-    theme:
-      css/magnify.css: {}
   js:
-    js/jquery.magnify.js: {}
     js/artifactinfo.js: {}
   dependencies:
     - core/jquery
     - core/drupal
+    - core/drupal.ajax
+    - core/jquery.form
+    - core/jquery.once
     - core/once
+    - core/drupal.states
+    - artifactinfo/google-fonts
 
 user-form:
   version: VERSION
   css:
     theme:
       css/user-forms.css: {}
-
-print:
-  version: VERSION
-  css:
-    theme:
-      css/print.css: { media: print }
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/drupal.ajax
+    - core/jquery.form
+    - core/drupal.states

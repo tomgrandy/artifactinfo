@@ -3,3 +3,9 @@ artifactinfo_custom.learning_config:
   description: 'Configure settings for the learning center page'
   parent: system.admin_config
   route_name: artifactinfo_custom.learning_config
+
+artifactinfo_custom.vocabulary_update:
+  title: 'Vocabulary Update via CSV'
+  description: 'Update vocabulary terms using CSV file upload'
+  parent: system.admin_config
+  route_name: artifactinfo_custom.vocabulary_update

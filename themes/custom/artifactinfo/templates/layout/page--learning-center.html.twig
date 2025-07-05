@@ -10,6 +10,13 @@
       {% endif %}
     </div>
   </header>
+
+  {% if page.breadcrumb %}
+    <div class="layout-breadcrumb">
+      {{ page.breadcrumb }}
+    </div>
+  {% endif %}
+
   <section class="banner-section {% if current_path == '/learning-center' %} learning-center-listing {% else %} banner-section-detail {% endif %}">
     <div class="banner-background"{% if learning_page_background_image_url %} style="background-image: url('{{ learning_page_background_image_url }}');"{% endif %}></div>
     <div class="banner-content">
@@ -32,6 +39,13 @@
 
   <main class="layout-main" role="main">
     <a id="main-content" tabindex="-1"></a>
+    
+    {% if page.messages %}
+      <div class="layout-messages">
+        {{ page.messages }}
+      </div>
+    {% endif %}
+    
     <div class="layout-content">
       {{ page.content }}
     </div>
