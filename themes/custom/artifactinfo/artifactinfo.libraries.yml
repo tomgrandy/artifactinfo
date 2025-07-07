@@ -16,7 +16,9 @@ global:
       css/components.css: {}
       css/responsive.css: {}
       css/admin-compatibility.css: {}
+      css/magnify.css: {}
   js:
+    js/jquery.magnify.js: {}
     js/artifactinfo.js: {}
   dependencies:
     - core/jquery

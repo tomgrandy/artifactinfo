@@ -3456,3 +3456,204 @@ div[data-drupal-facets-summary-id="search_category_summary"] .facet-item__status
 .facets-widget-checkbox a.facets-soft-limit-link:hover {
   color: #A8A6A1;
 }
+
+/* Main fieldset container */
+fieldset[data-drupal-selector="edit-sort-bef-combine"] {
+  border: none;
+  border-radius: 8px;
+  padding: 0;
+  margin: 0;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.3);
+  max-width: 300px;
+  color: #FFFFFF;
+}
+
+/* Fieldset legend styling */
+fieldset[data-drupal-selector="edit-sort-bef-combine"] legend {
+  color: #FFFFFF; /* Darkest 1 - Text on accent */
+  font-size: 12px;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  border-radius: 8px 8px 0 0;
+  width: 100%;
+  margin: 0;
+  border-bottom: 1px solid #38383B;
+}
+
+.fieldset-legend {
+  font-size: 16px;
+  font-weight: 600;
+  letter-spacing: 0.3px;
+  text-transform: none;
+}
+
+/* Fieldset wrapper */
+.fieldset-wrapper {
+  border-radius: 0 0 8px 8px;
+}
+
+/* Form radios container */
+.form-radios {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+/* Individual radio item */
+.form-item-sort-bef-combine {
+  margin: 0 !important;
+  padding: 0;
+  transition: all 0.2s ease;
+  border-radius: 4px;
+  display: flex;
+  align-items: center;
+}
+
+.form-item-sort-bef-combine:hover {
+  background-color: rgba(168, 166, 161, 0.1);
+  margin: 0 -8px !important;
+  padding: 0 8px;
+}
+
+/* Hide default radio button */
+.form-radio {
+  appearance: none;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  width: 16px;
+  height: 16px;
+  border: 2px solid #A8A6A1; /* Bright 1 - Accent color */
+  border-radius: 50%;
+  background-color: transparent;
+  margin: 0 12px 0 0;
+  cursor: pointer;
+  position: relative;
+  transition: all 0.2s ease;
+  flex-shrink: 0;
+  vertical-align: middle;
+}
+
+.form-radio:hover {
+  border-color: #FFFFFF; /* Lightest 1 - White on hover */
+  background-color: rgba(168, 166, 161, 0.1);
+}
+
+.form-radio:checked {
+border-color: #A8A6A1; /* Blue accent to match your image */
+background-color: #A8A6A1;
+}
+
+.form-radio:checked::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 6px;
+  height: 6px;
+  background-color: #FFFFFF; /* Lightest 1 */
+  border-radius: 50%;
+}
+
+.form-radio:focus {
+  outline: none;
+  box-shadow: 0 0 0 2px rgba(74, 144, 226, 0.3);
+}
+
+/* Label styling */
+.form-item-sort-bef-combine label.option {
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  padding: 8px 0;
+  font-size: 14px;
+  line-height: 1.4;
+  transition: all 0.2s ease;
+  color: #FFFFFF; /* Lightest 1 - Primary text */
+  font-weight: 400;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
+}
+
+.form-item-sort-bef-combine label.option:hover {
+  color: #FFFFFF; /* Lightest 1 */
+}
+
+/* Selected state styling */
+.form-item-sort-bef-combine:has(.form-radio:checked) {
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 4px;
+  margin: 0 -4px !important;
+  padding: 0 4px;
+}
+
+.form-item-sort-bef-combine:has(.form-radio:checked) label.option {
+  color: #FFFFFF; /* Lightest 1 */
+}
+
+/* Alternative for browsers that don't support :has() */
+.form-item-sort-bef-combine.selected {
+  background-color: rgba(74, 144, 226, 0.1);
+  border-radius: 4px;
+  margin: 0 -4px !important;
+  padding: 0 4px;
+}
+
+.form-item-sort-bef-combine.selected label.option {
+  color: #FFFFFF; /* Lightest 1 */
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  fieldset[data-drupal-selector="edit-sort-bef-combine"] {
+      margin: 0;
+      border-radius: 6px;
+      max-width: 100%;
+  }
+
+  .fieldset-wrapper {
+      padding: 16px;
+  }
+
+  .form-item-sort-bef-combine label.option {
+      font-size: 15px;
+      padding: 10px 0;
+      min-height: 44px;
+  }
+
+  .form-radio {
+      width: 18px;
+      height: 18px;
+      margin-right: 14px;
+  }
+
+  .form-radio:checked::after {
+      width: 7px;
+      height: 7px;
+  }
+}
+
+@media (max-width: 480px) {
+  .form-item-sort-bef-combine label.option {
+      font-size: 14px;
+  }
+}
+
+/* Dark theme body styling (if needed) */
+body {
+  background-color: #000000; /* Darkest 1 - Main background */
+  color: #FFFFFF; /* Lightest 1 - Primary text */
+}
+
+/* JavaScript fallback for selected state */
+.js-selected-radio-item {
+  background-color: rgba(74, 144, 226, 0.1) !important;
+  border-radius: 4px !important;
+  margin: 0 -4px !important;
+  padding: 0 4px !important;
+}
+
+.js-selected-radio-item label.option {
+  color: #FFFFFF !important;
+}

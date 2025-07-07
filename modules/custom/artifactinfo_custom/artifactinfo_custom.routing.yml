@@ -1,5 +1,13 @@
+artifactinfo_custom.admin_settings:
+  path: '/admin/config/artifactinfo'
+  defaults:
+    _title: 'Artifactinfo Settings'
+    _controller: 'Drupal\system\Controller\SystemController::systemAdminMenuBlockPage'
+  requirements:
+    _permission: 'administer site configuration'
+
 artifactinfo_custom.learning_config:
-  path: '/admin/config/content/learning-page-configurations'
+  path: '/admin/config/artifactinfo/learning-page-configurations'
   defaults:
     _form: '\Drupal\artifactinfo_custom\Form\LearningPageConfigForm'
     _title: 'Learning Page Configurations'
@@ -7,7 +15,7 @@ artifactinfo_custom.learning_config:
     _permission: 'administer site configuration'
 
 artifactinfo_custom.vocabulary_update:
-  path: '/admin/config/content/vocabulary-update'
+  path: '/admin/config/artifactinfo/vocabulary-update'
   defaults:
     _form: '\Drupal\artifactinfo_custom\Form\VocabularyUpdateForm'
     _title: 'Vocabulary Update via CSV'

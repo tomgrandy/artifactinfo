@@ -461,7 +461,7 @@ display:
               secondary_open: false
               reset_button_always_show: false
             sort:
-              plugin_id: default
+              plugin_id: bef
               advanced:
                 combine: true
                 combine_rewrite: "Date Sold Asc|Oldest to Newest\r\nDate Sold Desc|Newest to Oldest\r\nSale Price Asc|Price: Low to High\r\nSale Price Desc|Price High to Low"

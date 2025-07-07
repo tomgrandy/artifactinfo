@@ -1,11 +1,20 @@
+artifactinfo_custom.admin_settings:
+  title: 'Artifactinfo Settings'
+  description: 'Artifactinfo module configuration settings'
+  parent: system.admin_config
+  route_name: artifactinfo_custom.admin_settings
+  weight: -100
+
 artifactinfo_custom.learning_config:
   title: 'Learning Page Configurations'
   description: 'Configure settings for the learning center page'
-  parent: system.admin_config
+  parent: artifactinfo_custom.admin_settings
   route_name: artifactinfo_custom.learning_config
+  weight: 10
 
 artifactinfo_custom.vocabulary_update:
   title: 'Vocabulary Update via CSV'
   description: 'Update vocabulary terms using CSV file upload'
-  parent: system.admin_config
+  parent: artifactinfo_custom.admin_settings
   route_name: artifactinfo_custom.vocabulary_update
+  weight: 11
