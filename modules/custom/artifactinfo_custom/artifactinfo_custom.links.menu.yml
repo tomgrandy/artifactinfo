@@ -18,3 +18,10 @@ artifactinfo_custom.vocabulary_update:
   parent: artifactinfo_custom.admin_settings
   route_name: artifactinfo_custom.vocabulary_update
   weight: 11
+
+artifactinfo_custom.states_mapping:
+  title: 'States Mapping via XLSX'
+  description: 'Map states to surrounding areas using XLSX file upload'
+  parent: artifactinfo_custom.admin_settings
+  route_name: artifactinfo_custom.states_mapping
+  weight: 12

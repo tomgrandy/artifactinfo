@@ -30,3 +30,11 @@ artifactinfo_custom.get_related_states:
     _access: 'TRUE'
   options:
     _ajax: true
+
+artifactinfo_custom.states_mapping:
+  path: '/admin/config/artifactinfo/states-mapping'
+  defaults:
+    _form: '\Drupal\artifactinfo_custom\Form\StatesMappingForm'
+    _title: 'States Mapping via XLSX'
+  requirements:
+    _permission: 'administer taxonomy'

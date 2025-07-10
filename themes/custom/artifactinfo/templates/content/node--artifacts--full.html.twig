@@ -68,7 +68,16 @@
     <div class="detail-item">
         <span class="detail-label">{{'Place of Origin:'|t}}</span>
         <span class="detail-value">
-            <a href="/artifact-search?field_place_of_origin_target_id={{ content.field_place_of_origin['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_place_of_origin }}</a>
+            {% if content.field_place_of_origin['#items'] %}
+                {% set place_entity = content.field_place_of_origin['#items'].entity %}
+                {% if place_entity %}
+                    {% set facet_key = 'f[0]'|url_encode %}
+                    {% set facet_value = ('surrounding_search:' ~ place_entity.id)|url_encode %}
+                    <a href="/artifact-search?{{ facet_key }}={{ facet_value }}" target="_blank" rel="noopener noreferrer">
+                        {{ content.field_place_of_origin }}
+                    </a>
+                {% endif %}
+            {% endif %}
         </span>
     </div>
     {% endif %}
@@ -77,7 +86,16 @@
         <div class="detail-item">
             <span class="detail-label">{{'Search Category'|t}}</span>
             <span class="detail-value">
-                <a href="/artifact-search?field_search_categories_target_id={{ content.field_search_categories['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_search_categories }}</a>
+                {% if content.field_search_categories['#items'] %}
+                    {% set category_entity = content.field_search_categories['#items'].entity %}
+                    {% if category_entity %}
+                        {% set facet_key = 'f[0]'|url_encode %}
+                        {% set facet_value = ('search_category:' ~ category_entity.id)|url_encode %}
+                        <a href="/artifact-search?{{ facet_key }}={{ facet_value }}" target="_blank" rel="noopener noreferrer">
+                            {{ content.field_search_categories }}
+                        </a>
+                    {% endif %}
+                {% endif %}
             </span>
         </div>
     {% endif %}
