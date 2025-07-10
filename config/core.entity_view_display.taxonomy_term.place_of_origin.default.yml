@@ -1,0 +1,25 @@
+uuid: 9cd88bc5-5e0c-457b-97ff-e4fe30be507b
+langcode: en
+status: true
+dependencies:
+  config:
+    - field.field.taxonomy_term.place_of_origin.field_related_states
+    - taxonomy.vocabulary.place_of_origin
+  module:
+    - text
+id: taxonomy_term.place_of_origin.default
+targetEntityType: taxonomy_term
+bundle: place_of_origin
+mode: default
+content:
+  description:
+    type: text_default
+    label: hidden
+    settings: {  }
+    third_party_settings: {  }
+    weight: 0
+    region: content
+hidden:
+  field_related_states: true
+  langcode: true
+  search_api_excerpt: true

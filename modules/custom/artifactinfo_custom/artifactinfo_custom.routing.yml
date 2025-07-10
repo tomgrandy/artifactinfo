@@ -21,3 +21,12 @@ artifactinfo_custom.vocabulary_update:
     _title: 'Vocabulary Update via CSV'
   requirements:
     _permission: 'administer taxonomy'
+
+artifactinfo_custom.get_related_states:
+  path: '/ajax/get-related-states'
+  defaults:
+    _controller: '\Drupal\artifactinfo_custom\Controller\SurroundingStatesController::getRelatedStates'
+  requirements:
+    _access: 'TRUE'
+  options:
+    _ajax: true

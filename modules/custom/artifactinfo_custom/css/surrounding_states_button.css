@@ -1,0 +1,136 @@
+/**
+ * Surrounding States Button Styles
+ */
+
+.surrounding-states-btn {
+  display: none; /* Hidden by default */
+  padding: 8px 16px;
+  margin: 10px 0;
+  border: 2px solid #0073aa;
+  background-color: #0073aa;
+  color: #000000;
+  text-decoration: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 14px;
+  font-weight: 500;
+  transition: all 0.3s ease;
+  outline: none;
+}
+
+.surrounding-states-btn:not([style*="display: none"]) {
+  display: inline-block; /* Show when not explicitly hidden */
+}
+
+.surrounding-states-btn:hover {
+  background-color: #005a87;
+  border-color: #005a87;
+  color: #ffffff;
+  text-decoration: none;
+}
+
+.surrounding-states-btn:focus {
+  box-shadow: 0 0 0 2px rgba(0, 115, 170, 0.3);
+}
+
+.surrounding-states-btn:disabled {
+  opacity: 0.6;
+  cursor: not-allowed;
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+}
+
+.surrounding-states-btn:disabled:hover {
+  background-color: #cccccc;
+  border-color: #cccccc;
+  color: #666666;
+}
+
+/* Remove mode styling */
+.surrounding-states-btn.remove-mode {
+  background-color: #dc3545;
+  border-color: #dc3545;
+  color: #ffffff;
+}
+
+.surrounding-states-btn.remove-mode:hover {
+  background-color: #c82333;
+  border-color: #bd2130;
+}
+
+.surrounding-states-btn.remove-mode:focus {
+  box-shadow: 0 0 0 2px rgba(220, 53, 69, 0.3);
+}
+
+/* Include mode styling (default) */
+.surrounding-states-btn.include-mode {
+  background-color: #A8A6A1;
+  border-color: #767572;
+}
+
+.surrounding-states-btn.include-mode:hover {
+  background-color: #606060;
+  border-color: #767572;
+}
+
+.surrounding-states-btn.include-mode:focus {
+  box-shadow: 0 0 0 2px rgba(40, 167, 69, 0.3);
+}
+
+/* Message styling */
+#messages-container {
+  position: fixed;
+  top: 90px;
+  right: 20px;
+  z-index: 9999;
+  max-width: 400px;
+}
+
+.messages {
+  padding: 12px 16px;
+  margin-bottom: 10px;
+  border-radius: 4px;
+  border-left: 4px solid;
+}
+
+.messages--status {
+  background-color: #d4edda;
+  border-color: #28a745;
+  color: #155724;
+}
+
+.messages--warning {
+  background-color: #fff3cd;
+  border-color: #ffc107;
+  color: #856404;
+}
+
+.messages--error {
+  background-color: #f8d7da;
+  border-color: #dc3545;
+  color: #721c24;
+}
+
+.messages--info {
+  background-color: #d1ecf1;
+  border-color: #17a2b8;
+  color: #0c5460;
+}
+
+/* Responsive design */
+@media (max-width: 768px) {
+  .surrounding-states-btn {
+    display: block;
+    width: 100%;
+    text-align: center;
+    margin: 5px 0;
+    padding: 10px;
+  }
+  
+  #messages-container {
+    left: 10px;
+    right: 10px;
+    max-width: none;
+  }
+} 

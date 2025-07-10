@@ -1,0 +1,4 @@
+services:
+  artifactinfo_custom.surrounding_states:
+    class: Drupal\artifactinfo_custom\Service\SurroundingStatesService
+    arguments: ['@entity_type.manager', '@logger.factory'] 

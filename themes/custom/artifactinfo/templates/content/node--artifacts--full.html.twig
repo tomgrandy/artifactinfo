@@ -68,7 +68,7 @@
     <div class="detail-item">
         <span class="detail-label">{{'Place of Origin:'|t}}</span>
         <span class="detail-value">
-            <a href="/search-multi?field_place_of_origin_target_id={{ content.field_place_of_origin['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_place_of_origin }}</a>
+            <a href="/artifact-search?field_place_of_origin_target_id={{ content.field_place_of_origin['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_place_of_origin }}</a>
         </span>
     </div>
     {% endif %}
@@ -77,7 +77,7 @@
         <div class="detail-item">
             <span class="detail-label">{{'Search Category'|t}}</span>
             <span class="detail-value">
-                <a href="/search-multi?field_search_categories_target_id={{ content.field_search_categories['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_search_categories }}</a>
+                <a href="/artifact-search?field_search_categories_target_id={{ content.field_search_categories['#items'].entity.id }}" target="_blank" rel="noopener noreferrer">{{ content.field_search_categories }}</a>
             </span>
         </div>
     {% endif %}

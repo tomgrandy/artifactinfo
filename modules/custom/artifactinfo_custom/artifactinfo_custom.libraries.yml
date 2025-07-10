@@ -1,0 +1,10 @@
+surrounding_states_button:
+  css:
+    theme:
+      css/surrounding_states_button.css: {}
+  js:
+    js/surrounding_states_button.js: {}
+  dependencies:
+    - core/jquery
+    - core/drupal
+    - core/once

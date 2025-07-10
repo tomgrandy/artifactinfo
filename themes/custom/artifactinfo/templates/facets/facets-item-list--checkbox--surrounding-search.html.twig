@@ -52,7 +52,7 @@
     {%- if title is not empty -%}
       <label class="facets-widget-checkbox-label" for="edit-title--2">{{ title }}</label>
     {%- endif -%}
-
+    <button type="button" id="surrounding-states-btn" class="surrounding-states-btn include-mode">{{'Include Surrounding States'|t}}</button>
     {%- if items -%}
       <{{ list_type }}{{ attributes }}>
         {%- for item in items -%}
