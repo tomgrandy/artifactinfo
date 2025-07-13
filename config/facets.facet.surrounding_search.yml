@@ -9,7 +9,7 @@ dependencies:
     - search_api
 id: surrounding_search
 name: 'Surrounding search'
-weight: 0
+weight: -1
 min_count: 1
 missing: false
 missing_label: others
@@ -65,6 +65,12 @@ processor_configs:
     weights:
       build: 5
     settings: {  }
+  term_weight_widget_order:
+    processor_id: term_weight_widget_order
+    weights:
+      sort: 60
+    settings:
+      sort: ASC
   translate_entity:
     processor_id: translate_entity
     weights:

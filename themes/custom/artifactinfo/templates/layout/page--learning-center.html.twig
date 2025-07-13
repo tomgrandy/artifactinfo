@@ -23,7 +23,6 @@
       <h1 class="banner-title">{{'The Learning Center'}}</h1>
       <div class="search-container">
         {% if current_path == '/learning-center' %}
-          {{ drupal_block('views_exposed_filter_block:the_learning_center_new-page_1') }}
         {% else %}
           {{ drupal_block('views_exposed_filter_block:learning_center_detail-page_1') }}
         {% endif %}
