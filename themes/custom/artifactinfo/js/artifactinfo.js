@@ -1036,7 +1036,7 @@
       });
 
       /**
-       * Update visual state of facet items based on checkbox state.
+       * Update visual state of facet items based on checkbox state and active trail.
        *
        * @param {jQuery} $checkbox
        *   The checkbox element that was changed.
@@ -1044,7 +1044,11 @@
       function updateItemState($checkbox) {
         const $facetItem = $checkbox.closest('.facet-item');
         
-        if ($checkbox.is(':checked')) {
+        // Check if checkbox is checked OR if item has active trail (children selected)
+        const isDirectlySelected = $checkbox.is(':checked');
+        const hasActiveTrail = $facetItem.hasClass('facet-item--active-trail');
+        
+        if (isDirectlySelected || hasActiveTrail) {
           $facetItem.addClass('selected');
         } else {
           $facetItem.removeClass('selected');
@@ -1055,6 +1059,27 @@
       $(allCheckboxes).each(function() {
         updateItemState($(this));
       });
+
+      // Initialize expand/collapse states for active trail items on page load
+      initializeActiveTrailStates();
+
+      /**
+       * Initialize expand/collapse states for items with active trail.
+       * Ensures parent items with selected children are properly expanded.
+       */
+      function initializeActiveTrailStates() {
+        // Find all parent items with active trail (children selected)
+        const $activeTrailParents = $('.facet-item--expanded.facet-item--active-trail', context);
+        
+        $activeTrailParents.each(function() {
+          const $parentItem = $(this);
+          const $childWidget = $parentItem.find('.facets-widget-');
+          
+          // Remove collapsed class from both parent and child widget
+          $parentItem.removeClass('collapsed');
+          $childWidget.removeClass('collapsed');
+        });
+      }
     }
   };
 

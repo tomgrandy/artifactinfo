@@ -20,12 +20,12 @@ query_operator: or
 hard_limit: 0
 exclude: false
 use_hierarchy: true
-keep_hierarchy_parents_active: false
+keep_hierarchy_parents_active: true
 hierarchy:
   type: taxonomy
   config: {  }
 expand_hierarchy: true
-enable_parent_when_child_gets_disabled: true
+enable_parent_when_child_gets_disabled: false
 widget:
   type: checkbox
   config:
