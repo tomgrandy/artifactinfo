@@ -1082,5 +1082,70 @@
       }
     }
   };
+  
+  Drupal.behaviors.learningCenterFormBehavior = {
+    attach: function (context, settings) {
+      // Target the specific form
+      const formId = 'views-exposed-form-learning-center-detail-page-1';
+      const $form = $('#' + formId, context);
+      
+      if ($form.length) {
+        // Store the original URL when the behavior first attaches
+        const originalUrl = window.location.href;
+        const originalPathname = window.location.pathname;
+        const currentSearchParams = new URLSearchParams(window.location.search);
+        
+        // Define what parameters should be preserved in the "original" state
+        // Based on your example, only 'type' should be preserved
+        const originalSearchParams = new URLSearchParams();
+        if (currentSearchParams.has('type')) {
+          originalSearchParams.set('type', currentSearchParams.get('type'));
+        }
+        
+        // Use once to ensure the event handler is only attached once
+        once('learning-center-form-handler', $form[0]).forEach(function(element) {
+          // Handle form submission
+          $(element).on('submit', function (e) {
+            e.preventDefault();
+            
+            // Get form data
+            const formData = new FormData(this);
+            const newParams = new URLSearchParams();
+            
+            // Add form data to new parameters
+            for (let [key, value] of formData.entries()) {
+              if (value && value.trim() !== '') {
+                newParams.append(key, value);
+              }
+            }
+            
+            // Start with original search parameters (only 'type' should be preserved)
+            const finalParams = new URLSearchParams(originalSearchParams);
+            
+            // Add/update with new form parameters
+            for (let [key, value] of newParams.entries()) {
+              finalParams.set(key, value);
+            }
+            
+            // Construct the final URL
+            const finalUrl = originalPathname + '?' + finalParams.toString();
+            
+            // Redirect to the constructed URL
+            window.location.href = finalUrl;
+          });
+          
+          // Handle reset button click
+          $(element).find('#edit-reset-learning-center-detail--2').on('click', function(e) {
+            e.preventDefault();
+            
+            // Redirect to original URL with only the preserved parameters (type=all)
+            const resetUrl = originalPathname + (originalSearchParams.toString() ? '?' + originalSearchParams.toString() : '');
+            window.location.href = resetUrl;
+          });
+        });
+      }
+    }
+  };
+
 
 })(Drupal, jQuery, once);
