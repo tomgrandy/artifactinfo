@@ -1,4 +1,4 @@
-uuid: 48e151f5-625f-4c97-b49e-ef43fc1b4f10
+uuid: dc4f355e-6225-4240-afb4-51f741b7c731
 langcode: en
 status: true
 dependencies:
@@ -9,9 +9,9 @@ third_party_settings:
     available_menus:
       - main
     parent: 'main:'
-name: 'TLC Categories'
-type: learning_center_categories
-description: 'Learning Center Landing Page Categories with Corresponding Photos.'
+name: 'TLC Article'
+type: tlc_articles
+description: 'Use this for <i>Content Type</i> for creating articles to be shown in The Learning Center.'
 help: null
 new_revision: true
 preview_mode: 1

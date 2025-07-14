@@ -8,9 +8,9 @@ third_party_settings:
   menu_ui:
     available_menus: {  }
     parent: ''
-name: 'Learning Center Videos'
+name: 'TLC Video'
 type: videos_for_learning_center
-description: 'Use this for uploading videos to be shown in The Learning Center'
+description: 'Use this <i>Content Type</i> for uploading videos to be shown in The Learning Center.'
 help: null
 new_revision: true
 preview_mode: 1

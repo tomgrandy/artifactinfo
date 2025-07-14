@@ -1,0 +1,36 @@
+uuid: 9187e35c-ed83-4958-8daf-215eb4df2e36
+langcode: en
+status: true
+dependencies:
+  config:
+    - core.entity_view_mode.node.teaser
+    - field.field.node.tlc_articles.body
+    - field.field.node.tlc_articles.field_author
+    - field.field.node.tlc_articles.field_feature_photo
+    - node.type.tlc_articles
+  module:
+    - text
+    - user
+id: node.tlc_articles.teaser
+targetEntityType: node
+bundle: tlc_articles
+mode: teaser
+content:
+  body:
+    type: text_summary_or_trimmed
+    label: hidden
+    settings:
+      trim_length: 600
+    third_party_settings: {  }
+    weight: 101
+    region: content
+  links:
+    settings: {  }
+    third_party_settings: {  }
+    weight: 100
+    region: content
+hidden:
+  field_author: true
+  field_feature_photo: true
+  langcode: true
+  search_api_excerpt: true

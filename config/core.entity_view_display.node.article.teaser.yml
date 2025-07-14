@@ -7,6 +7,7 @@ dependencies:
     - field.field.node.article.body
     - field.field.node.article.field_feature_photo
     - field.field.node.article.field_learning_center_category
+    - field.field.node.article.field_written_by
     - node.type.article
   module:
     - text
@@ -37,5 +38,6 @@ content:
 hidden:
   field_feature_photo: true
   field_learning_center_category: true
+  field_written_by: true
   langcode: true
   search_api_excerpt: true

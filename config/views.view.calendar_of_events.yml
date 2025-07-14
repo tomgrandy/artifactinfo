@@ -142,7 +142,7 @@ display:
         options:
           offset: 0
           display_reset: 0
-          use_previous_next: 0
+          use_previous_next: 1
           label_format: F
       exposed_form:
         type: basic
@@ -253,7 +253,7 @@ display:
     display_plugin: page
     position: 1
     display_options:
-      enabled: false
+      enabled: true
       display_extenders: {  }
       path: calendar
     cache_metadata:
