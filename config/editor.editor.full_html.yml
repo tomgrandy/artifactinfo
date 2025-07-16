@@ -95,6 +95,8 @@ settings:
       multiBlock: true
     ckeditor5_sourceEditing:
       allowed_tags: {  }
+    linkit_extension:
+      linkit_enabled: false
 image_upload:
   status: true
   scheme: public
