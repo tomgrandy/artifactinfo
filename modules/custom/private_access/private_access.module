@@ -1,0 +1,37 @@
+<?php
+# /var/www/html/artifactinfo/web/modules/custom/private_access/private_access.module
+
+/**
+ * @file
+ * Allows public access to private files.
+ */
+
+/**
+ * Implements hook_file_download().
+ */
+function private_access_file_download($uri) {
+  // Only handle private files
+  if (strpos($uri, 'private://') !== 0) {
+    return NULL;
+  }
+
+  $file_system = \Drupal::service('file_system');
+  $realpath = $file_system->realpath($uri);
+  
+  // Check if file exists
+  if (!$realpath || !file_exists($realpath)) {
+    return NULL;
+  }
+
+  // Get file info
+  $mime_type = \Drupal::service('file.mime_type.guesser')->guess($uri);
+  $file_size = filesize($realpath);
+  
+  // Return headers to allow access
+  return [
+    'Content-Type' => $mime_type,
+    'Content-Length' => $file_size,
+    'Cache-Control' => 'public, max-age=31536000', // Cache for 1 year
+    'Expires' => gmdate('D, d M Y H:i:s \G\M\T', time() + 31536000),
+  ];
+}

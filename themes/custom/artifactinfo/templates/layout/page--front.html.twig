@@ -43,14 +43,14 @@
             <a href="{{ front_page|default(path('<front>')) }}" class="footer-logo">
               <img src="{{ logo_path|default(base_path ~ directory ~ '/images/Ai-Logo2proof.png') }}" class="logo-icon" alt="{{ site_name|default('Site Logo')|t }}">
             </a>
-            <div class="social-icons">
+           {# <div class="social-icons">
               <a href="#" class="social-icon-footer" aria-label="{{ 'Twitter'|t }}">T</a>
               <a href="#" class="social-icon-footer" aria-label="{{ 'LinkedIn'|t }}">in</a>
               <a href="#" class="social-icon-footer" aria-label="{{ 'Facebook'|t }}">f</a>
-            </div>
+            </div>#}
           </div>
           <div class="newsletter-section">
-            <h3 class="newsletter-title">{{ 'Sign up for our weekly newsletter'|t }}</h3>
+            <h3 class="newsletter-title">{{ 'Artifact Info News & Updates'|t }}</h3>
             <form class="newsletter-form">
               <input type="email" class="newsletter-input" placeholder="{{ 'enter email here'|t }}" required>
               <button type="submit" class="newsletter-btn">{{ 'Subscribe'|t }}</button>

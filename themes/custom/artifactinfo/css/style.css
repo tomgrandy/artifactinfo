@@ -360,3 +360,12 @@
   outline: 2px solid #A8A6A1;
   outline-offset: 2px;
 }
+
+.article-header {
+  display: none;
+}
+
+.align-left {
+    float: left;
+    margin: 10px !important;
+}

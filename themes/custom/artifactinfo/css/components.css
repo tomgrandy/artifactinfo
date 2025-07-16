@@ -737,6 +737,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 }
 
 .social-icon-footer {
+  display: none !important;
   width: 35px;
   height: 35px;
   background-color: #38383B;
@@ -2049,6 +2050,7 @@ body.toolbar-horizontal.toolbar-tray-open .main-content {
 .mobile-cards {
   display: none;
 }
+
 
 /* ========================================
    MOBILE ARTIFACT CARDS - RESPONSIVE STYLES

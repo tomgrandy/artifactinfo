@@ -1,0 +1,6 @@
+# /var/www/html/artifactinfo/web/modules/custom/private_access/private_access.info.yml
+name: Private File Access
+description: Allows public access to private files
+type: module
+core_version_requirement: ^9 || ^10
+version: 1.0

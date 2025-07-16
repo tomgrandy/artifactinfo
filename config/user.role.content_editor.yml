@@ -7,21 +7,17 @@ dependencies:
     - filter.format.full_html
     - node.type.article
     - node.type.artifacts
-    - node.type.certificate_of_authenticity
     - node.type.event
     - node.type.page
     - node.type.puzzle_images
     - node.type.puzzle_maker
+    - node.type.tlc_articles
     - node.type.videos_for_learning_center
-    - taxonomy.vocabulary.tags
   module:
     - contextual
-    - file
     - filter
     - node
-    - path
     - system
-    - taxonomy
     - toolbar
     - video_embed_field
 _core:
@@ -33,75 +29,45 @@ is_admin: false
 permissions:
   - 'access content overview'
   - 'access contextual links'
-  - 'access files overview'
   - 'access toolbar'
-  - 'administer url aliases'
-  - 'create article content'
-  - 'create artifacts content'
-  - 'create certificate_of_authenticity content'
   - 'create event content'
   - 'create page content'
   - 'create puzzle_images content'
   - 'create puzzle_maker content'
-  - 'create terms in tags'
-  - 'create url aliases'
+  - 'create tlc_articles content'
   - 'create videos_for_learning_center content'
   - 'delete any article content'
   - 'delete any artifacts content'
-  - 'delete any certificate_of_authenticity content'
   - 'delete any event content'
-  - 'delete any file'
   - 'delete any page content'
   - 'delete any puzzle_images content'
   - 'delete any puzzle_maker content'
+  - 'delete any tlc_articles content'
   - 'delete any videos_for_learning_center content'
-  - 'delete article revisions'
-  - 'delete artifacts revisions'
-  - 'delete certificate_of_authenticity revisions'
-  - 'delete event revisions'
-  - 'delete own artifacts content'
-  - 'delete own page content'
-  - 'delete page revisions'
-  - 'delete puzzle_images revisions'
-  - 'delete puzzle_maker revisions'
-  - 'delete videos_for_learning_center revisions'
-  - 'edit any article content'
   - 'edit any artifacts content'
-  - 'edit any certificate_of_authenticity content'
   - 'edit any event content'
   - 'edit any page content'
   - 'edit any puzzle_images content'
   - 'edit any puzzle_maker content'
+  - 'edit any tlc_articles content'
   - 'edit any videos_for_learning_center content'
-  - 'edit own article content'
-  - 'edit own artifacts content'
-  - 'edit own certificate_of_authenticity content'
-  - 'edit own event content'
-  - 'edit own page content'
-  - 'edit own puzzle_images content'
-  - 'edit own puzzle_maker content'
-  - 'edit own videos_for_learning_center content'
-  - 'edit terms in tags'
   - 'never autoplay videos'
-  - 'revert all revisions'
-  - 'revert article revisions'
   - 'revert artifacts revisions'
-  - 'revert certificate_of_authenticity revisions'
   - 'revert event revisions'
   - 'revert page revisions'
   - 'revert puzzle_images revisions'
   - 'revert puzzle_maker revisions'
+  - 'revert tlc_articles revisions'
   - 'revert videos_for_learning_center revisions'
   - 'use text format basic_html'
   - 'use text format full_html'
-  - 'view all revisions'
   - 'view article revisions'
   - 'view artifacts revisions'
-  - 'view certificate_of_authenticity revisions'
   - 'view event revisions'
   - 'view own unpublished content'
   - 'view page revisions'
   - 'view puzzle_images revisions'
   - 'view puzzle_maker revisions'
   - 'view the administration theme'
+  - 'view tlc_articles revisions'
   - 'view videos_for_learning_center revisions'
