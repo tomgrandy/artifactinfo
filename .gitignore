@@ -143,3 +143,4 @@ Session.vim
 # SASS
 .sass-cache
 ArtifactinforAfterUpdate.sql
+*.sql
