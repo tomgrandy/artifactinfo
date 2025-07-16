@@ -11,7 +11,6 @@ dependencies:
     - node.type.page
     - node.type.puzzle_images
     - node.type.puzzle_maker
-    - node.type.tlc_articles
     - node.type.videos_for_learning_center
   module:
     - contextual
@@ -34,7 +33,6 @@ permissions:
   - 'create page content'
   - 'create puzzle_images content'
   - 'create puzzle_maker content'
-  - 'create tlc_articles content'
   - 'create videos_for_learning_center content'
   - 'delete any article content'
   - 'delete any artifacts content'
@@ -42,7 +40,6 @@ permissions:
   - 'delete any page content'
   - 'delete any puzzle_images content'
   - 'delete any puzzle_maker content'
-  - 'delete any tlc_articles content'
   - 'delete any videos_for_learning_center content'
   - 'delete own puzzle_images content'
   - 'delete own puzzle_maker content'
@@ -53,7 +50,6 @@ permissions:
   - 'edit any page content'
   - 'edit any puzzle_images content'
   - 'edit any puzzle_maker content'
-  - 'edit any tlc_articles content'
   - 'edit any videos_for_learning_center content'
   - 'edit own puzzle_images content'
   - 'edit own puzzle_maker content'
@@ -63,7 +59,6 @@ permissions:
   - 'revert page revisions'
   - 'revert puzzle_images revisions'
   - 'revert puzzle_maker revisions'
-  - 'revert tlc_articles revisions'
   - 'revert videos_for_learning_center revisions'
   - 'use text format basic_html'
   - 'use text format full_html'
@@ -75,5 +70,4 @@ permissions:
   - 'view puzzle_images revisions'
   - 'view puzzle_maker revisions'
   - 'view the administration theme'
-  - 'view tlc_articles revisions'
   - 'view videos_for_learning_center revisions'

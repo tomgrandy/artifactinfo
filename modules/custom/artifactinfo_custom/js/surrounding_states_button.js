@@ -252,7 +252,7 @@
     $button
       .removeClass('remove-mode')
       .addClass('include-mode')
-      .text(Drupal.t('Include Surrounding States'))
+      .text(Drupal.t('Include Surrounding Areas'))
       .prop('disabled', false);
   }
 
@@ -263,7 +263,7 @@
     $button
       .removeClass('include-mode')
       .addClass('remove-mode')
-      .text(Drupal.t('Remove Surrounding States'))
+      .text(Drupal.t('Remove Surrounding Areas'))
       .prop('disabled', false);
   }
 

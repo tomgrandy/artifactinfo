@@ -536,14 +536,14 @@ display:
               plugin_id: bef
               advanced:
                 combine: true
-                combine_rewrite: "Date Sold Asc|Oldest to Newest\r\nDate Sold Desc|Newest to Oldest\r\nSale Price Asc|Price: Low to High\r\nSale Price Desc|Price High to Low"
+                combine_rewrite: "Date Auctioned Asc|Date Auctioned: Oldest to Newest\r\nDate Auctioned Desc|Date Auctioned: Newest to Oldest\r\nSold Price Asc|Sold Price: Low to High\r\nSold Price Desc|Sold Price High to Low"
                 reset: false
                 reset_label: ''
                 collapsible: false
                 collapsible_label: 'Sort options'
                 is_secondary: false
             filter:
-              title:
+              field_artifact_description:
                 plugin_id: default
                 advanced:
                   placeholder_text: ''
@@ -646,10 +646,11 @@ display:
             field_place_of_origin: field_place_of_origin
             field_sale_price: field_sale_price
             field_date_sold: field_date_sold
-          default: field_date_sold
+            field_artifact_description: field_artifact_description
+          default: title
           info:
             field_artifact_image_1:
-              align: ''
+              align: views-align-center
               separator: ''
               empty_column: false
               responsive: ''
@@ -675,6 +676,13 @@ display:
             field_date_sold:
               sortable: false
               default_sort_order: desc
+              align: ''
+              separator: ''
+              empty_column: false
+              responsive: ''
+            field_artifact_description:
+              sortable: false
+              default_sort_order: asc
               align: ''
               separator: ''
               empty_column: false
