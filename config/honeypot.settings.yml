@@ -1,6 +1,6 @@
 _core:
   default_config_hash: 9bVDfWSa_In6VzTXmy04jJ_3ZQobihKjO9isuuUCPaw
-protect_all_forms: true
+protect_all_forms: false
 unprotected_forms:
   - user_login_form
   - search_form
@@ -18,5 +18,14 @@ form_settings:
   contact_message_personal_form: false
   node_article_form: false
   node_artifacts_form: false
+  node_certificate_of_authenticity_form: false
+  node_event_form: false
+  node_learning_center_categories_form: false
+  node_news_feed_form: false
   node_page_form: false
+  node_puzzle_images_form: false
+  node_puzzle_maker_form: false
+  node_tlc_articles_form: false
+  node_videos_for_learning_center_form: false
+  node_webform_form: true
   comment_comment_form: false
