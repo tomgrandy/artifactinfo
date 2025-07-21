@@ -516,7 +516,12 @@ display:
             label: 'Sale Price'
             field_identifier: field_sale_price
           exposed: true
-      arguments: {  }
+      arguments:
+        field_artifact_description:
+          id: field_artifact_description
+          table: search_api_index_artifacts_general
+          field: field_artifact_description
+          plugin_id: search_api
       filters:
         status:
           id: status
@@ -605,7 +610,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: search_api_fulltext
-          operator: or
+          operator: and
           value: ''
           group: 1
           exposed: true
@@ -646,6 +651,7 @@ display:
           min_length: null
           fields:
             - field_artifact_description
+            - title
       style:
         type: table
         options:

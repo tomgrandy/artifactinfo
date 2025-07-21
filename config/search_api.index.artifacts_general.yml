@@ -69,7 +69,7 @@ field_settings:
     label: 'Artifact Description'
     datasource_id: 'entity:node'
     property_path: field_artifact_description
-    type: text
+    type: 'solr_text_custom:ngramstring'
     boost: 2.0
     dependencies:
       config:
@@ -114,12 +114,28 @@ field_settings:
     dependencies:
       config:
         - field.storage.node.field_search_categories
+  status:
+    label: Published
+    datasource_id: 'entity:node'
+    property_path: status
+    type: boolean
+    dependencies:
+      module:
+        - node
   title:
     label: Title
     datasource_id: 'entity:node'
     property_path: title
     type: text
     boost: 2.0
+    dependencies:
+      module:
+        - node
+  type:
+    label: 'Content type'
+    datasource_id: 'entity:node'
+    property_path: type
+    type: string
     dependencies:
       module:
         - node
