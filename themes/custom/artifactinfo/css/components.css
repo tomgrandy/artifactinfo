@@ -3649,3 +3649,9 @@ body {
 .js-selected-radio-item label.option {
   color: #FFFFFF !important;
 }
+
+[data-drupal-facet-id="search_category"],
+[data-drupal-facet-id="surrounding_search"] {
+  height: 250px;
+  overflow: auto;
+}
