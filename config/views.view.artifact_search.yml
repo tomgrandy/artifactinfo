@@ -28,7 +28,7 @@ display:
     display_plugin: default
     position: 0
     display_options:
-      title: 'Artifact Database Search Result'
+      title: 'Artifact Database'
       fields:
         field_artifact_image_1:
           id: field_artifact_image_1
@@ -39,7 +39,7 @@ display:
           admin_label: ''
           entity_type: node
           plugin_id: search_api_field
-          label: 'Artifact Image 1'
+          label: 'Artifact Image'
           exclude: false
           alter:
             alter_text: false
@@ -267,7 +267,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: search_api_field
-          label: 'Sale Price'
+          label: 'Sold Price'
           exclude: false
           alter:
             alter_text: false
@@ -351,7 +351,7 @@ display:
           group_type: group
           admin_label: ''
           plugin_id: search_api_field
-          label: 'Sold Date'
+          label: 'Auction Date'
           exclude: false
           alter:
             alter_text: false
@@ -516,12 +516,7 @@ display:
             label: 'Sale Price'
             field_identifier: field_sale_price
           exposed: true
-      arguments:
-        field_artifact_description:
-          id: field_artifact_description
-          table: search_api_index_artifacts_general
-          field: field_artifact_description
-          plugin_id: search_api
+      arguments: {  }
       filters:
         status:
           id: status
@@ -651,7 +646,6 @@ display:
           min_length: null
           fields:
             - field_artifact_description
-            - title
       style:
         type: table
         options:

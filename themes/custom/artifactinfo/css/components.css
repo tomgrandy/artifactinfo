@@ -3658,6 +3658,7 @@ body {
 ::-webkit-scrollbar {
   -webkit-appearance: none;
   width: 7px;
+  background-color: white;
 }
 ::-webkit-scrollbar-thumb {
   border-radius: 4px;
